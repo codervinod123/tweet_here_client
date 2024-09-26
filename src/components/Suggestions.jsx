@@ -1,6 +1,21 @@
+import { useState, useEffect } from "react";
 import { HiPlus } from "react-icons/hi";
 import Trending from "./Trending";
+import axios from "axios";
+
 const Suggestions = () => {
+
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+
+  const getAllUsers = async () => {
+    const res = await axios.get("http://localhost:3001/api/v1/user");
+    setUsers(res.data.data);
+    console.log(res.data.data);
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <Trending />
