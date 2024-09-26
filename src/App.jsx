@@ -3,7 +3,7 @@ import Home from './components/Home'
 
 const App = () => {
   return (
-    <div className='bg-[#e4c3f9]'>
+    <div className='bg-[#ECFFE6]'>
       <Navbar/>
       <Home/>
     </div>

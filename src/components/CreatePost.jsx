@@ -13,7 +13,7 @@ const CreatePost = () => {
                 </span>
             </div>
             <form className="w-full rounded">
-                <textarea rows={2} data-autoresize={true} placeholder="Share your Thoughts..." className="bg-[#e4c3f9] placeholder:text-gray-600 w-full rounded p-2 outline-none resize-none" name="" id=""></textarea>
+                <textarea rows={2} data-autoresize={true} placeholder="Share your Thoughts..." className="bg-[#ECFFE6] placeholder:text-gray-600 w-full rounded p-2 outline-none resize-none" name="" id=""></textarea>
             </form>
         </div>
         <ul className="flex gap-4 px-8 py-4">

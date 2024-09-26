@@ -60,8 +60,8 @@ const PostCard = () => {
                     <img height={45} width={45} className="rounded-full" src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg" alt="post-owner" />
                   </span>
                 </div>
-                <form className="w-full rounded flex px-4 bg-[#e4c3f9]">
-                  <textarea rows={1} data-autoresize={true} placeholder="Place Your Comment..." className="bg-[#e4c3f9] placeholder:text-gray-600 w-full rounded p-2 outline-none resize-none" name="" id=""></textarea>
+                <form className="w-full rounded flex px-4 bg-[#ECFFE6]">
+                  <textarea rows={1} data-autoresize={true} placeholder="Place Your Comment..." className="bg-[#ECFFE6] placeholder:text-gray-600 w-full rounded p-2 outline-none resize-none" name="" id=""></textarea>
                   <button className="">
                     <IoIosSend color="#3C3D37" size={"1.4rem"}/>
                   </button>
@@ -77,7 +77,7 @@ const PostCard = () => {
                            <img height={45} width={45} className="rounded-full flex-shrink-0" src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg" alt="post-owner" />
                          </span>
                         </div>
-                        <div className="flex bg-[#e4c3f9] rounded-md w-full p-2">
+                        <div className="flex bg-[#ECFFE6] rounded-md w-full p-2">
                             <div className="flex flex-col">
                                 <div className="flex justify-between">
                                     <h4 className="text-base font-semibold">Carlsen Mangus</h4>
@@ -111,7 +111,7 @@ const PostCard = () => {
                            <img height={45} width={45} className="rounded-full flex-shrink-0" src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg" alt="post-owner" />
                          </span>
                         </div>
-                        <div className="flex bg-[#e4c3f9] rounded-md w-full p-2">
+                        <div className="flex bg-[#ECFFE6] rounded-md w-full p-2">
                             <div className="flex flex-col">
                                 <div className="flex justify-between">
                                     <h4 className="text-base font-semibold">Carlsen Mangus</h4>
@@ -145,7 +145,7 @@ const PostCard = () => {
                            <img height={45} width={45} className="rounded-full flex-shrink-0" src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg" alt="post-owner" />
                          </span>
                         </div>
-                        <div className="flex bg-[#e4c3f9] rounded-md w-full p-2">
+                        <div className="flex bg-[#ECFFE6] rounded-md w-full p-2">
                             <div className="flex flex-col">
                                 <div className="flex justify-between">
                                     <h4 className="text-base font-semibold">Carlsen Mangus</h4>
