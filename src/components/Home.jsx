@@ -1,6 +1,7 @@
 import Posts from "./Posts"
 import ProfileOverview from "./ProfileOverview"
 import Suggestions from "./Suggestions"
+import Trending from "./Trending"
 
 const Home = () => {
     return (
