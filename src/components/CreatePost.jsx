@@ -65,7 +65,7 @@ const CreatePost = () => {
             rows={2}
             data-autoresize={true}
             placeholder="Share your Thoughts..."
-            className="bg-[#ECFFE6] placeholder:text-gray-600 w-full rounded p-2 outline-none resize-none"
+            className="bg-gray-100 placeholder:text-gray-600 w-full rounded p-2 outline-none resize-none"
             name=""
             id=""
           ></textarea>
@@ -78,8 +78,8 @@ const CreatePost = () => {
           </div>
         )}
       </div>
-      <div className="flex justify-between px-8">
-        <ul className="flex gap-4 py-4">
+      <div className="flex justify-between px-8 py-4">
+        <ul className="flex gap-4 ">
           <li className="bg-gray-200 rounded-sm px-[4px] py-[2px] cursor-pointer">
             <input
               onChange={(e) => handleImageChange(e)}
@@ -89,34 +89,39 @@ const CreatePost = () => {
             />
             <label
               htmlFor="pc"
-              className="flex gap-x-2 text-sm items-center justify-center cursor-pointer"
+              className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500"
             >
               <FaImage color="#15B392" />
               Photos
             </label>
           </li>
-          <li className="bg-gray-200 rounded-sm px-[4px] py-[2px] cursor-pointer">
-            <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer">
+          <li className="bg-gray-200 rounded-sm px-[4px] py-[2px] cursor-pointer ">
+            <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500">
               <FaVideo color="#00CCDD" />
               Vedio
             </span>
           </li>
 
           <li className="bg-gray-200 rounded-sm px-[4px] py-[2px] cursor-pointer">
-            <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer">
+            <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500">
               <BsFillCalendarDateFill color="#D91656" />
               Event
             </span>
           </li>
 
           <li className="bg-gray-200 rounded-sm px-[4px] py-[2px] cursor-pointer">
-            <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer">
+            <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500">
               <MdEmojiEmotions color="#FF7F3E" />
               Feeling/Activity
             </span>
           </li>
         </ul>
-        <button onClick={handleSubmitForm}>Post</button>
+        <button
+          onClick={handleSubmitForm}
+          className="bg-blue-600 text-white rounded-sm px-[6px] cursor-pointer hover:bg-blue-500 transition-all duration-500"
+        >
+          Post
+        </button>
       </div>
     </div>
   );

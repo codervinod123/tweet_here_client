@@ -3,7 +3,7 @@ import Home from "./components/Home";
 
 const App = () => {
   return (
-    <div className="bg-[#ECFFE6]">
+    <div className="bg-gray-200">
       <Navbar />
       <Home />
     </div>

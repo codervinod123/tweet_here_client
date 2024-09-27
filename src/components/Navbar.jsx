@@ -13,7 +13,7 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search..."
-            className="px-4 border border-gray-400 focus:border-none focus:outline outline-blue-600 outline-offset-0 outline-1 rounded bg-[#ECFFE6] placeholder:text-gray-400"
+            className="px-4 border border-gray-400 focus:border-none focus:outline outline-blue-600 outline-offset-0 outline-1 rounded bg-gray-100 placeholder:text-gray-400"
           />
         </div>
         <div className="flex items-center gap-x-4">

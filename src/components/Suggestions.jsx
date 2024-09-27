@@ -54,11 +54,13 @@ const Suggestions = () => {
                       <h4 className="text-gray-950 font-semibold">
                         {user.name.slice(0, 13)}...
                       </h4>
-                      <span className="text-gray-600 text-sm">Cricketer</span>
+                      <span className="text-gray-600 text-sm">
+                        {user.bio.slice(0, 12)}...
+                      </span>
                     </div>
                   </div>
                   <div>
-                    <div className="px-2 py-2 bg-gray-200 rounded-full">
+                    <div className="px-2 py-2 text-blue-600 font-semibold cursor-pointer  rounded-full bg-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-500">
                       <HiPlus size={"1.3rem"} />
                     </div>
                   </div>
