@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
+import timeAgo from "../helper/duration-calculator";
 import { SlLike } from "react-icons/sl";
 import { FaComment } from "react-icons/fa";
 import { IoMdShareAlt } from "react-icons/io";
@@ -17,7 +18,9 @@ const PostCard = () => {
     setTweets(res.data.data);
     console.log(res.data.data);
   };
+  
   return (
+    
     <>
       {tweets.map((tweet) => {
         return (
@@ -38,14 +41,29 @@ const PostCard = () => {
                   </div>
                   <div className="flex flex-col leading-2">
                     <div className="flex items-center gap-x-2">
-                      <h4 className="font-bold text-gray-700">Lori Forguson</h4>
+                      {tweet.author ? (
+                        <h4 className="font-bold text-gray-700">
+                          {tweet.author.name}
+                        </h4>
+                      ) : (
+                        <h4 className="font-bold text-gray-700">
+                          Lori Forguson
+                        </h4>
+                      )}
                       <span className="text-sm text-gray-500">
-                        2 Hours Ago...
+                        {timeAgo(tweet.createdAt)}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-700">
-                      Web Developer from India
-                    </p>
+
+                    {tweet.author ? (
+                      <p className="text-sm text-gray-700">
+                        {tweet.author.bio}
+                      </p>
+                    ) : (
+                      <p className="text-sm text-gray-700">
+                        Web Developer from India
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div>
@@ -57,9 +75,7 @@ const PostCard = () => {
             </div>
 
             <div className="">
-              <p className="text-gray-600 text-base py-4">
-                {tweet.content}
-              </p>
+              <p className="text-gray-600 text-base py-4">{tweet.content}</p>
               <img
                 className="rounded-md w-full"
                 src={tweet.media[0]}
