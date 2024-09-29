@@ -15,6 +15,19 @@ const Suggestions = () => {
     console.log(res.data.data);
   };
 
+  const handleFollow=async(followingid)=>{
+    const followerid = "66ed18c14647523d2b9a9a89";
+    console.log(followingid); 
+    const response=await axios.post("http://localhost:3001/api/v1/follow",{},
+      {
+        headers:{
+          followingid:followingid,
+          followerid:followerid
+        }
+      });  
+    console.log(response);
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <Trending />
@@ -27,7 +40,7 @@ const Suggestions = () => {
 
             {users.map((user) => {
               return (
-                <div key={user.user_id} className="flex justify-between ">
+                <div key={user._id} className="flex justify-between ">
                   <div className="flex gap-x-2 items-center">
                     <div>
                       <span>
@@ -52,15 +65,15 @@ const Suggestions = () => {
                     </div>
                     <div className="leading-3">
                       <h4 className="text-gray-950 font-semibold">
-                        {user.name.slice(0, 13)}...
+                        {user.name}
                       </h4>
                       <span className="text-gray-600 text-sm">
-                        {user.bio.slice(0, 12)}...
+                        {user.bio}
                       </span>
                     </div>
                   </div>
                   <div>
-                    <div className="px-2 py-2 text-blue-600 font-semibold cursor-pointer  rounded-full bg-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-500">
+                    <div onClick={()=>handleFollow(user._id)} className="px-2 py-2 text-blue-600 font-semibold cursor-pointer  rounded-full bg-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-500">
                       <HiPlus size={"1.3rem"} />
                     </div>
                   </div>
