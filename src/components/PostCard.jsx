@@ -6,6 +6,7 @@ import { FaComment } from "react-icons/fa";
 import { IoMdShareAlt } from "react-icons/io";
 import { IoIosSend } from "react-icons/io";
 import axios from "axios";
+import { Spin } from "antd";
 
 const PostCard = () => {
   const [tweets, setTweets] = useState([]);
@@ -19,11 +20,16 @@ const PostCard = () => {
     console.log(res.data.data);
   };
 
-  return (
+  return tweets.length==0 ?
+  <div className="flex justify-center pt-6">
+     <Spin />
+   </div>
+    : 
+  (
     <>
-      {tweets.map((tweet) => {
+      {tweets && tweets?.map((tweet) => {
         return (
-          <div key={tweet._id} className="bg-white rounded-md px-8 py-4">
+          <div key={tweet?._id} className="bg-white rounded-md px-8 py-4">
             <div className=" ">
               <div className="flex justify-between">
                 <div className="flex gap-x-4 items-center">
@@ -40,9 +46,9 @@ const PostCard = () => {
                   </div>
                   <div className="flex flex-col leading-2">
                     <div className="flex items-center gap-x-2">
-                      {tweet.author ? (
-                        <h4 className="font-bold text-gray-700">
-                          {tweet.author.name}
+                      {tweet?.author ? (
+                        <h4 className="font-bold text-gray-700">=
+                          {tweet?.author?.name}
                         </h4>
                       ) : (
                         <h4 className="font-bold text-gray-700">
@@ -50,13 +56,13 @@ const PostCard = () => {
                         </h4>
                       )}
                       <span className="text-sm text-gray-500">
-                        {timeAgo(tweet.createdAt)}
+                        {timeAgo(tweet?.createdAt)}
                       </span>
                     </div>
 
                     {tweet.author ? (
                       <p className="text-sm text-gray-700">
-                        {tweet.author.bio}
+                        {tweet?.author?.bio}
                       </p>
                     ) : (
                       <p className="text-sm text-gray-700">
@@ -74,7 +80,7 @@ const PostCard = () => {
             </div>
 
             <div className="">
-              <p className="text-gray-600 text-base py-4">{tweet.content}</p>
+              <p className="text-gray-600 text-base py-4">{tweet?.content}</p>
               <img
                 className="rounded-md w-full"
                 src={tweet.media[0]}
