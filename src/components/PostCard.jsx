@@ -18,9 +18,8 @@ const PostCard = () => {
     setTweets(res.data.data);
     console.log(res.data.data);
   };
-  
+
   return (
-    
     <>
       {tweets.map((tweet) => {
         return (

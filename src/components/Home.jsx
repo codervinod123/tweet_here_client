@@ -1,4 +1,4 @@
-import Posts from "./Posts";
+import { Outlet } from "react-router-dom";
 import ProfileOverview from "./ProfileOverview";
 import Suggestions from "./Suggestions";
 
@@ -10,7 +10,7 @@ const Home = () => {
           <ProfileOverview />
         </div>
         <div className="col-span-4">
-          <Posts />
+          <Outlet />
         </div>
         <div className="col-span-2">
           <Suggestions />
