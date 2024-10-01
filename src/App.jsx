@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Posts from "./components/Posts";
 import TrendingPosts from "./components/TrendingPosts";
+import PostCard from "./components/PostCard";
 
 const appRouter = createBrowserRouter([
   {
@@ -16,13 +17,19 @@ const appRouter = createBrowserRouter([
           {
             path: "/",
             element: <Posts />,
-            children: [],
-          },
-          {
-            path: "trending",
-            element: <TrendingPosts />,
-            children: [],
-          },
+            children: [
+              {
+                path: "",
+                element: <PostCard />,
+                children: [],
+              },
+              {
+                path: "trending",
+                element: <TrendingPosts />,
+                children: [],
+              },
+            ],
+          }
         ],
       },
     ],

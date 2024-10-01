@@ -1,16 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import timeAgo from "../helper/duration-calculator";
 import { SlLike } from "react-icons/sl";
 import { FaComment } from "react-icons/fa6";
 import { IoMdShareAlt } from "react-icons/io";
 import { IoIosSend } from "react-icons/io";
+import { useLocation } from "react-router-dom";
 
 
 const TrendingPosts = () => {
-  const [tweet, setTweet]=useState([]);
+  const location=useLocation();
+  const [tweet, setTweet]=useState(location.state);
+  useEffect(()=>{
+    console.log(location.state);
+    setTweet(location.state);
+  },[location.state])
+  
   return (
-    <div key={tweet?._id} className="bg-white rounded-md px-8 py-4">
+    <>
+    {
+      tweet &&
+     tweet.map((tweet,index)=>{
+      return(
+      
+            <div key={index} className="bg-white rounded-md px-8 py-4">
     <div className=" ">
       <div className="flex justify-between">
         <div className="flex gap-x-4 items-center">
@@ -27,8 +40,8 @@ const TrendingPosts = () => {
           </div>
           <div className="flex flex-col leading-2">
             <div className="flex items-center gap-x-2">
-              {tweet?.author ? (
-                <h4 className="font-bold text-gray-700">=
+              {tweet?.author?.name ? (
+                <h4 className="font-bold text-gray-700">
                   {tweet?.author?.name}
                 </h4>
               ) : (
@@ -61,10 +74,10 @@ const TrendingPosts = () => {
     </div>
 
     <div className="">
-      <p className="text-gray-600 text-base py-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti autem quod beatae excepturi aliquam nostrum officiis voluptatum nisi maxime sint?</p>
+      <p className="text-gray-600 text-base py-4">{tweet?.content}</p>
       <img
         className="rounded-md w-full"
-        src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsIz4qZKTOplGKCIt860B8HP3mTBMZGACNFg&s"}
+        src={tweet?.media[0]}
         alt="images"
       />
       <ul className="py-4 flex justify-between">
@@ -251,6 +264,11 @@ const TrendingPosts = () => {
       </ul>
     </div>
   </div>
+  
+      )
+     })
+    }
+    </>
   );
 };
 
