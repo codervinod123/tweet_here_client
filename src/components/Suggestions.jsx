@@ -40,7 +40,6 @@ const Suggestions = () => {
             <div>
               <div className="font-bold text-black text-lg">Who to follow</div>
             </div>
-
             {users.map((user) => {
               return (
                 <div key={user._id} className="flex justify-between ">

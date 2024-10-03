@@ -12,7 +12,7 @@ const Navbar = () => {
       <div className="bg-white px-20 py-4 justify-center items-center sticky top-0 z-10">
         <div className="flex justify-between">
           <div className="flex gap-x-4">
-            <Link to={"/"}>
+            <Link to={"/home"}>
               <img src={Logo} alt="logo" />
             </Link>
             <input
