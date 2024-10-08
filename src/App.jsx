@@ -6,11 +6,23 @@ import TrendingPosts from "./components/TrendingPosts";
 import PostCard from "./components/PostCard";
 import ErrorPage from "./components/ErrorPage";
 import LandingScreen from "./components/LandingScreen";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
 
 const appRouter = createBrowserRouter([
   {
     path: "",
     element: <LandingScreen />,
+    children: [],
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+    children: [],
+  },
+  {
+    path: "/signin",
+    element: <Signin />,
     children: [],
   },
   {
