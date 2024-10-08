@@ -25,6 +25,7 @@ const CreatePost = () => {
   };
   
   const handleSubmitForm = async () => {
+   try {
     if(!content && !image.dbImage){
       return;
     }
@@ -39,9 +40,11 @@ const CreatePost = () => {
     setLoading(false);
     setImage({ preview: "", data: "" });
     setContent(""); 
+   } catch (error) {
+    console.log("Error occured", error)
+   }
   };
 
-  
   return loading ? (
     <div className="bg-white flex justify-center items-center rounded-md py-8">
       <Spin />

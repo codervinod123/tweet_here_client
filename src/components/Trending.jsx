@@ -23,7 +23,10 @@ const Trending = () => {
                   Trending in INDIA
                 </span>
                 <div className="flex justify-between">
-                  <span className="font-semibold">{trend.hashtag.slice(0,16)}{trend.hashtag.length>16?"...":""}</span>
+                  <span className="font-semibold">
+                    {trend.hashtag.slice(0, 16)}
+                    {trend.hashtag.length > 16 ? "..." : ""}
+                  </span>
                   <span className="text-gray-500 text-[12px] flex flex-col gap-y-1">
                     {trend.tweets.length} Posts
                   </span>

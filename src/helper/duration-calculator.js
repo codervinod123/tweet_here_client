@@ -7,9 +7,9 @@ const timeAgo = (createdAt) => {
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
-  
-  if(days > 30){
-    return `${Math.floor(days/30)} ${days > 1 ? "Months" : "Month"} ago`;
+
+  if (days > 30) {
+    return `${Math.floor(days / 30)} ${days > 1 ? "Months" : "Month"} ago`;
   } else if (days > 0) {
     return `${days} ${days > 1 ? "Days" : "Day"} ago`;
   } else if (hours > 0) {
