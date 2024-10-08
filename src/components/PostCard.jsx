@@ -17,10 +17,9 @@ const PostCard = () => {
   const getAllTweets = async () => {
     const res = await axios.get("http://localhost:3001/api/v1/tweet");
     setTweets(res.data.data);
-    console.log(res.data.data);
   };
 
-  return tweets.length == 0 ? (
+  return !tweets ? (
     <div className="flex justify-center pt-6">
       <Spin />
     </div>
@@ -81,11 +80,14 @@ const PostCard = () => {
 
               <div className="">
                 <p className="text-gray-600 text-base py-4">{tweet?.content}</p>
-                <img
+                {
+                  tweet?.media[0] &&
+                  <img
                   className="rounded-md w-full"
-                  src={tweet.media[0]}
+                  src={tweet?.media[0]}
                   alt="images"
                 />
+                }
                 <ul className="py-4 flex justify-between">
                   <li className="flex gap-4">
                     <span className="flex items-center gap-1 text-gray-700">

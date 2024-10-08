@@ -1,6 +1,7 @@
 import Logo from "../assets/logo.svg";
 import PhoneImage from "../assets/image.png";
 import { IoMdArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 const LandingScreen = () => {
   return (
@@ -28,7 +29,9 @@ const LandingScreen = () => {
               What is the best way to express your thoughts?
             </h1>
             <div className="font-bold text-xl flex items-center bg-yellow-400 w-fit px-8 py-3 rounded-md">
-              <button className="">Start Now</button>
+              <Link to="/home">
+                <button className="">Start Now</button>
+              </Link>
               <IoMdArrowForward />
             </div>
           </div>

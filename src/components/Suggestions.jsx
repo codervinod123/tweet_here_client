@@ -12,12 +12,10 @@ const Suggestions = () => {
   const getAllUsers = async () => {
     const res = await axios.get("http://localhost:3001/api/v1/user");
     setUsers(res.data.data);
-    console.log(res.data.data);
   };
 
   const handleFollow = async (followingid) => {
     const followerid = "66ed18c14647523d2b9a9a89";
-    console.log(followingid);
     const response = await axios.post(
       "http://localhost:3001/api/v1/follow",
       {},

@@ -10,7 +10,6 @@ const Trending = () => {
   const getAllTrending = async () => {
     const res = await axios.get("http://localhost:3001/api/v1/trending");
     setTrending(res.data.data);
-    console.log(res.data.data);
   };
 
   return (
@@ -24,7 +23,7 @@ const Trending = () => {
                   Trending in INDIA
                 </span>
                 <div className="flex justify-between">
-                  <span className="font-semibold">{trend.hashtag}</span>
+                  <span className="font-semibold">{trend.hashtag.slice(0,16)}{trend.hashtag.length>16?"...":""}</span>
                   <span className="text-gray-500 text-[12px] flex flex-col gap-y-1">
                     {trend.tweets.length} Posts
                   </span>

@@ -23,23 +23,25 @@ const CreatePost = () => {
     };
     setImage(img);
   };
+  
   const handleSubmitForm = async () => {
+    if(!content && !image.dbImage){
+      return;
+    }
     const formData = new FormData();
     formData.append("content", content);
     formData.append("file", image.dbImage);
     setLoading(true);
-    const response = await axios.post(
+    await axios.post(
       "http://localhost:3001/api/v1/tweet",
       formData,
     );
-    if (response) {
-      setLoading(false);
-    }
-    console.log(response);
+    setLoading(false);
     setImage({ preview: "", data: "" });
-    setContent("");
+    setContent(""); 
   };
 
+  
   return loading ? (
     <div className="bg-white flex justify-center items-center rounded-md py-8">
       <Spin />

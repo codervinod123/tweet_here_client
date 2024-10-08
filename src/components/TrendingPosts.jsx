@@ -11,7 +11,6 @@ const TrendingPosts = () => {
   const location = useLocation();
   const [tweet, setTweet] = useState(location.state);
   useEffect(() => {
-    console.log(location.state);
     setTweet(location.state);
   }, [location.state]);
 
