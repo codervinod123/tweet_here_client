@@ -8,6 +8,8 @@ import ErrorPage from "./components/ErrorPage";
 import LandingScreen from "./components/LandingScreen";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const appRouter = createBrowserRouter([
   {
@@ -63,6 +65,7 @@ const App = () => {
   return (
     <div className="bg-gray-200">
       <RouterProvider router={appRouter} />
+      <ToastContainer />
     </div>
   );
 };
