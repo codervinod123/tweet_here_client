@@ -10,14 +10,16 @@ const Suggestions = () => {
   }, []);
 
   const getAllUsers = async () => {
-    const res = await axios.get("http://localhost:3001/api/v1/user");
+    const databaseURL = import.meta.env.VITE_BACKEND_URL;
+    const res = await axios.get(`${databaseURL}/api/v1/user`);
     setUsers(res.data.data);
   };
 
   const handleFollow = async (followingid) => {
     const followerid = "66ed18c14647523d2b9a9a89";
+    const databaseURL = import.meta.env.VITE_BACKEND_URL;
     const response = await axios.post(
-      "http://localhost:3001/api/v1/follow",
+      `${databaseURL}/api/v1/follow`,
       {},
       {
         headers: {

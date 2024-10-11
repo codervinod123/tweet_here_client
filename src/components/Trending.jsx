@@ -8,7 +8,8 @@ const Trending = () => {
   }, []);
 
   const getAllTrending = async () => {
-    const res = await axios.get("http://localhost:3001/api/v1/trending");
+    const databaseURL = import.meta.env.VITE_BACKEND_URL;
+    const res = await axios.get(`${databaseURL}/api/v1/trending/bulk`);
     setTrending(res.data.data);
   };
 
