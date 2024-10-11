@@ -9,6 +9,7 @@ import useAPI from "../hooks/useApiCall";
 
 const PostCard = () => {
   const { tweets } = useAPI();
+  
 
   return !tweets ? (
     <div className="flex justify-center pt-6">

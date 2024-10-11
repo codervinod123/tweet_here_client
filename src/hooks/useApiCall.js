@@ -9,7 +9,8 @@ const useAPI = () => {
   }, []);
 
   const getData = async () => {
-    const response = await axios.get("http://localhost:3001/api/v1/tweet");
+    const databaseURL = import.meta.env.VITE_BACKEND_URL;
+    const response = await axios.get(`${databaseURL}/api/v1/tweet`);
     setTweets(response.data.data);
     return response.data.data;
   };
