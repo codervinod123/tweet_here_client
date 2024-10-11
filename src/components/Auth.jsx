@@ -4,28 +4,27 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Auth = ({ comp }) => {
-
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [formdata, setFormdata] = useState({
     email: "",
     password: "",
     name: "",
   });
 
-  const databaseURL=import.meta.env.VITE_BACKEND_URL;
+  const databaseURL = import.meta.env.VITE_BACKEND_URL;
   const sendRequest = async () => {
     try {
       const response = await axios.post(
         `${databaseURL}/api/v1/${comp == "signup" ? "user" : "login"}`,
         formdata,
       );
-      localStorage.setItem('token', response.data.token);
+      localStorage.setItem("token", response.data.token);
       navigate("/home");
       setFormdata({
         email: "",
         password: "",
         name: "",
-      })
+      });
     } catch (error) {
       // handle it gracefully
       console.log("error occures", error);

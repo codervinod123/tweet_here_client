@@ -1,23 +1,14 @@
-import { useState, useEffect } from "react";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import timeAgo from "../helper/duration-calculator";
 import { SlLike } from "react-icons/sl";
 import { FaComment } from "react-icons/fa";
 import { IoMdShareAlt } from "react-icons/io";
 import { IoIosSend } from "react-icons/io";
-import axios from "axios";
 import { Spin } from "antd";
+import useAPI from "../hooks/useApiCall";
 
 const PostCard = () => {
-  const [tweets, setTweets] = useState([]);
-  useEffect(() => {
-    getAllTweets();
-  }, []);
-
-  const getAllTweets = async () => {
-    const res = await axios.get("http://localhost:3001/api/v1/tweet");
-    setTweets(res.data.data);
-  };
+  const { tweets } = useAPI();
 
   return !tweets ? (
     <div className="flex justify-center pt-6">

@@ -5,10 +5,9 @@ import { BsFillCalendarDateFill } from "react-icons/bs";
 import { MdEmojiEmotions } from "react-icons/md";
 import { Spin } from "antd";
 import axios from "axios";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const CreatePost = () => {
-
   const [image, setImage] = useState({
     preview: null,
     dbImage: null,
@@ -25,35 +24,28 @@ const CreatePost = () => {
     };
     setImage(img);
   };
-  
 
-  // add custom hooks to create post 
+  // add custom hooks to create post
   // take care , method, body , data type, url
-  
- 
-  const handleSubmitForm = async () => {
-   try {
-    if(!content && !image.dbImage){
-      return;
-    }
-    setLoading(true);
-    const formData = new FormData();
-    formData.append("content", content);
-    formData.append("file", image.dbImage);
-    await axios.post(
-      "http://localhost:3001/api/v1/tweet",
-      formData,
-    );
-    toast.success("Post has been created successfully");
-    setImage({ preview: "", data: "" });
-    setContent(""); 
-    setLoading(false);
-   } catch (error) {
-    console.log("Error occured", error)
-   }
-  };
 
- 
+  const handleSubmitForm = async () => {
+    try {
+      if (!content && !image.dbImage) {
+        return;
+      }
+      setLoading(true);
+      const formData = new FormData();
+      formData.append("content", content);
+      formData.append("file", image.dbImage);
+      await axios.post("http://localhost:3001/api/v1/tweet", formData);
+      toast.success("Post has been created successfully");
+      setImage({ preview: "", data: "" });
+      setContent("");
+      setLoading(false);
+    } catch (error) {
+      console.log("Error occured", error);
+    }
+  };
 
   return loading ? (
     <div className="bg-white flex justify-center items-center rounded-md py-8">
