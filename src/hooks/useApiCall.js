@@ -6,7 +6,7 @@ const useAPI = (endPoint) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     getData();
-  }, []);
+  }, [endPoint]);
   const getData = async () => {
     const databaseURL = import.meta.env.VITE_BACKEND_URL;
     const response = await axios.get(`${databaseURL}${endPoint}`);

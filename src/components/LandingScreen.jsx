@@ -18,8 +18,16 @@ const LandingScreen = () => {
         <ul className="flex gap-x-8 font-semibold text-lg">
           <li>About Us</li>
           <li>Contact</li>
-          <li>Sign In</li>
-          <li>Sign up</li>
+          <li>
+            <Link to="/signin">
+              Sign In
+            </Link>
+          </li>
+          <li>
+            <Link to="/signup">
+              Sign up
+            </Link>
+          </li>
         </ul>
       </nav>
       <section className="">

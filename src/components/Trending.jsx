@@ -1,9 +1,16 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import useAPI from "../hooks/useApiCall";
 
 const Trending = () => {
 
-  const { data } = useAPI("/api/v1/trending/bulk");
+  const [page, setPage] = useState(1);
+
+  const { data } = useAPI(`/api/v1/trending/bulk?page=${page}`);
+
+  const loadNext=()=>{
+    setPage(page+1);
+  }
 
   return (
     <div className="rounded-md bg-white py-4 px-4">
@@ -29,6 +36,9 @@ const Trending = () => {
           );
         })}
       </div>
+     <div className="flex flex-col my-2 cursor-pointer">
+       <button onClick={loadNext} className="px-2 py-1 bg-gray-400 rounded font-bold text-gray-800">Load More</button>
+     </div>
     </div>
   );
 };
