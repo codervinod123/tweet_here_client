@@ -8,17 +8,16 @@ import { Spin } from "antd";
 import useAPI from "../hooks/useApiCall";
 
 const PostCard = () => {
-  const { tweets } = useAPI();
+  const { data } = useAPI("/api/v1/tweet");
   
-
-  return !tweets ? (
+  return !data ? (
     <div className="flex justify-center pt-6">
       <Spin />
     </div>
   ) : (
     <>
-      {tweets &&
-        tweets?.map((tweet) => {
+      {data &&
+        data?.map((tweet) => {
           return (
             <div key={tweet?._id} className="bg-white rounded-md px-8 py-4">
               <div className=" ">

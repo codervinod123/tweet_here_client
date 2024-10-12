@@ -1,22 +1,14 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-const Trending = () => {
-  const [trending, setTrending] = useState([]);
-  useEffect(() => {
-    getAllTrending();
-  }, []);
+import useAPI from "../hooks/useApiCall";
 
-  const getAllTrending = async () => {
-    const databaseURL = import.meta.env.VITE_BACKEND_URL;
-    const res = await axios.get(`${databaseURL}/api/v1/trending/bulk`);
-    setTrending(res.data.data);
-  };
+const Trending = () => {
+
+  const { data } = useAPI("/api/v1/trending/bulk");
 
   return (
     <div className="rounded-md bg-white py-4 px-4">
       <div className="leading-2 flex flex-col gap-2">
-        {trending.map((trend) => {
+        {data && data?.map((trend) => {
           return (
             <Link key={trend._id} to={"trending"} state={trend.tweets}>
               <div className="flex flex-col px-2 py-2 rounded-lg leading-4 cursor-pointer bg-gray-100 hover:bg-gray-200">

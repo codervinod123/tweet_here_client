@@ -1,19 +1,12 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { HiPlus } from "react-icons/hi";
 import Trending from "./Trending";
 import axios from "axios";
+import useAPI from "../hooks/useApiCall";
 
 const Suggestions = () => {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    getAllUsers();
-  }, []);
-
-  const getAllUsers = async () => {
-    const databaseURL = import.meta.env.VITE_BACKEND_URL;
-    const res = await axios.get(`${databaseURL}/api/v1/user`);
-    setUsers(res.data.data);
-  };
+ 
+  const {data} = useAPI("/api/v1/user");
 
   const handleFollow = async (followingid) => {
     const followerid = "66ed18c14647523d2b9a9a89";
@@ -40,7 +33,7 @@ const Suggestions = () => {
             <div>
               <div className="font-bold text-black text-lg">Who to follow</div>
             </div>
-            {users.map((user) => {
+            {data.map((user) => {
               return (
                 <div key={user._id} className="flex justify-between ">
                   <div className="flex gap-x-2 items-center">
