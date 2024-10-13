@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { LoadingOutlined } from '@ant-design/icons';
+import { toast } from "react-toastify";
+import { Spin } from "antd";
 
 const Auth = ({ comp }) => {
   const navigate = useNavigate();
+  const [loader, setLoader] = useState(false);
   const [formdata, setFormdata] = useState({
     email: "",
     password: "",
@@ -13,11 +17,19 @@ const Auth = ({ comp }) => {
 
   const databaseURL = import.meta.env.VITE_BACKEND_URL;
   const sendRequest = async () => {
+    if(!formdata.email && !formdata.password && !formdata.name){
+      toast.error("Login with id & Pass");
+      return;
+    }
     try {
+      setLoader(true);
       const response = await axios.post(
-        `${databaseURL}/api/v1/${comp == "signup" ? "user" : "login"}`,
+        `${databaseURL}/api/v1/user/${comp == "signup" ? "signup" : "signin"}`,
         formdata,
       );
+     if(response.status==200){
+        setLoader(false);
+      }
       localStorage.setItem("token", response.data.token);
       navigate("/home");
       setFormdata({
@@ -27,12 +39,15 @@ const Auth = ({ comp }) => {
       });
     } catch (error) {
       // handle it gracefully
+      toast.error("Please Check Userid & Password");
+      setLoader(false);
       console.log("error occures", error);
     }
   };
 
-  return (
+  return loader? <Spin indicator={<LoadingOutlined spin />}  size="large" /> : (
     <div className="h-screen flex justify-center flex-col ">
+      
       <div className="flex flex-col gap-2 justify-center w-full px-16">
         <h4 className="text-3xl font-bold">
           {comp == "signin" ? "Login to Account" : "Create an Account"}
