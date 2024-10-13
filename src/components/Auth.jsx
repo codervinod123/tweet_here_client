@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { LoadingOutlined } from '@ant-design/icons';
+import { LoadingOutlined } from "@ant-design/icons";
 import { toast } from "react-toastify";
 import { Spin } from "antd";
 
@@ -17,7 +17,7 @@ const Auth = ({ comp }) => {
 
   const databaseURL = import.meta.env.VITE_BACKEND_URL;
   const sendRequest = async () => {
-    if(!formdata.email && !formdata.password && !formdata.name){
+    if (!formdata.email && !formdata.password && !formdata.name) {
       toast.error("Login with id & Pass");
       return;
     }
@@ -27,7 +27,7 @@ const Auth = ({ comp }) => {
         `${databaseURL}/api/v1/user/${comp == "signup" ? "signup" : "signin"}`,
         formdata,
       );
-     if(response.status==200){
+      if (response.status == 200) {
         setLoader(false);
       }
       localStorage.setItem("token", response.data.token);
@@ -45,9 +45,10 @@ const Auth = ({ comp }) => {
     }
   };
 
-  return loader? <Spin indicator={<LoadingOutlined spin />}  size="large" /> : (
+  return loader ? (
+    <Spin indicator={<LoadingOutlined spin />} size="large" />
+  ) : (
     <div className="h-screen flex justify-center flex-col ">
-      
       <div className="flex flex-col gap-2 justify-center w-full px-16">
         <h4 className="text-3xl font-bold">
           {comp == "signin" ? "Login to Account" : "Create an Account"}

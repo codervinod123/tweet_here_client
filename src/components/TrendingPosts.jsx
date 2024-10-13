@@ -70,16 +70,16 @@ const TrendingPosts = () => {
               </div>
 
               <div className="">
-                <p className="text-gray-600 text-base py-4 ">{tweet?.content}</p>
-                {
-                  tweet?.media[0] ?
+                <p className="text-gray-600 text-base py-4 ">
+                  {tweet?.content}
+                </p>
+                {tweet?.media[0] ? (
                   <img
-                  className="rounded-md w-full"
-                  src={tweet?.media[0]}
-                  alt="images"
-                />:
-                null
-                }
+                    className="rounded-md w-full"
+                    src={tweet?.media[0]}
+                    alt="images"
+                  />
+                ) : null}
                 <ul className="py-4 flex justify-between">
                   <li className="flex gap-4">
                     <span className="flex items-center gap-1 text-gray-700">

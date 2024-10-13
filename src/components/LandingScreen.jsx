@@ -19,14 +19,10 @@ const LandingScreen = () => {
           <li>About Us</li>
           <li>Contact</li>
           <li>
-            <Link to="/signin">
-              Sign In
-            </Link>
+            <Link to="/signin">Sign In</Link>
           </li>
           <li>
-            <Link to="/signup">
-              Sign up
-            </Link>
+            <Link to="/signup">Sign up</Link>
           </li>
         </ul>
       </nav>

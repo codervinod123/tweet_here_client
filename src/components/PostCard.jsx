@@ -6,10 +6,31 @@ import { IoMdShareAlt } from "react-icons/io";
 import { IoIosSend } from "react-icons/io";
 import { Spin } from "antd";
 import useAPI from "../hooks/useApiCall";
+import axios from "axios";
 
 const PostCard = () => {
   const { data } = useAPI("/api/v1/tweet");
-  
+
+  const likePost = async (tweetId) => {
+    const token = localStorage.getItem("token");
+    const likeData = {
+      modelName: "Tweet",
+      modelId: tweetId,
+    };
+    const databaseURL = import.meta.env.VITE_BACKEND_URL;
+    const response = await axios.post(
+      `${databaseURL}/api/v1/tweet/like`,
+      likeData,
+      {
+        headers: {
+          token: token,
+        },
+      },
+    );
+    console.log("Resp", response);
+    // console.log("Liked The Post", tweetId);
+  };
+
   return !data ? (
     <div className="flex justify-center pt-6">
       <Spin />
@@ -18,6 +39,7 @@ const PostCard = () => {
     <>
       {data &&
         data?.map((tweet) => {
+          console.log("Tweet Post", tweet);
           return (
             <div key={tweet?._id} className="bg-white rounded-md px-8 py-4">
               <div className=" ">
@@ -79,19 +101,22 @@ const PostCard = () => {
                   />
                 )}
                 <ul className="py-4 flex justify-between">
-                  <li className="flex gap-4">
-                    <span className="flex items-center gap-1 text-gray-700">
+                  <li className="flex gap-4 text-[14px]">
+                    <span
+                      onClick={() => likePost(tweet._id)}
+                      className="flex items-center gap-1 text-gray-700 cursor-pointer px-2 rounded bg-gray-100 hover:bg-blue-300 transition-all duration-500"
+                    >
                       <SlLike />
-                      Like
+                      Like ({tweet.likes.length})
                     </span>
-                    <span className="flex items-center gap-1 text-gray-700">
+                    <span className="flex items-center gap-1 text-gray-700 cursor-pointer  px-2 rounded bg-gray-100 hover:bg-blue-300 transition-all duration-500">
                       <FaComment />
-                      Comment
+                      Comment ({tweet.comments.length})
                     </span>
                   </li>
                   <li>
-                    <span className="flex items-center gap-1 text-gray-700">
-                      <IoMdShareAlt />
+                    <span className="flex items-center gap-1 text-gray-700 cursor-pointer  px-2 rounded bg-gray-100 hover:bg-blue-300 transition-all duration-500">
+                      <IoMdShareAlt className="cursor-pointer" />
                       Share
                     </span>
                   </li>

@@ -5,16 +5,15 @@ import Suggestions from "./Suggestions";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  
   const navigate = useNavigate();
 
-  useEffect(()=>{
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/signin");
-    }  
-  },[])
- 
+    }
+  }, []);
+
   return (
     <div>
       <div className="grid grid-cols-8 px-20 gap-8 my-6">

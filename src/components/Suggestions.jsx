@@ -5,18 +5,17 @@ import axios from "axios";
 import useAPI from "../hooks/useApiCall";
 
 const Suggestions = () => {
- 
-  const {data} = useAPI("/api/v1/user");
+  const { data } = useAPI("/api/v1/user");
 
   const followToFriends = async (followingid) => {
-    const bearerToken = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     const databaseURL = import.meta.env.VITE_BACKEND_URL;
     const response = await axios.post(
       `${databaseURL}/api/v1/user/follow`,
       {},
       {
         headers: {
-          followerid: bearerToken,
+          token: token,
           followingid: followingid,
         },
       },
