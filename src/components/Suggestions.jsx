@@ -8,16 +8,16 @@ const Suggestions = () => {
  
   const {data} = useAPI("/api/v1/user");
 
-  const handleFollow = async (followingid) => {
-    const followerid = "66ed18c14647523d2b9a9a89";
+  const followToFriends = async (followingid) => {
+    const bearerToken = localStorage.getItem('token');
     const databaseURL = import.meta.env.VITE_BACKEND_URL;
     const response = await axios.post(
-      `${databaseURL}/api/v1/follow`,
+      `${databaseURL}/api/v1/user/follow`,
       {},
       {
         headers: {
+          followerid: bearerToken,
           followingid: followingid,
-          followerid: followerid,
         },
       },
     );
@@ -67,7 +67,7 @@ const Suggestions = () => {
                   </div>
                   <div>
                     <div
-                      onClick={() => handleFollow(user._id)}
+                      onClick={() => followToFriends(user._id)}
                       className="px-2 py-2 text-blue-600 font-semibold cursor-pointer  rounded-full bg-gray-100 hover:bg-blue-600 hover:text-white transition-all duration-500"
                     >
                       <HiPlus size={"1.3rem"} />
