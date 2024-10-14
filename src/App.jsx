@@ -3,13 +3,14 @@ import Home from "./components/Home";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Posts from "./components/Posts";
 import TrendingPosts from "./components/TrendingPosts";
-import PostCard from "./components/PostCard";
+// import PostCard from "./components/PostCard";
 import ErrorPage from "./components/ErrorPage";
 import LandingScreen from "./components/LandingScreen";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PostsContainer from "./components/PostsContainer";
 
 const appRouter = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ const appRouter = createBrowserRouter([
             children: [
               {
                 path: "",
-                element: <PostCard />,
+                element: <PostsContainer />,
                 children: [],
               },
               {
