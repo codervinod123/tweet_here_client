@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import timeAgo from "../helper/duration-calculator";
 import { SlLike } from "react-icons/sl";
@@ -9,8 +10,10 @@ import useAPI from "../hooks/useApiCall";
 import axios from "axios";
 
 const PostCard = () => {
-  const { data } = useAPI("/api/v1/tweet");
 
+  const [comment, setComment] = useState("");
+  
+  const { data } = useAPI("/api/v1/tweet");
   const likePost = async (tweetId) => {
     const token = localStorage.getItem("token");
     const likeData = {
@@ -31,6 +34,21 @@ const PostCard = () => {
     // console.log("Liked The Post", tweetId);
   };
 
+  const sendCommentRequest = async (e) => {
+     e.preventDefault();
+
+     const formData={
+          "modelName": "Tweet",
+          "modelId": "6704ef0831fda6d923fd84c1",
+          "userId": "66f643e1caad86bfef52247b",
+          "commentItem": comment
+     }
+     const databaseURL = import.meta.env.VITE_BACKEND_URL;
+     const response = await axios.post(`${databaseURL}/api/v1/tweet/comment`, formData);
+     console.log(response);
+     setComment("");
+  }
+
   return !data ? (
     <div className="flex justify-center pt-6">
       <Spin />
@@ -39,7 +57,6 @@ const PostCard = () => {
     <>
       {data &&
         data?.map((tweet) => {
-          console.log("Tweet Post", tweet);
           return (
             <div key={tweet?._id} className="bg-white rounded-md px-8 py-4">
               <div className=" ">
@@ -141,8 +158,10 @@ const PostCard = () => {
                       className="bg-[#ECFFE6] placeholder:text-gray-600 w-full rounded p-2 outline-none resize-none"
                       name=""
                       id=""
+                      value={comment}
+                      onChange={(e)=>setComment(e.target.value)}
                     ></textarea>
-                    <button className="">
+                    <button onClick={(e)=>sendCommentRequest(e)} type="submit" className="">
                       <IoIosSend color="#3C3D37" size={"1.4rem"} />
                     </button>
                   </form>
