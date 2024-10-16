@@ -7,7 +7,9 @@ import { IoMdShareAlt } from "react-icons/io";
 import { IoIosSend } from "react-icons/io";
 import axios from "axios";
 
-const PostCard = ({ tweet }) => {
+const PostCard = ({ tweet, commentMal }) => {
+
+  console.log(commentMal[0]);
 
   const [comment, setComment] = useState("");
 
@@ -140,12 +142,12 @@ const PostCard = ({ tweet }) => {
                 />
               </span>
             </div>
-            <form className="w-full rounded flex px-4 bg-[#ECFFE6]">
+            <form className="w-full rounded flex px-4 bg-gray-200">
               <textarea
                 rows={1}
                 data-autoresize={true}
                 placeholder="Place Your Comment..."
-                className="bg-[#ECFFE6] placeholder:text-gray-600 w-full rounded p-2 outline-none resize-none"
+                className="bg-gray-200 placeholder:text-gray-600 w-full rounded p-2 outline-none resize-none"
                 name=""
                 id=""
                 value={comment}
@@ -158,7 +160,7 @@ const PostCard = ({ tweet }) => {
           </div>
 
           <ul className="py-4">
-            {/* <li className="">
+            <li className="">
               <div>
                 <div className="flex gap-2">
                   <div>
@@ -247,7 +249,7 @@ const PostCard = ({ tweet }) => {
                 </li>
               </ul>
               <button></button>
-            </li> */}
+            </li>
             {/* <li>
               <div>
                 <div className="flex gap-2">
