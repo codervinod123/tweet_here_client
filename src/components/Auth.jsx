@@ -49,6 +49,7 @@ const Auth = ({ comp }) => {
     <Spin indicator={<LoadingOutlined spin />} size="large" />
   ) : (
     <div className="h-screen flex justify-center flex-col ">
+      <h1>Vinod</h1>
       <div className="flex flex-col gap-2 justify-center w-full px-16">
         <h4 className="text-3xl font-bold">
           {comp == "signin" ? "Login to Account" : "Create an Account"}
