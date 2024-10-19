@@ -3,9 +3,9 @@ import { Spin } from "antd";
 import PostCard from "./PostCard";
 
 const PostsContainer = () => {
-  const { data } = useAPI("/api/v1/tweet");
+  const { data, loading } = useAPI("/api/v1/tweet");
 
-  return !data ? (
+  return loading ? (
     <div className="flex justify-center pt-6">
       <Spin />
     </div>

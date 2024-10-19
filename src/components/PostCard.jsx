@@ -7,6 +7,7 @@ import { IoMdShareAlt } from "react-icons/io";
 import { IoIosSend } from "react-icons/io";
 import axios from "axios";
 import Comments from "./Comments";
+import useCommentRequest from "../hooks/useCommentRequest";
 
 const PostCard = ({ tweet }) => {
   const [comment, setComment] = useState("");
@@ -33,21 +34,7 @@ const PostCard = ({ tweet }) => {
 
   const sendCommentRequest = async (e, modelId) => {
     e.preventDefault();
-    console.log("Model Id", modelId, comment);
-    const databaseURL = import.meta.env.VITE_BACKEND_URL;
-    const token = localStorage.getItem("token");
-    const response = await axios.post(
-      `${databaseURL}/api/v1/tweet/comment`,
-      { commentItem: comment },
-      {
-        headers: {
-          modelname: "Tweet",
-          modelid: modelId,
-          token: token,
-        },
-      },
-    );
-    console.log(response);
+    const resp = useCommentRequest( modelId, comment, "/api/v1/tweet/comment");
     setComment("");
   };
 

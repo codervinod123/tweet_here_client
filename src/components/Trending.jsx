@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useAPI from "../hooks/useApiCall";
+import { Spin } from "antd";
 
 const Trending = () => {
   const [page, setPage] = useState(1);
 
-  const { data } = useAPI(`/api/v1/trending/bulk?page=${page}`);
+  const { data, loading } = useAPI(`/api/v1/trending/bulk?page=${page}`);
 
   const loadNext = () => {
     setPage(page + 1);
   };
 
-  return (
+  return loading? <Spin/> : (
     <div className="rounded-md bg-white py-4 px-4">
       <div className="leading-2 flex flex-col gap-2">
         {data &&
