@@ -1,4 +1,15 @@
+import { CiLogout } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
+
 const ProfileOverview = () => {
+
+  const navigate = useNavigate();
+  const handleLogout= () =>{
+    localStorage.clear("token");
+    navigate("/signin");
+  }
+
+
   return (
     <nav className="">
       <div className="h-full flex flex-col">
@@ -86,6 +97,14 @@ const ProfileOverview = () => {
                 <span>🧭</span>
                 <h5 className="font-semibold text-gray-900">Settings</h5>
               </div>
+            </li>
+            <li>
+              <button onClick={handleLogout} className="flex items-center gap-2 border bg-gray-500 rounded-md px-2 py-1 text-white">
+                <span>
+                  <CiLogout />
+                </span>
+                <h5 className="font-semibold">Logout</h5>
+              </button>
             </li>
           </ul>
 
