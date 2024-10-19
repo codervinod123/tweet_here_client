@@ -6,6 +6,7 @@ const useAPI = (endPoint) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     getData();
+    // eslint-disable-next-line
   }, [endPoint]);
   const getData = async () => {
     const databaseURL = import.meta.env.VITE_BACKEND_URL;

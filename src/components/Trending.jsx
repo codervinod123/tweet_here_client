@@ -39,7 +39,7 @@ const Trending = () => {
       <div className="flex flex-col my-2 cursor-pointer">
         <button
           onClick={loadNext}
-          className="px-2 py-1 bg-gray-400 rounded font-bold text-gray-800"
+          className="px-2 py-1 bg-gray-300 rounded font-semibold text-gray-800"
         >
           Load More
         </button>

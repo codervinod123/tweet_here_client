@@ -1,4 +1,4 @@
-const Qutoe = () => {
+const Quote = () => {
   return (
     <div className="flex flex-col gap-4 px-8 h-screen bg-slate-300 justify-center">
       <div className="flex flex-col gap-2">
@@ -15,4 +15,4 @@ const Qutoe = () => {
   );
 };
 
-export default Qutoe;
+export default Quote;

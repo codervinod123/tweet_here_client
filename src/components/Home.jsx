@@ -12,6 +12,7 @@ const Home = () => {
     if (!token) {
       navigate("/signin");
     }
+    // eslint-disable-next-line
   }, []);
 
   return (

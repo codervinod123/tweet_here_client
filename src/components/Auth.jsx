@@ -49,7 +49,6 @@ const Auth = ({ comp }) => {
     <Spin indicator={<LoadingOutlined spin />} size="large" />
   ) : (
     <div className="h-screen flex justify-center flex-col ">
-      <h1>Vinod</h1>
       <div className="flex flex-col gap-2 justify-center w-full px-16">
         <h4 className="text-3xl font-bold">
           {comp == "signin" ? "Login to Account" : "Create an Account"}
@@ -72,6 +71,8 @@ const Auth = ({ comp }) => {
             <LabelledInput
               placeholder={"Name"}
               label={"Name"}
+              type={"text"}
+              name={"name"}
               handleChange={(e) => {
                 setFormdata({
                   ...formdata,
@@ -85,6 +86,8 @@ const Auth = ({ comp }) => {
           <LabelledInput
             placeholder={"Email"}
             label={"Email"}
+            type={"email"}
+            name={"email"}
             handleChange={(e) => {
               setFormdata({
                 ...formdata,
@@ -98,6 +101,7 @@ const Auth = ({ comp }) => {
             placeholder={"Password"}
             label={"Password"}
             type={"password"}
+            name={"password"}
             handleChange={(e) => {
               setFormdata({
                 ...formdata,
@@ -111,7 +115,7 @@ const Auth = ({ comp }) => {
           <button
             onClick={sendRequest}
             type="button"
-            className="w-full text-gray-900 bg-gradient-to-r from-teal-400 to-lime-400 hover:bg-gradient-to-l hover:from-teal-400 hover:to-lime-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 transition-all duration-500"
+            className="w-full text-gray-900 bg-gradient-to-r from-teal-400 to-lime-400 hover:bg-gradient-to-l hover:from-teal-400 hover:to-lime-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
           >
             {comp == "signup" ? "Signup" : "Signin"}
           </button>
@@ -123,7 +127,7 @@ const Auth = ({ comp }) => {
 
 export default Auth;
 
-function LabelledInput({ placeholder, label, handleChange, type }) {
+function LabelledInput({ placeholder, label, handleChange, type, name }) {
   return (
     <div>
       <label htmlFor="name" className="block mb-1 text-sm font-medium">
@@ -132,7 +136,7 @@ function LabelledInput({ placeholder, label, handleChange, type }) {
       <input
         onChange={handleChange}
         type={type == "password" ? "password" : "text"}
-        id="name"
+        id={name}
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 outline-none"
         placeholder={placeholder}
         required
