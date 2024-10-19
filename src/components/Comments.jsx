@@ -11,8 +11,9 @@ const Comments = ({ tweet }) => {
   }, [page]);
 
   const getCommentData = async () => {
+    const databaseURL = import.meta.env.VITE_BACKEND_URL;
     const data = await axios.get(
-      `http://localhost:3001/api/v1/tweet/comment?page=${page}`,
+      `${databaseURL}/api/v1/tweet/comment?page=${page}`,
       {
         headers: {
           postid: tweet._id,
