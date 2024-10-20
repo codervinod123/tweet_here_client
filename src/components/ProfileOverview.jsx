@@ -1,5 +1,12 @@
+import { useState, useEffect } from "react";
 import { CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
+import { CiEdit } from "react-icons/ci";
+import { Modal, Spin } from "antd";
+import { useRef } from "react";
+import { IoIosClose } from "react-icons/io";
+import { BsUpload } from "react-icons/bs";
+import axios from "axios";
 
 const ProfileOverview = () => {
 
@@ -9,9 +16,15 @@ const ProfileOverview = () => {
     navigate("/signin");
   }
 
+  const dialogRef = useRef(null);
+  const handleEdit=()=>{
+    dialogRef.current.showModal();
+  }
 
+ 
   return (
     <nav className="">
+
       <div className="h-full flex flex-col">
         <div className="bg-white rounded-md bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsIz4qZKTOplGKCIt860B8HP3mTBMZGACNFg&s')] bg-no-repeat bg-[length:100%_10%] bg-top">
           <div className="flex justify-center pt-[18%]">
@@ -112,8 +125,9 @@ const ProfileOverview = () => {
             <div className="border-t-[1px] border-gray-400"></div>
           </div>
 
-          <p className="text-blue-600 text-center text-sm font-semibold mb-4 cursor-pointer">
-            View Profile
+          <p onClick={handleEdit} className="flex justify-center items-center gap-2 text-blue-600 text-center text-sm font-semibold mb-4 cursor-pointer">
+            <span>Edit Profile</span>
+            <CiEdit />
           </p>
         </div>
         <ul className="flex flex-wrap px-4 justify-center gap-x-4 pt-4 text-gray-600 font-semibold">
@@ -128,8 +142,177 @@ const ProfileOverview = () => {
           &copy; 2024 Tweet Here
         </p>
       </div>
+      
+      <dialog ref={dialogRef} className="h-100 w-100 rounded-md">
+        <DialogBox reference={dialogRef}/>
+      </dialog>
+
     </nav>
   );
 };
 
 export default ProfileOverview;
+
+
+const DialogBox=({reference})=>{
+
+  const [previewProfile, setPreviewProfile] = useState(null);
+  const [profilePic, setProfilePic] = useState(null);
+  const [loader, setLoader] = useState(false);
+
+  const [formData, setFormdata] = useState({
+    name: "",
+    bio: "",
+    location: "",
+  });
+
+  const handleCLose=()=>{
+    reference.current.close();
+  }
+
+  const handleDataChange = (e) => {
+    if (e.target.files) {
+      const img = e.target.files[0];
+      setProfilePic(img);
+      setPreviewProfile(URL.createObjectURL(img));
+    }
+  };
+
+  const saveUpdate = async () => {
+    setLoader(true)
+    const formdata = new FormData();
+    formdata.append("file", profilePic);
+    formdata.append("name", formData.name);
+    formdata.append("bio", formData.bio);
+    formdata.append("location", formData.location);
+  
+    const token = localStorage.getItem("token");
+    
+    const databaseURL = import.meta.env.VITE_BACKEND_URL;
+    const response = await axios.post(
+      `${databaseURL}/api/v1/user/updateprofile`,
+      formdata,
+      {
+        headers:{
+          token:token
+        }
+      }
+    );
+    console.log("results", response);
+    setLoader(false)
+    setPreviewProfile(null);
+    setProfilePic(null);
+    setFormdata({
+      name: "",
+      bio: "",
+      location: "",
+    });
+  };
+
+ 
+ 
+    
+  return(
+    <div className="bg-gray-900 text-white flex flex-col gap-4 p-4 w-[300px] shadow-lg rounded-md">
+      <span onClick={handleCLose} className="cursor-pointer">
+        <IoIosClose size={"1.2rem"}/>
+      </span>
+
+      {
+          !previewProfile ?
+          <div className="flex justify-center "> 
+            <label className="cursor-pointer" htmlFor="image">
+              <BsUpload size={"3rem"}/>
+            </label>
+            <input onChange={handleDataChange} className="hidden" id="image" type="file" />
+          </div>
+          :
+          <div className="flex justify-center">
+           <div className="h-[5rem] w-[5rem] rounded-full"> 
+             <img className="h-full w-full rounded-full" src={previewProfile} alt="img" />
+           </div>
+          </div>   
+      } 
+      
+     
+
+     {
+      loader ? 
+      <Spin/> 
+      :
+      <div>
+      <div className="flex w-full justify-between">
+      <LabelledInput 
+        placeholder={"Name"} 
+        label={"Name"} 
+        value={formData.name}
+        handleChange={(e) => {
+              setFormdata({
+                ...formData,
+                name: e.target.value,
+              });
+            }} 
+        type={"text"} 
+        name={"name"}/>
+    </div>
+    <div className="flex w-full justify-between ">
+      <LabelledInput 
+        placeholder={"Bio"} 
+        label={"Bio"} 
+        value={formData.bio}
+        handleChange={(e) => {
+              setFormdata({
+                ...formData,
+                bio: e.target.value,
+              });
+            }} 
+        type={"text"} 
+        name={"bio"}/>
+    </div>
+    <div className="flex w-full justify-between ">
+      <LabelledInput 
+        placeholder={"Location"} 
+        label={"Location"} 
+        value={formData.location}
+        handleChange={(e) => {
+              setFormdata({
+                ...formData,
+                location: e.target.value,
+              });
+            }} 
+        type={"text"} 
+        name={"location"}/>
+    </div>
+    </div>
+  }
+   
+
+    
+    
+
+   <div onClick={saveUpdate}>Save Changes</div>
+
+    </div>
+  )
+}
+
+
+
+function LabelledInput({ placeholder, label, handleChange, type, name }) {
+  return (
+    <div className="w-full">
+      <label htmlFor="name" className="block mb-1 text-sm font-medium text-white">
+        {label}
+      </label>
+      <input
+        name={name}
+        onChange={handleChange}
+        type={type}
+        id={name}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 outline-none"
+        placeholder={placeholder}
+        required
+      />
+    </div>
+  );
+}
