@@ -6,8 +6,17 @@ import { MdEmojiEmotions } from "react-icons/md";
 import { Spin } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useRecoilState } from "recoil";
+
+// recoil atom import 
+import {newPost} from "./Posts";
 
 const CreatePost = () => {
+
+   //recoil setup
+   const [recoilPost, setRecoilPost]=useRecoilState(newPost);
+
+
   const [image, setImage] = useState({
     preview: null,
     dbImage: null,
@@ -38,7 +47,10 @@ const CreatePost = () => {
       formData.append("content", content);
       formData.append("file", image.dbImage);
       const databaseURL = import.meta.env.VITE_BACKEND_URL;
-      await axios.post(`${databaseURL}/api/v1/tweet/tweet`, formData);
+      const res = await axios.post(`${databaseURL}/api/v1/tweet/tweet`, formData);
+
+      setRecoilPost(prev=>[...prev,res.data.data]);
+
       toast.success("Post has been created successfully");
       setImage({ preview: "", data: "" });
       setContent("");
@@ -47,6 +59,8 @@ const CreatePost = () => {
       console.log("Error occured", error);
     }
   };
+
+ 
 
   return loading ? (
     <div className="bg-white flex justify-center items-center rounded-md py-8">
