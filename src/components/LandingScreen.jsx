@@ -2,6 +2,7 @@ import Logo from "../assets/logo.svg";
 import PhoneImage from "../assets/image.png";
 import { IoMdArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
+import Features from "./Features";
 
 const LandingScreen = () => {
   return (
@@ -51,6 +52,7 @@ const LandingScreen = () => {
           </div>
         </div>
       </section>
+      <Features/>
     </div>
   );
 };
