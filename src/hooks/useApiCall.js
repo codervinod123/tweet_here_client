@@ -4,7 +4,7 @@ import axios from "axios";
 // Custom hook to run a function only on initial render
 const useAPI = (endPoint) => {
   const [data, setData] = useState([]);
-  const [loading, setLoading]= useState(false);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     getData();
     // eslint-disable-next-line

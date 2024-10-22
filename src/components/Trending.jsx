@@ -12,7 +12,9 @@ const Trending = () => {
     setPage(page + 1);
   };
 
-  return loading? <Spin/> : (
+  return loading ? (
+    <Spin />
+  ) : (
     <div className="rounded-md bg-white py-4 px-4">
       <div className="leading-2 flex flex-col gap-2">
         {data &&

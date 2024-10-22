@@ -24,7 +24,7 @@ const Suggestions = () => {
     console.log(response);
   };
 
-  return  (
+  return (
     <div className="flex flex-col gap-4">
       <Trending />
       <div className="bg-white py-4 px-4 rounded-md">
@@ -34,7 +34,9 @@ const Suggestions = () => {
               <div className="font-bold text-black text-lg">Who to follow</div>
             </div>
             {data.map((user) => {
-              return loading? <Spin/> : (
+              return loading ? (
+                <Spin />
+              ) : (
                 <div key={user._id} className="flex justify-between ">
                   <div className="flex gap-x-2 items-center">
                     <div>

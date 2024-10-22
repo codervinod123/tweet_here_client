@@ -1,17 +1,12 @@
-import { useState } from "react";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import timeAgo from "../helper/duration-calculator";
 import { SlLike } from "react-icons/sl";
 import { FaComment } from "react-icons/fa";
 import { IoMdShareAlt } from "react-icons/io";
-import { IoIosSend } from "react-icons/io";
 import axios from "axios";
 import Comments from "./Comments";
-import useCommentRequest from "../hooks/useCommentRequest";
 
 const PostCard = ({ tweet }) => {
-  const [comment, setComment] = useState("");
-
   const likePost = async (tweetId) => {
     const token = localStorage.getItem("token");
     const likeData = {
@@ -30,12 +25,6 @@ const PostCard = ({ tweet }) => {
     );
     console.log("Resp", response);
     // console.log("Liked The Post", tweetId);
-  };
-
-  const sendCommentRequest = async (e, modelId) => {
-    e.preventDefault();
-    const resp = useCommentRequest( modelId, comment, "/api/v1/tweet/comment");
-    setComment("");
   };
 
   return (
@@ -115,38 +104,6 @@ const PostCard = ({ tweet }) => {
             </span>
           </li>
         </ul>
-        <div className="flex gap-2">
-          <div>
-            <span>
-              <img
-                height={45}
-                width={45}
-                className="rounded-full"
-                src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg"
-                alt="post-owner"
-              />
-            </span>
-          </div>
-          <form className="w-full rounded flex px-4 bg-gray-200">
-            <textarea
-              rows={1}
-              data-autoresize={true}
-              placeholder="Place Your Comment..."
-              className="bg-gray-200 placeholder:text-gray-600 w-full rounded p-2 outline-none resize-none"
-              name=""
-              id=""
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            ></textarea>
-            <button
-              onClick={(e) => sendCommentRequest(e, tweet._id)}
-              type="submit"
-              className=""
-            >
-              <IoIosSend color="#3C3D37" size={"1.4rem"} />
-            </button>
-          </form>
-        </div>
 
         <Comments tweet={tweet} />
       </div>
