@@ -6,9 +6,9 @@ export function ErrorPage() {
   return (
     <BackgroundGradientAnimation>
       <div className="absolute z-50 inset-0 flex flex-col gap-6 items-center justify-center font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl">
-        <h1 className="text-[70px] font-semibold text-white">404</h1>
+        <h1 className="text-white font-semibold text-[35px] md:text-[50px] lg:text-[70px]">404</h1>
         <div>
-          <span className="text-white text-[50px]">
+          <span className="text-white text-[20px] md:text-[30px] lg:text-[50px]">
             oops something went wrong
           </span>
         </div>
