@@ -38,14 +38,14 @@ const ProfileOverview = () => {
               className="border-2 border-white rounded"
               height={65}
               width={65}
-              src={userProfile.profilePic}
+              src={userProfile?.profilePic? userProfile?.profilePic : "https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg"}
               alt="profile-pic"
             />
           </div>
           <div className="flex flex-col items-center">
             <h1 className="font-bold text-black text-xl">{userProfile?.name}</h1>
             <p className="text-gray-600 text-sm font-semibold">
-            {userProfile?.bio}
+            {userProfile?.bio ? userProfile?.bio : "Add Bioo"}
             </p>
           </div>
           <p className="text-center text-sm text-gray-600 font-semibold py-4 px-4 leading-5">
@@ -59,13 +59,17 @@ const ProfileOverview = () => {
               <small className="font-semibold text-gray-700">Posts</small>
             </div>
             <div className="h-12 border-l-[2px] border-gray-500"></div>
-            <div className="flex flex-col items-center">
-              <h6 className="font-bold text-gray-900">{userProfile?.followersList.length}</h6>
+            {/* <div className="flex flex-col items-center">
+              <h6 className="font-bold text-gray-900">{userProfile?.followersList?.length}</h6>
+              <small className="font-semibold text-gray-700">Follower</small>
+            </div> */}
+             <div className="flex flex-col items-center">
+              <h6 className="font-bold text-gray-900">{userProfile?.followerList?.length}</h6>
               <small className="font-semibold text-gray-700">Follower</small>
             </div>
             <div className="h-12 border-l-[2px] border-gray-500"></div>
             <div className="flex flex-col items-center">
-              <h6 className="font-bold text-gray-900">{userProfile?.followingList.length}</h6>
+              <h6 className="font-bold text-gray-900">{userProfile?.followingList?.length}</h6>
               <small className="font-semibold text-gray-700">Following</small>
             </div>
           </div>
