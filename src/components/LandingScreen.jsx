@@ -3,11 +3,12 @@ import PhoneImage from "../assets/image.png";
 import { IoMdArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import Features from "./Features";
+import Footer from "./Footer";
 
 const LandingScreen = () => {
   return (
-    <div className="px-20 bg-white">
-      <nav className="flex justify-between py-4 items-center">
+    <div className=" bg-white w-screen h-screen">
+      <nav className="flex justify-between py-4 items-center px-20 m-auto max-w-[1200px]">
         <div className="flex gap-x-2">
           <span>
             <img src={Logo} alt="logo" />
@@ -27,20 +28,15 @@ const LandingScreen = () => {
           </li>
         </ul>
       </nav>
-      <section className="">
+      <section className="flex flex-col justify-center items-center max-w-[1200px] m-auto">
         <div className="flex justify-between">
-          <div className="flex flex-col w-[50%] pt-16 gap-12">
-            <h1 className="text-[50px] leading-[60px] font-bold max-w-[70%]">
+          <div className="flex flex-col gap-8 lg:gap-24 items-center pt-16">
+            <h1 className="text-center text-[50px] leading-[60px] font-bold max-w-[40rem]">
               What is the best way to express your thoughts?
             </h1>
-            <div className="font-bold text-xl flex items-center bg-yellow-400 w-fit px-8 py-3 rounded-md">
-              <Link to="/home">
-                <button className="">Start Now</button>
-              </Link>
-              <IoMdArrowForward />
-            </div>
+            <p className='text-center mb-16 max-w-[30rem] text-[#5b4e4ec7] text-[1.1rem]'>Allowing users to share posts in a concise and engaging format. This functionality includes user-friendly input, real-time posting, and interactive elements such as likes and comments, creating a dynamic social experience. The feature is built with scalability and smooth performance in mind, ensuring a seamless experience for all users.</p>
           </div>
-          <div className="">
+          <div className="hidden lg:flex">
             <span>
               <img
                 className=""
@@ -51,8 +47,19 @@ const LandingScreen = () => {
             </span>
           </div>
         </div>
+        <div className="flex justify-center items-center">
+           <div className="font-bold text-xl flex items-center bg-yellow-400 w-fit px-8 py-3 rounded-md">
+             <Link to="/home">
+               <button className="">Start Now</button>
+             </Link>
+             <IoMdArrowForward />
+           </div>
+        </div>
       </section>
-      <Features/>
+      <div>
+        <Features />
+      </div>
+      <Footer />
     </div>
   );
 };
