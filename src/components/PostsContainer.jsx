@@ -19,16 +19,16 @@ const PostsContainer = () => {
     const scrolled=document?.documentElement?.scrollTop;
 
     if(innerHeight+scrolled+1>total){
-      setPage(page=>page+1);
+      setPage(page=>page+100);
     }
 }
 
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, [page]);
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [page]);
   
 
   return loading ? (

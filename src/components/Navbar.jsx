@@ -5,8 +5,14 @@ import { IoMdNotifications } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
+// recoil ?
+import { userSearch } from "../store/userSearch";
+import { useRecoilState } from "recoil";
 
 const Navbar = () => {
+
+  const [searchText, setSearchText] = useRecoilState(userSearch);
+
   return (
     <>
       <div className="bg-white px-20 py-4 justify-center items-center sticky top-0 z-10">
@@ -16,6 +22,8 @@ const Navbar = () => {
               <img src={Logo} alt="logo" />
             </Link>
             <input
+              value={searchText}
+              onChange={(e)=>setSearchText(e.target.value)}
               type="text"
               placeholder="Search..."
               className="px-4 border border-gray-400 focus:border-none focus:outline outline-blue-600 outline-offset-0 outline-1 rounded bg-gray-100 placeholder:text-gray-400"
