@@ -6,7 +6,7 @@ import { MdEmojiEmotions } from "react-icons/md";
 import { Spin } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 
 // recoil atom import 
 import {newPost} from "./Posts";
@@ -14,7 +14,7 @@ import {newPost} from "./Posts";
 const CreatePost = () => {
 
    //recoil setup
-   const [recoilPost, setRecoilPost]=useRecoilState(newPost);
+   const setRecoilPost = useSetRecoilState(newPost);
 
 
   const [image, setImage] = useState({

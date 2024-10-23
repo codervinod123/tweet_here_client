@@ -6,7 +6,10 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { toast } from "react-toastify";
 import { Spin } from "antd";
 
+
 const Auth = ({ comp }) => {
+
+
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
   const [formdata, setFormdata] = useState({
@@ -27,10 +30,13 @@ const Auth = ({ comp }) => {
         `${databaseURL}/api/v1/user/${comp == "signup" ? "signup" : "signin"}`,
         formdata,
       );
+      
       if (response.status == 200) {
         setLoader(false);
       }
-      localStorage.setItem("token", response.data.token);
+      console.log(response.data.data.user);
+      localStorage.setItem("token", response.data.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.data.user));
       navigate("/home");
       setFormdata({
         email: "",

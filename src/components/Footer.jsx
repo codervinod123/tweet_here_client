@@ -1,4 +1,3 @@
-import React from 'react'
 import { RiTwitterXFill } from "react-icons/ri";
 import { IoLogoGithub } from "react-icons/io";
 import Logo from "../assets/logo.svg";

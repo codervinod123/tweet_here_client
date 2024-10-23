@@ -4,19 +4,15 @@ import { Spin } from "antd";
 import PostCard from "./PostCard";
 import { newPost } from "./Posts";
 
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 
 const PostsContainer = () => {
 
   const [page, setPage]=useState(1);
-  const [recoilPost, setRecoilPost]=useRecoilState(newPost);
+  const recoilPost=useRecoilValue(newPost);
 
   const { data, loading } = useAPI(`/api/v1/tweet?page=${page}`);
-   
-  const total=document?.documentElement?.scrollHeight;
-  console.log("TT", total);
-
-
+  
   const handleScroll=()=>{
     const total=document?.documentElement?.scrollHeight;
     const innerHeight=window?.innerHeight;
@@ -27,12 +23,12 @@ const PostsContainer = () => {
     }
 }
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [page]);
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [page]);
   
 
   return loading ? (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { CiEdit } from "react-icons/ci";
@@ -9,6 +9,13 @@ import { BsUpload } from "react-icons/bs";
 import axios from "axios";
 
 const ProfileOverview = () => {
+
+  const [userProfile, setUserProfile]=useState();
+  useEffect(()=>{
+     const data = localStorage.getItem("user");
+     setUserProfile(JSON.parse(data));
+  },[])
+   
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.clear("token");
@@ -20,6 +27,8 @@ const ProfileOverview = () => {
     dialogRef.current.showModal();
   };
 
+  
+
   return (
     <nav className="">
       <div className="h-full flex flex-col">
@@ -29,14 +38,14 @@ const ProfileOverview = () => {
               className="border-2 border-white rounded"
               height={65}
               width={65}
-              src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg"
+              src={userProfile.profilePic}
               alt="profile-pic"
             />
           </div>
           <div className="flex flex-col items-center">
-            <h1 className="font-bold text-black text-xl">Sam Lanson</h1>
+            <h1 className="font-bold text-black text-xl">{userProfile?.name}</h1>
             <p className="text-gray-600 text-sm font-semibold">
-              Web Developer at Webestica
+            {userProfile?.bio}
             </p>
           </div>
           <p className="text-center text-sm text-gray-600 font-semibold py-4 px-4 leading-5">
@@ -46,17 +55,17 @@ const ProfileOverview = () => {
 
           <div className="flex justify-center gap-x-4">
             <div className="flex flex-col items-center">
-              <h6 className="font-bold text-gray-900">256</h6>
+              <h6 className="font-bold text-gray-900">8</h6>
               <small className="font-semibold text-gray-700">Posts</small>
             </div>
             <div className="h-12 border-l-[2px] border-gray-500"></div>
             <div className="flex flex-col items-center">
-              <h6 className="font-bold text-gray-900">12.5K</h6>
+              <h6 className="font-bold text-gray-900">{userProfile?.followersList.length}</h6>
               <small className="font-semibold text-gray-700">Follower</small>
             </div>
             <div className="h-12 border-l-[2px] border-gray-500"></div>
             <div className="flex flex-col items-center">
-              <h6 className="font-bold text-gray-900">345</h6>
+              <h6 className="font-bold text-gray-900">{userProfile?.followingList.length}</h6>
               <small className="font-semibold text-gray-700">Following</small>
             </div>
           </div>

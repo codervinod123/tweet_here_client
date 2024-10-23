@@ -11,6 +11,7 @@ import Signin from "./pages/Signin";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PostsContainer from "./components/PostsContainer";
+import { RecoilRoot } from "recoil";
 
 const appRouter = createBrowserRouter([
   {
@@ -64,10 +65,12 @@ const appRouter = createBrowserRouter([
 
 const App = () => {
   return (
-    <div className="bg-gray-200">
-      <RouterProvider router={appRouter} />
-      <ToastContainer />
-    </div>
+    <RecoilRoot>
+      <div className="bg-gray-200">
+        <RouterProvider router={appRouter} />
+        <ToastContainer />
+      </div>
+    </RecoilRoot>
   );
 };
 
