@@ -25,7 +25,7 @@ const Navbar = () => {
               onChange={(e) => setSearchText(e.target.value)}
               type="text"
               placeholder="Search..."
-              className="px-4 border border-gray-400 focus:border-none focus:outline outline-blue-600 outline-offset-0 outline-1 rounded bg-gray-100 placeholder:text-gray-400"
+              className="hidden lg:block px-4 border border-gray-400 focus:border-none focus:outline outline-blue-600 outline-offset-0 outline-1 rounded bg-gray-100 placeholder:text-gray-400"
             />
           </div>
           <div className="flex items-center gap-x-4">
@@ -34,24 +34,6 @@ const Navbar = () => {
                 <li className="flex items-center justify-center">
                   <a className="flex items-center justify-center" href="#">
                     Demo
-                    <RiArrowDropDownLine size={"1.5rem"} />
-                  </a>
-                </li>
-                <li>
-                  <a className="flex items-center justify-center" href="#">
-                    Pages
-                    <RiArrowDropDownLine size={"1.5rem"} />
-                  </a>
-                </li>
-                <li>
-                  <a className="flex items-center justify-center" href="#">
-                    Account
-                    <RiArrowDropDownLine size={"1.5rem"} />
-                  </a>
-                </li>
-                <li>
-                  <a className="flex items-center justify-center" href="#">
-                    My Networks
                     <RiArrowDropDownLine size={"1.5rem"} />
                   </a>
                 </li>

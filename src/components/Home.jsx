@@ -19,19 +19,18 @@ const Home = () => {
 
   return (
     <RecoilRoot>
-    <div>
-      <div className="grid grid-cols-8 px-20 gap-8 my-6">
-        <div className="col-span-2">
+    <div className="">
+      <div className="flex flex-col lg:grid lg:grid-cols-8 lg:px-20 lg:gap-8 lg:my-6">
+        <div className="col-span-2 hidden lg:grid">
           <ProfileOverview />
         </div>
-        <div className="col-span-4">
+        <div className="px-4 py-4 col-span-4 lg:px-0 lg:py-0">
           <Outlet />
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 hidden lg:grid">
           <Suggestions />
         </div>
       </div>
-      <div>b</div>
     </div>
   </RecoilRoot>
   );

@@ -84,7 +84,7 @@ const ProfileOverview = () => {
             </div> */}
             <div className="flex flex-col items-center">
               <h6 className="font-bold text-gray-900">
-                {user?.followerList?.length}
+                {user?.followersList?.length}
               </h6>
               <small className="font-semibold text-gray-700">Follower</small>
             </div>

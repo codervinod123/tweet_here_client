@@ -99,9 +99,9 @@ const CreatePost = () => {
           </div>
         )}
       </div>
-      <div className="flex justify-between px-8 py-4">
-        <ul className="flex gap-4 ">
-          <li className="bg-gray-200 rounded-sm px-[4px] py-[2px] cursor-pointer">
+      <div className="flex justify-between py-2 px-8 lg:py-4">
+        <ul className="flex gap-x-4">
+        <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
             <input
               onChange={(e) => handleImageChange(e)}
               id="pc"
@@ -113,29 +113,32 @@ const CreatePost = () => {
               className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500"
             >
               <FaImage color="#15B392" />
-              Photos
+              <span className="hidden lg:block">Photos</span>
             </label>
           </li>
-          <li className="bg-gray-200 rounded-sm px-[4px] py-[2px] cursor-pointer ">
+         
+
+          <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
             <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500">
               <FaVideo color="#00CCDD" />
-              Vedio
+              <span className="hidden lg:block">Vedio</span>
             </span>
           </li>
 
-          <li className="bg-gray-200 rounded-sm px-[4px] py-[2px] cursor-pointer">
+          <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
             <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500">
               <BsFillCalendarDateFill color="#D91656" />
-              Event
+              <span className="hidden lg:block">Event</span>
             </span>
           </li>
 
-          <li className="bg-gray-200 rounded-sm px-[4px] py-[2px] cursor-pointer">
+          <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
             <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500">
               <MdEmojiEmotions color="#FF7F3E" />
-              Feeling/Activity
+              <span className="hidden lg:block">Feeling/Activity</span>
             </span>
           </li>
+
         </ul>
         <button
           onClick={handleSubmitForm}
