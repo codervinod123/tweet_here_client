@@ -10,7 +10,6 @@ import { userSearch } from "../store/userSearch";
 import { useRecoilState } from "recoil";
 
 const Navbar = () => {
-
   const [searchText, setSearchText] = useRecoilState(userSearch);
 
   return (
@@ -23,7 +22,7 @@ const Navbar = () => {
             </Link>
             <input
               value={searchText}
-              onChange={(e)=>setSearchText(e.target.value)}
+              onChange={(e) => setSearchText(e.target.value)}
               type="text"
               placeholder="Search..."
               className="px-4 border border-gray-400 focus:border-none focus:outline outline-blue-600 outline-offset-0 outline-1 rounded bg-gray-100 placeholder:text-gray-400"

@@ -7,29 +7,27 @@ import { newPost } from "./Posts";
 import { useRecoilValue } from "recoil";
 
 const PostsContainer = () => {
-
-  const [page, setPage]=useState(1);
-  const recoilPost=useRecoilValue(newPost);
+  const [page, setPage] = useState(1);
+  const recoilPost = useRecoilValue(newPost);
 
   const { data, loading } = useAPI(`/api/v1/tweet?page=${page}`);
-  
-  const handleScroll=()=>{
-    const total=document?.documentElement?.scrollHeight;
-    const innerHeight=window?.innerHeight;
-    const scrolled=document?.documentElement?.scrollTop;
 
-    if(innerHeight+scrolled+1>total){
-      setPage(page=>page+100);
+  const handleScroll = () => {
+    const total = document?.documentElement?.scrollHeight;
+    const innerHeight = window?.innerHeight;
+    const scrolled = document?.documentElement?.scrollTop;
+
+    if (innerHeight + scrolled + 1 > total) {
+      setPage((page) => page + 100);
     }
-}
+  };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [page]);
-  
 
   return loading ? (
     <div className="flex justify-center pt-6">

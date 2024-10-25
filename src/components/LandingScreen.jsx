@@ -34,7 +34,14 @@ const LandingScreen = () => {
             <h1 className="text-center text-[50px] leading-[60px] font-bold max-w-[40rem]">
               What is the best way to express your thoughts?
             </h1>
-            <p className='text-center mb-16 max-w-[30rem] text-font-rgb text-[1.1rem]'>Allowing users to share posts in a concise and engaging format. This functionality includes user-friendly input, real-time posting, and interactive elements such as likes and comments, creating a dynamic social experience. The feature is built with scalability and smooth performance in mind, ensuring a seamless experience for all users.</p>
+            <p className="text-center mb-16 max-w-[30rem] text-font-rgb text-[1.1rem]">
+              Allowing users to share posts in a concise and engaging format.
+              This functionality includes user-friendly input, real-time
+              posting, and interactive elements such as likes and comments,
+              creating a dynamic social experience. The feature is built with
+              scalability and smooth performance in mind, ensuring a seamless
+              experience for all users.
+            </p>
           </div>
           <div className="hidden lg:flex">
             <span>
@@ -48,12 +55,12 @@ const LandingScreen = () => {
           </div>
         </div>
         <div className="flex justify-center items-center">
-           <div className="font-bold text-xl flex items-center bg-yellow-400 w-fit px-8 py-3 rounded-md">
-             <Link to="/home">
-               <button className="">Start Now</button>
-             </Link>
-             <IoMdArrowForward />
-           </div>
+          <div className="font-bold text-xl flex items-center bg-yellow-400 w-fit px-8 py-3 rounded-md">
+            <Link to="/home">
+              <button className="">Start Now</button>
+            </Link>
+            <IoMdArrowForward />
+          </div>
         </div>
       </section>
       <div>

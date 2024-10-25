@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { CiLogout } from "react-icons/ci";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CiEdit } from "react-icons/ci";
 import { Spin } from "antd";
 import { useRef } from "react";
@@ -9,13 +9,13 @@ import { BsUpload } from "react-icons/bs";
 import axios from "axios";
 
 const ProfileOverview = () => {
+  const [user, setUser] = useState();
+  useEffect(() => {
+    const data = localStorage.getItem("user");
+    setUser(JSON.parse(data));
+    console.log("Old Data", JSON.parse(data));
+  }, []);
 
-  const [userProfile, setUserProfile]=useState();
-  useEffect(()=>{
-     const data = localStorage.getItem("user");
-     setUserProfile(JSON.parse(data));
-  },[])
-   
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.clear("token");
@@ -27,8 +27,6 @@ const ProfileOverview = () => {
     dialogRef.current.showModal();
   };
 
-  
-
   return (
     <nav className="">
       <div className="h-full flex flex-col">
@@ -38,14 +36,29 @@ const ProfileOverview = () => {
               className="border-2 border-white rounded"
               height={65}
               width={65}
-              src={userProfile?.profilePic? userProfile?.profilePic : "https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg"}
+              src={
+                user?.profilePic
+                  ? user?.profilePic
+                  : "https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg"
+              }
               alt="profile-pic"
             />
           </div>
-          <div className="flex flex-col items-center">
-            <h1 className="font-bold text-black text-xl">{userProfile?.name}</h1>
+          <div className="flex flex-col items-center w-full">
+            <div className="flex items-center justify-center w-full">
+              <h1 className="font-bold text-black text-xl">{user?.name}</h1>
+            </div>
             <p className="text-gray-600 text-sm font-semibold">
-            {userProfile?.bio ? userProfile?.bio : "Add Bioo"}
+              {user?.location}
+            </p>
+            <p className="text-gray-600 text-sm font-semibold">
+              {user?.bio ? (
+                user?.bio
+              ) : (
+                <Link onClick={handleEdit} className="text-blue-600">
+                  Add Bio
+                </Link>
+              )}
             </p>
           </div>
           <p className="text-center text-sm text-gray-600 font-semibold py-4 px-4 leading-5">
@@ -63,13 +76,17 @@ const ProfileOverview = () => {
               <h6 className="font-bold text-gray-900">{userProfile?.followersList?.length}</h6>
               <small className="font-semibold text-gray-700">Follower</small>
             </div> */}
-             <div className="flex flex-col items-center">
-              <h6 className="font-bold text-gray-900">{userProfile?.followerList?.length}</h6>
+            <div className="flex flex-col items-center">
+              <h6 className="font-bold text-gray-900">
+                {user?.followerList?.length}
+              </h6>
               <small className="font-semibold text-gray-700">Follower</small>
             </div>
             <div className="h-12 border-l-[2px] border-gray-500"></div>
             <div className="flex flex-col items-center">
-              <h6 className="font-bold text-gray-900">{userProfile?.followingList?.length}</h6>
+              <h6 className="font-bold text-gray-900">
+                {user?.followingList?.length}
+              </h6>
               <small className="font-semibold text-gray-700">Following</small>
             </div>
           </div>
@@ -191,6 +208,7 @@ const DialogBox = ({ reference }) => {
     }
   };
 
+  // const [user, setUser] = useRecoilState(LoginUser);
   const saveUpdate = async () => {
     setLoader(true);
     const formdata = new FormData();
@@ -211,8 +229,13 @@ const DialogBox = ({ reference }) => {
         },
       },
     );
-    console.log("results", response);
+
+    const updatedData = await axios.get(
+      `${databaseURL}/api/v1/user?userId=${response.data.data._id}`,
+    );
+
     setLoader(false);
+    localStorage.setItem("user", JSON.stringify(updatedData.data.data));
     setPreviewProfile(null);
     setProfilePic(null);
     setFormdata({
