@@ -9,10 +9,13 @@ import Comments from "./Comments";
 // recoil 
 import { useRecoilState } from "recoil";
 import { likeCountStore } from "../store/like-store";
+import { commentCountStore } from "../store/comment-store";
 
 const PostCard = ({ tweet }) => {
 
+  const [commentCount, setCommentCount]=useRecoilState(commentCountStore);
   const [likeCount, setLikeCount]=useRecoilState(likeCountStore);
+
   const likePost = async (tweetId) => {
     const token = localStorage.getItem("token");
     const likeData = {
@@ -105,7 +108,7 @@ const PostCard = ({ tweet }) => {
             </span>
             <span className="flex items-center gap-1 text-gray-700 cursor-pointer  px-2 rounded bg-gray-100 hover:bg-blue-300 transition-all duration-500">
               <FaComment />
-              Comment ({tweet.comments.length})
+              Comment ({tweet.comments.length+commentCount})
             </span>
           </li>
           <li>

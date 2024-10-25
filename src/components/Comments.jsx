@@ -4,7 +4,13 @@ import axios from "axios";
 import useCommentRequest from "../hooks/useCommentRequest";
 import { toast } from "react-toastify";
 
+import {useRecoilState} from "recoil";
+import { commentCountStore } from "../store/comment-store";
+
 const Comments = ({ tweet }) => {
+
+  const [commentCount, setCommentCount]=useRecoilState(commentCountStore);
+  
   const [commentData, setCommentData] = useState([]);
   const [comment, setComment] = useState("");
   const [page, setPage] = useState(1);
@@ -44,6 +50,7 @@ const Comments = ({ tweet }) => {
       if (resp.response.status == 200) {
         setShowNewComment(true);
         setNewComment([...newComment, comment]);
+        setCommentCount(commentCount=>commentCount+1);
       } else {
         toast.error("An error occurred while posting the comment.");
       }
