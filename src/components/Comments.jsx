@@ -130,15 +130,15 @@ const Comments = ({ tweet }) => {
                   </div>
                   <ul className="flex gap-3 items-center px-[47px] ">
                     <div className="cursor-pointer">
-                      <span>Like (3)</span>
+                      <span className="hidden md:block">Like (3)</span>
                     </div>
-                    <div className="h-[5px] w-[5px] bg-gray-700 rounded-full"></div>
+                    <div className="h-[5px] w-[5px] bg-gray-700 rounded-full hidden md:block"></div>
                     <div className="cursor-pointer">
-                      <span>Reply</span>
+                      <span className="hidden md:block">Reply</span>
                     </div>
-                    <div className="h-[5px] w-[5px] bg-gray-700 rounded-full"></div>
+                    <div className="h-[5px] w-[5px] bg-gray-700 rounded-full hidden md:block"></div>
                     <div className="cursor-pointer">
-                      <span>View 2 Replies</span>
+                      <span className="hidden md:block">View 2 Replies</span>
                     </div>
                   </ul>
                 </div>
@@ -179,15 +179,15 @@ const Comments = ({ tweet }) => {
                 </div>
                 <ul className="flex gap-3 items-center px-[47px] ">
                   <div className="cursor-pointer">
-                    <span>Like (3)</span>
+                    <span className="hidden md:block">Like (3)</span>
                   </div>
-                  <div className="h-[5px] w-[5px] bg-gray-700 rounded-full"></div>
+                  <div className="h-[5px] w-[5px] bg-gray-700 rounded-full hidden md:block"></div>
                   <div className="cursor-pointer">
-                    <span>Reply</span>
+                    <span className="hidden md:block">Reply</span>
                   </div>
-                  <div className="h-[5px] w-[5px] bg-gray-700 rounded-full"></div>
+                  <div className="h-[5px] w-[5px] bg-gray-700 rounded-full hidden md:block"></div>
                   <div className="cursor-pointer">
-                    <span>View 2 Replies</span>
+                    <span className="hidden md:block">View 2 Replies</span>
                   </div>
                 </ul>
               </div>
