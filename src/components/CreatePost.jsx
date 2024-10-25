@@ -99,7 +99,7 @@ const CreatePost = () => {
           </div>
         )}
       </div>
-      <div className="flex justify-between py-2 px-8 lg:py-4">
+      <div className="flex justify-between py-2 px-8 md:py-4">
         <ul className="flex gap-x-4">
         <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
             <input
@@ -113,7 +113,7 @@ const CreatePost = () => {
               className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500"
             >
               <FaImage color="#15B392" />
-              <span className="hidden lg:block">Photos</span>
+              <span className="hidden md:block">Photos</span>
             </label>
           </li>
          
@@ -121,21 +121,21 @@ const CreatePost = () => {
           <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
             <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500">
               <FaVideo color="#00CCDD" />
-              <span className="hidden lg:block">Vedio</span>
+              <span className="hidden md:block">Vedio</span>
             </span>
           </li>
 
           <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
             <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500">
               <BsFillCalendarDateFill color="#D91656" />
-              <span className="hidden lg:block">Event</span>
+              <span className="hidden md:block">Event</span>
             </span>
           </li>
 
           <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
             <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500">
               <MdEmojiEmotions color="#FF7F3E" />
-              <span className="hidden lg:block">Feeling/Activity</span>
+              <span className="hidden md:block">Feeling/Activity</span>
             </span>
           </li>
 

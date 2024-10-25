@@ -6,7 +6,13 @@ import { IoMdShareAlt } from "react-icons/io";
 import axios from "axios";
 import Comments from "./Comments";
 
+// recoil 
+import { useRecoilState } from "recoil";
+import { likeCountStore } from "../store/like-store";
+
 const PostCard = ({ tweet }) => {
+
+  const [likeCount, setLikeCount]=useRecoilState(likeCountStore);
   const likePost = async (tweetId) => {
     const token = localStorage.getItem("token");
     const likeData = {
@@ -24,7 +30,12 @@ const PostCard = ({ tweet }) => {
       },
     );
     console.log("Resp", response);
-    // console.log("Liked The Post", tweetId);
+    if(response.data.data){
+      setLikeCount(likeCount=>likeCount+1);
+    }else{
+      setLikeCount(likeCount=>likeCount-1);
+    }
+    
   };
 
   return (
@@ -90,7 +101,7 @@ const PostCard = ({ tweet }) => {
               className="flex items-center gap-1 text-gray-700 cursor-pointer px-2 rounded bg-gray-100 hover:bg-blue-300 transition-all duration-500"
             >
               <SlLike />
-              Like ({tweet.likes.length})
+              Like ({tweet.likes.length+likeCount})
             </span>
             <span className="flex items-center gap-1 text-gray-700 cursor-pointer  px-2 rounded bg-gray-100 hover:bg-blue-300 transition-all duration-500">
               <FaComment />
