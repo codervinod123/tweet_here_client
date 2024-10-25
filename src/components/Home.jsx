@@ -4,6 +4,8 @@ import ProfileOverview from "./ProfileOverview";
 import Suggestions from "./Suggestions";
 import { useNavigate } from "react-router-dom";
 
+import { RecoilRoot } from "recoil";
+
 const Home = () => {
   const navigate = useNavigate();
 
@@ -16,6 +18,7 @@ const Home = () => {
   }, []);
 
   return (
+    <RecoilRoot>
     <div>
       <div className="grid grid-cols-8 px-20 gap-8 my-6">
         <div className="col-span-2">
@@ -30,6 +33,7 @@ const Home = () => {
       </div>
       <div>b</div>
     </div>
+  </RecoilRoot>
   );
 };
 

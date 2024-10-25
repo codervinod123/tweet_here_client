@@ -8,8 +8,14 @@ import { IoIosClose } from "react-icons/io";
 import { BsUpload } from "react-icons/bs";
 import axios from "axios";
 
+//recoil
+import { LoginUser } from "../store/userprofile";
+import { useRecoilState } from "recoil";
+
+
 const ProfileOverview = () => {
-  const [user, setUser] = useState();
+
+  const [user, setUser] = useRecoilState(LoginUser);
   useEffect(() => {
     const data = localStorage.getItem("user");
     setUser(JSON.parse(data));
@@ -209,6 +215,7 @@ const DialogBox = ({ reference }) => {
   };
 
   // const [user, setUser] = useRecoilState(LoginUser);
+  const [user, setUser] = useRecoilState(LoginUser);
   const saveUpdate = async () => {
     setLoader(true);
     const formdata = new FormData();
@@ -230,12 +237,10 @@ const DialogBox = ({ reference }) => {
       },
     );
 
-    const updatedData = await axios.get(
-      `${databaseURL}/api/v1/user?userId=${response.data.data._id}`,
-    );
-
     setLoader(false);
-    localStorage.setItem("user", JSON.stringify(updatedData.data.data));
+    localStorage.setItem("user", JSON.stringify(response.data.data));
+    setUser(response.data.data);
+
     setPreviewProfile(null);
     setProfilePic(null);
     setFormdata({
