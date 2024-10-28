@@ -6,15 +6,14 @@ import { IoMdShareAlt } from "react-icons/io";
 import axios from "axios";
 import Comments from "./Comments";
 
-// recoil 
+// recoil
 import { useRecoilState } from "recoil";
 import { likeCountStore } from "../store/like-store";
 import { commentCountStore } from "../store/comment-store";
 
 const PostCard = ({ tweet }) => {
-
-  const [commentCount, setCommentCount]=useRecoilState(commentCountStore);
-  const [likeCount, setLikeCount]=useRecoilState(likeCountStore);
+  const [commentCount, setCommentCount] = useRecoilState(commentCountStore);
+  const [likeCount, setLikeCount] = useRecoilState(likeCountStore);
 
   const likePost = async (tweetId) => {
     const token = localStorage.getItem("token");
@@ -33,12 +32,11 @@ const PostCard = ({ tweet }) => {
       },
     );
     console.log("Resp", response);
-    if(response.data.data){
-      setLikeCount(likeCount=>likeCount+1);
-    }else{
-      setLikeCount(likeCount=>likeCount-1);
+    if (response.data.data) {
+      setLikeCount((likeCount) => likeCount + 1);
+    } else {
+      setLikeCount((likeCount) => likeCount - 1);
     }
-    
   };
 
   return (
@@ -67,7 +65,8 @@ const PostCard = ({ tweet }) => {
                   <h4 className="font-bold text-gray-700">Lori Forguson</h4>
                 )}
                 <span className="text-sm text-gray-500 md:hidden">
-                  {timeAgo(tweet?.createdAt).slice(0,6)} {timeAgo(tweet?.createdAt).length>6 ? "...":""}
+                  {timeAgo(tweet?.createdAt).slice(0, 6)}{" "}
+                  {timeAgo(tweet?.createdAt).length > 6 ? "..." : ""}
                 </span>
               </div>
 
@@ -104,11 +103,15 @@ const PostCard = ({ tweet }) => {
               className="flex items-center gap-1 text-gray-700 cursor-pointer px-2 rounded bg-gray-100 hover:bg-blue-300 transition-all duration-500"
             >
               <SlLike />
-              <span className="hidden md:block">Like ({tweet.likes.length+likeCount})</span>
+              <span className="hidden md:block">
+                Like ({tweet.likes.length + likeCount})
+              </span>
             </span>
             <span className="flex items-center gap-1 text-gray-700 cursor-pointer  px-2 rounded bg-gray-100 hover:bg-blue-300 transition-all duration-500">
               <FaComment />
-              <span className="hidden md:block">Comment ({tweet.comments.length+commentCount})</span>
+              <span className="hidden md:block">
+                Comment ({tweet.comments.length + commentCount})
+              </span>
             </span>
           </li>
           <li>

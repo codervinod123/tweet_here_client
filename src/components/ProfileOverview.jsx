@@ -12,14 +12,11 @@ import axios from "axios";
 import { LoginUser } from "../store/userprofile";
 import { useRecoilState } from "recoil";
 
-
 const ProfileOverview = () => {
-
   const [user, setUser] = useRecoilState(LoginUser);
   useEffect(() => {
     const data = localStorage.getItem("user");
     setUser(JSON.parse(data));
-    console.log("Old Data", JSON.parse(data));
   }, []);
 
   const navigate = useNavigate();

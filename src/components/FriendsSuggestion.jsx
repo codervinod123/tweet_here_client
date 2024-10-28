@@ -13,6 +13,24 @@ const FriendsSuggestion = () => {
   const { data, loading } = useAPI("/api/v1/user");
   const [filterUser, setFilterUser] = useState();
 
+  // const [userWhoFollows, setUserWhoFollows] = useState([]);
+
+  // useEffect(()=>{
+
+  //   console.log("All Users In DB", data);
+
+  //   const loginUser=JSON.parse(localStorage.getItem("user"));
+  //   const loginuserId=loginUser._id;
+
+  //   const friends=data.filter((user)=>{
+  //        return  user.followersList.filter((following)=>{
+  //            return following._id;
+  //         })
+  //   })
+  //   console.log("All friends", friends);
+
+  // },[])
+
   useEffect(() => {
     setFilterUser(data);
   }, [loading, data]);

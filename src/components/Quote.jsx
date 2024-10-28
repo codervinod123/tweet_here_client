@@ -1,7 +1,7 @@
 //done_Resp
 const Quote = () => {
   return (
-    <div className="flex flex-col gap-4 px-8 h-screen w-full bg-slate-300 justify-center items-center">
+    <div className="flex flex-col gap-4 px-8 h-screen w-full bg-slate-300 justify-center items-center bg-quote-3-img bg-cover bg-center">
       <div className="flex flex-col gap-2">
         <p className="text-3xl font-semibold max-w-lg">
           The customer Servicces i receieved is exceptional. The suport Team

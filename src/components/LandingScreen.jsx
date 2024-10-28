@@ -55,12 +55,12 @@ const LandingScreen = () => {
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <div className="font-bold text-xl flex items-center bg-yellow-400 w-fit px-8 py-3 rounded-md">
-            <Link to="/home">
+          <Link to="/home">
+            <div className="font-bold text-xl flex items-center bg-yellow-400 w-fit px-8 py-3 rounded-md">
               <button className="">Start Now</button>
-            </Link>
-            <IoMdArrowForward />
-          </div>
+              <IoMdArrowForward />
+            </div>
+          </Link>
         </div>
       </section>
       <div>

@@ -101,7 +101,7 @@ const CreatePost = () => {
       </div>
       <div className="flex justify-between py-2 px-8 md:py-4">
         <ul className="flex gap-x-4">
-        <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
+          <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
             <input
               onChange={(e) => handleImageChange(e)}
               id="pc"
@@ -116,7 +116,6 @@ const CreatePost = () => {
               <span className="hidden md:block">Photos</span>
             </label>
           </li>
-         
 
           <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
             <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500">
@@ -138,7 +137,6 @@ const CreatePost = () => {
               <span className="hidden md:block">Feeling/Activity</span>
             </span>
           </li>
-
         </ul>
         <button
           onClick={handleSubmitForm}

@@ -19,20 +19,20 @@ const Home = () => {
 
   return (
     <RecoilRoot>
-    <div className="w-screen flex justify-center px-4">
-      <div className="flex flex-col lg:grid lg:grid-cols-8 max-w-[1200px] lg:gap-8 lg:my-6 w-full">
-        <div className="col-span-2 hidden lg:grid">
-          <ProfileOverview />
-        </div>
-        <div className="py-4 col-span-4 lg:px-0 lg:py-0">
-          <Outlet />
-        </div>
-        <div className="col-span-2 hidden lg:grid">
-          <Suggestions />
+      <div className="w-screen flex justify-center px-4 lg:px-20">
+        <div className="flex flex-col lg:grid lg:grid-cols-8 max-w-[1200px] lg:gap-8 lg:my-6 w-full">
+          <div className="col-span-2 hidden lg:grid">
+            <ProfileOverview />
+          </div>
+          <div className="py-4 col-span-4 lg:px-0 lg:py-0">
+            <Outlet />
+          </div>
+          <div className="col-span-2 hidden lg:grid">
+            <Suggestions />
+          </div>
         </div>
       </div>
-    </div>
-  </RecoilRoot>
+    </RecoilRoot>
   );
 };
 
