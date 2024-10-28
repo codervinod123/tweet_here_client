@@ -33,7 +33,7 @@ const ProfileOverview = () => {
   return (
     <nav className="">
       <div className="h-full flex flex-col">
-        <div className="bg-white rounded-md bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsIz4qZKTOplGKCIt860B8HP3mTBMZGACNFg&s')] bg-no-repeat bg-[length:100%_10%] bg-top">
+        <div className="bg-white rounded-md bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsIz4qZKTOplGKCIt860B8HP3mTBMZGACNFg&s')] bg-no-repeat lg:bg-[length:100%_10%] bg-[length:100%_15%] bg-top">
           <div className="flex justify-center pt-[18%]">
             <img
               className="border-2 border-white rounded"

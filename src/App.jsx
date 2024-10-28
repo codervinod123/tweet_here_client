@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PostsContainer from "./components/PostsContainer";
 import { RecoilRoot } from "recoil";
+import ProfileOverview from "./components/ProfileOverview";
 
 const appRouter = createBrowserRouter([
   {
@@ -49,6 +50,11 @@ const appRouter = createBrowserRouter([
               {
                 path: "trending",
                 element: <TrendingPosts />,
+                children: [],
+              },
+              {
+                path: "profile/me",
+                element: <ProfileOverview />,
                 children: [],
               },
             ],

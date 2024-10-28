@@ -5,6 +5,8 @@ import { IoMdNotifications } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { PiUserCircleThin } from "react-icons/pi";
+
 // recoil ?
 import { userSearch } from "../store/userSearch";
 import { useRecoilState } from "recoil";
@@ -49,6 +51,11 @@ const Navbar = () => {
               <div className="bg-gray-200 p-2 rounded-md cursor-pointer">
                 <IoMdNotifications size={"1.1rem"} color="#3C3D37" />
               </div>
+             <Link to="profile/me">
+               <div className="bg-gray-200 p-2 rounded-md cursor-pointer lg:hidden">
+                 <PiUserCircleThin size={"1.1rem"} color="#3C3D37" />
+               </div>
+             </Link>
             </div>
           </div>
         </div>
