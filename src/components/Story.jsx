@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { BsPlus } from "react-icons/bs";
 import "./global.css";
-import StoryImg1 from "../assets/quote1.jpg";
-import StoryImg2 from "../assets/quote2.jpg";
-import StoryImg3 from "../assets/quote3.jpg";
+
+import IMG from "../assets/quote3.jpg"
+
 import axios from 'axios';
-import { Spin } from "antd";
+import { Modal, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { toast } from 'react-toastify';
 
-const stor = [StoryImg1, StoryImg2, StoryImg3, StoryImg1, StoryImg2, StoryImg3, StoryImg1, StoryImg2, StoryImg3];
+import { GrNext } from "react-icons/gr";
+import { MdArrowBackIos } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
+
 
 const Story = () => {
 
@@ -59,6 +62,14 @@ const Story = () => {
       console.log(response.data.data);
    }
 
+
+   const storyRef = useRef();
+   const handleStoryView = () => {
+      storyRef.current.showModal();
+
+   }
+
+
    return (
       <div className='flex flex-nowrap gap-4 pb-2 w-full'>
 
@@ -96,13 +107,18 @@ const Story = () => {
                {
                   stories.map((story) => {
                      return (
-                        <div key={story._id} className='w-[80px] h-[120px] rounded-sm bg-white flex items-center justify-center  border-2 border-blue-300 cursor-pointer'>
+                        <div onClick={handleStoryView} key={story._id} className='w-[80px] h-[120px] rounded-sm bg-white flex items-center justify-center  border-2 border-blue-300 cursor-pointer'>
                            <span><img className='rounded-sm' src={story.content} alt="story1" /></span>
                         </div>
                      )
                   })
                }
             </div>
+
+            <dialog ref={storyRef} className='outline-none rounded-md '>
+               <StoryModal reference={storyRef} />
+            </dialog>
+
          </div>
 
       </div>
@@ -110,5 +126,42 @@ const Story = () => {
 }
 
 export default Story
+
+const StoryModal = ({ reference }) => {
+
+   const handleClose = () => {
+      reference.current.close();
+   }
+
+   const [toggler, setToggler] = useState(false);
+
+
+   return (
+      <div className='h-[90vh] w-[90vw] overflow-hidden border-none px-4'>
+
+         <div className="h-1 w-full bg-gray-200 rounded-full mt-3 overflow-hidden">
+            <div className="h-full bg-blue-500 w-0 animate-fill"></div>
+         </div>
+
+
+         <div className='flex justify-end'>
+            <span onClick={handleClose} className='p-2 bg-gray-400 rounded-full cursor-pointer hover:bg-gray-300 transition-all duration-500'>
+               <RxCross2 size={"1.5rem"} />
+            </span>
+         </div>
+         <div className=' flex justify-between items-center px-4'>
+            <span className='bg-gray-400 p-3 rounded-full text-white font-bold cursor-pointer flex items-center justify-center hover:bg-gray-300 transition-all duration-500'>
+               <MdArrowBackIos />
+            </span>
+            <div className='w-full flex justify-center'>
+               <img className='h-[450px] w-[500px] rounded-md' src={IMG} alt="story" />
+            </div>
+            <span className='bg-gray-400 p-3 rounded-full text-white font-bold cursor-pointer flex items-center justify-center hover:bg-gray-300 transition-all duration-500'>
+               <GrNext />
+            </span>
+         </div>
+      </div>
+   )
+}
 
 
