@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { BsPlus } from "react-icons/bs";
 import "./global.css";
 
@@ -59,7 +59,6 @@ const Story = () => {
       const databaseURL = import.meta.env.VITE_BACKEND_URL;
       const response = await axios.get(`${databaseURL}/api/v1/story`);
       setStories(response.data.data);
-      console.log(response.data.data);
    }
 
 
@@ -102,7 +101,7 @@ const Story = () => {
          }
 
 
-         <div className='flex flex-nowrap gap-4 pb-2 w-full overflow-x-auto'>
+         <div className='grid gap-4 pb-2 w-full overflow-x-auto'>
             <div class="flex gap-4">
                {
                   stories.map((story) => {
@@ -116,7 +115,7 @@ const Story = () => {
             </div>
 
             <dialog ref={storyRef} className='outline-none rounded-md '>
-               <StoryModal reference={storyRef} />
+               <StoryModal reference={storyRef} stories={stories} />
             </dialog>
 
          </div>
@@ -127,39 +126,80 @@ const Story = () => {
 
 export default Story
 
-const StoryModal = ({ reference }) => {
+
+
+
+const StoryModal = ({ reference, stories }) => {
+
+   const [page, setPage] = useState(0);
 
    const handleClose = () => {
       reference.current.close();
    }
 
-   const [toggler, setToggler] = useState(false);
+   const nextStory=()=>{
+      if(page==stories.length-1){
+         reference.current.close();
+         setPage(0);
+         return;
+      }
+      setPage(page=>page+1);
+   }
+
+   const prevStory=()=>{
+      if(page==0){
+         reference.current.close();
+         setPage(0);
+         return;
+      }
+      setPage(page=>page-1);
+   }
 
 
    return (
       <div className='h-[90vh] w-[90vw] overflow-hidden border-none px-4'>
 
-         <div className="h-1 w-full bg-gray-200 rounded-full mt-3 overflow-hidden">
-            <div className="h-full bg-blue-500 w-0 animate-fill"></div>
-         </div>
+ <div className='flex justify-end mt-1'>
+                                 <span onClick={handleClose} className='p-2 bg-gray-400 rounded-full cursor-pointer hover:bg-gray-300 transition-all duration-500'>
+                                    <RxCross2 size={"1.5rem"} />
+                                 </span>
+                              </div>
 
 
-         <div className='flex justify-end'>
-            <span onClick={handleClose} className='p-2 bg-gray-400 rounded-full cursor-pointer hover:bg-gray-300 transition-all duration-500'>
-               <RxCross2 size={"1.5rem"} />
-            </span>
-         </div>
          <div className=' flex justify-between items-center px-4'>
-            <span className='bg-gray-400 p-3 rounded-full text-white font-bold cursor-pointer flex items-center justify-center hover:bg-gray-300 transition-all duration-500'>
+
+        
+            <span onClick={prevStory} className='bg-gray-400 p-3 rounded-full text-white font-bold cursor-pointer flex items-center justify-center hover:bg-gray-300 transition-all duration-500'>
                <MdArrowBackIos />
             </span>
-            <div className='w-full flex justify-center'>
-               <img className='h-[450px] w-[500px] rounded-md' src={IMG} alt="story" />
-            </div>
-            <span className='bg-gray-400 p-3 rounded-full text-white font-bold cursor-pointer flex items-center justify-center hover:bg-gray-300 transition-all duration-500'>
+            {
+               stories.map((story, index) => {
+                  return (
+                     <>
+                        {
+                           page == index &&
+                           <div className='flex flex-col gap-4'>
+                              <div className="h-1 w-full bg-gray-200 rounded-full mt-[-30px] overflow-hidden">
+                                 <div className="h-full bg-blue-500 w-0 animate-fill"></div>
+                              </div>
+
+                            
+
+                              <div key={index} className='w-full flex justify-center'>
+                                 <img className='h-[450px] w-[500px] rounded-md' src={story.content} alt="story" />
+                              </div>
+                           </div>
+                        }
+                     </>
+                  )
+               })
+            }
+            <span onClick={nextStory} className='bg-gray-400 p-3 rounded-full text-white font-bold cursor-pointer flex items-center justify-center hover:bg-gray-300 transition-all duration-500'>
                <GrNext />
             </span>
+
          </div>
+
       </div>
    )
 }
