@@ -62,8 +62,10 @@ const Story = () => {
    }
 
 
+   const [chahe, setChahe]=useState(0);
    const storyRef = useRef();
-   const handleStoryView = () => {
+   const handleStoryView = (index) => {
+      setChahe(index);
       storyRef.current.showModal();
 
    }
@@ -104,9 +106,9 @@ const Story = () => {
          <div className='grid gap-4 pb-2 w-full overflow-x-auto'>
             <div class="flex gap-4">
                {
-                  stories.map((story) => {
+                  stories.map((story, index) => {
                      return (
-                        <div onClick={handleStoryView} key={story._id} className='w-[80px] h-[120px] rounded-sm bg-white flex items-center justify-center  border-2 border-blue-300 cursor-pointer'>
+                        <div onClick={()=>handleStoryView(index)} key={story._id} className='w-[80px] h-[120px] rounded-sm bg-white flex items-center justify-center  border-2 border-blue-300 cursor-pointer'>
                            <span><img className='rounded-sm' src={story.content} alt="story1" /></span>
                         </div>
                      )
@@ -115,7 +117,7 @@ const Story = () => {
             </div>
 
             <dialog ref={storyRef} className='outline-none rounded-md '>
-               <StoryModal reference={storyRef} stories={stories} />
+               <StoryModal reference={storyRef} stories={stories} chahe={chahe} />
             </dialog>
 
          </div>
@@ -129,7 +131,7 @@ export default Story
 
 
 
-const StoryModal = ({ reference, stories }) => {
+const StoryModal = ({ reference, stories, chahe }) => {
 
    const [page, setPage] = useState(0);
 
@@ -138,7 +140,7 @@ const StoryModal = ({ reference, stories }) => {
    }
 
    const nextStory=()=>{
-      if(page==stories.length-1){
+      if(page==stories.length){
          reference.current.close();
          setPage(0);
          return;
@@ -161,10 +163,10 @@ const StoryModal = ({ reference, stories }) => {
          setPage(page=>page+1);
       },15000);
 
-      if(page==stories.length-1){
+      if(page==stories.length){
          reference.current.close();
          setPage(0);
-         return clearInterval(timer);
+         return ()=> clearInterval(timer);
       }
 
       return ()=>{
