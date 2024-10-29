@@ -155,6 +155,23 @@ const StoryModal = ({ reference, stories }) => {
       setPage(page=>page-1);
    }
 
+   useEffect(()=>{
+      
+      const timer = setInterval(()=>{
+         setPage(page=>page+1);
+      },15000);
+
+      if(page==stories.length-1){
+         reference.current.close();
+         setPage(0);
+         return clearInterval(timer);
+      }
+
+      return ()=>{
+         return clearInterval(timer);
+      }
+   },[page])
+
 
    return (
       <div className='h-[90vh] w-[90vw] overflow-hidden border-none px-4'>
@@ -175,7 +192,7 @@ const StoryModal = ({ reference, stories }) => {
             {
                stories.map((story, index) => {
                   return (
-                     <>
+                     <React.Fragment key={story._id}>
                         {
                            page == index &&
                            <div className='flex flex-col gap-4'>
@@ -190,7 +207,7 @@ const StoryModal = ({ reference, stories }) => {
                               </div>
                            </div>
                         }
-                     </>
+                     </React.Fragment>
                   )
                })
             }
