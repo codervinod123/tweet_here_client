@@ -51,11 +51,11 @@ const Navbar = () => {
               <div className="bg-gray-200 p-2 rounded-md cursor-pointer">
                 <IoMdNotifications size={"1.1rem"} color="#3C3D37" />
               </div>
-             <Link to="profile/me">
-               <div className="bg-gray-200 p-2 rounded-md cursor-pointer lg:hidden">
-                 <PiUserCircleThin size={"1.1rem"} color="#3C3D37" />
-               </div>
-             </Link>
+              <Link to="profile/me">
+                <div className="bg-gray-200 p-2 rounded-md cursor-pointer lg:hidden">
+                  <PiUserCircleThin size={"1.1rem"} color="#3C3D37" />
+                </div>
+              </Link>
             </div>
           </div>
         </div>

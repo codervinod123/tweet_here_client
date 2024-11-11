@@ -1,21 +1,21 @@
 /* height */
 .grid.overflow-x-auto::-webkit-scrollbar {
-    height: 8px; 
+  height: 4px;
 }
-  
-  /*  track */
+
+/*  track */
 .grid.overflow-x-auto::-webkit-scrollbar-track {
   background: #d6d3d3; /* Track color */
-  border-radius: 4px;   /* Rounded edges */
+  border-radius: 4px; /* Rounded edges */
 }
-  
-  /* Style for the scrollbar thumb */
-  .grid.overflow-x-auto::-webkit-scrollbar-thumb {
-    background-color: #888282; /* Scrollbar color */
-    border-radius: 4px;
-  }
-  
-  /* Style for scrollbar thumb on hover */
-  .grid.overflow-x-auto::-webkit-scrollbar-thumb:hover {
-    background-color: #aaadb0; /* Darker color on hover */
-  }
+
+/* Style for the scrollbar thumb */
+.grid.overflow-x-auto::-webkit-scrollbar-thumb {
+  background-color: #888282; /* Scrollbar color */
+  border-radius: 4px;
+}
+
+/* Style for scrollbar thumb on hover */
+.grid.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background-color: #aaadb0; /* Darker color on hover */
+}

@@ -2,18 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer utilities {
-    @keyframes fill {
-      0% {
-        width: 0%;
-      }
-      100% {
-        width: 100%;
-      }
+  @keyframes fill {
+    0% {
+      width: 0%;
     }
-  
-    .animate-fill {
-      animation: fill 15s ease-in-out forwards;
+    100% {
+      width: 100%;
     }
   }
+
+  .animate-fill {
+    animation: fill 15s ease-in-out forwards;
+  }
+}

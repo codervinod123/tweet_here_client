@@ -18,8 +18,6 @@ const LandingScreen = () => {
           </span>
         </div>
         <ul className="flex gap-x-8 font-semibold text-lg">
-          <li>About Us</li>
-          <li>Contact</li>
           <li>
             <Link to="/signin">Sign In</Link>
           </li>

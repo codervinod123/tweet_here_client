@@ -11,59 +11,57 @@ import ProfileOverview from "./components/ProfileOverview";
 
 import { createBrowserRouter } from "react-router-dom";
 
-
-
 export const router = createBrowserRouter([
-    {
-      path: "",
-      element: <LandingScreen />,
-      children: [],
-    },
-    {
-      path: "/signup",
-      element: <Signup />,
-      children: [],
-    },
-    {
-      path: "/signin",
-      element: <Signin />,
-      children: [],
-    },
-    {
-      path: "/home",
-      element: <Navbar />,
-      children: [
-        {
-          path: "/home",
-          element: <Home />,
-          children: [
-            {
-              path: "",
-              element: <Posts />,
-              children: [
-                {
-                  path: "",
-                  element: <PostsContainer />,
-                  children: [],
-                },
-                {
-                  path: "trending",
-                  element: <TrendingPosts />,
-                  children: [],
-                },
-                {
-                  path: "profile/me",
-                  element: <ProfileOverview />,
-                  children: [],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      path: "*",
-      element: <ErrorPage />, // 404 Not Found page
-    },
-  ]);
+  {
+    path: "",
+    element: <LandingScreen />,
+    children: [],
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+    children: [],
+  },
+  {
+    path: "/signin",
+    element: <Signin />,
+    children: [],
+  },
+  {
+    path: "/home",
+    element: <Navbar />,
+    children: [
+      {
+        path: "/home",
+        element: <Home />,
+        children: [
+          {
+            path: "",
+            element: <Posts />,
+            children: [
+              {
+                path: "",
+                element: <PostsContainer />,
+                children: [],
+              },
+              {
+                path: "trending",
+                element: <TrendingPosts />,
+                children: [],
+              },
+              {
+                path: "profile/me",
+                element: <ProfileOverview />,
+                children: [],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage />, // 404 Not Found page
+  },
+]);

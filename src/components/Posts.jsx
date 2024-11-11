@@ -13,7 +13,7 @@ const Posts = () => {
     <RecoilRoot>
       <div className="flex flex-col gap-4">
         <div className="">
-           <Story/>
+          <Story />
         </div>
         <CreatePost />
         <Outlet />

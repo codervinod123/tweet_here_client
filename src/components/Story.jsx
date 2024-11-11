@@ -14,6 +14,8 @@ import { MdArrowBackIos } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 
 
+
+
 const Story = () => {
 
    const [loading, setLoading] = useState(false);
@@ -22,6 +24,7 @@ const Story = () => {
       preview: null,
       data: null
    });
+
    const handleImageUpload = (e) => {
       setStory({
          preview: URL.createObjectURL(e.target.files[0]),
@@ -31,7 +34,6 @@ const Story = () => {
    }
 
    const sendStoryRequest = async () => {
-
       const databaseURL = import.meta.env.VITE_BACKEND_URL;
       const formData = new FormData();
       formData.append("file", story.data);
@@ -42,8 +44,8 @@ const Story = () => {
             token
          }
       });
-      console.log("respppp", response);
       setLoading(false);
+      setStories([response.data.data, ...stories]);
       toast.success("Story Added");
       setStory({
          preview: null,
@@ -61,19 +63,16 @@ const Story = () => {
       setStories(response.data.data);
    }
 
-
-   const [chahe, setChahe]=useState(0);
+   const [chahe, setChahe]=useState(null);
    const storyRef = useRef();
    const handleStoryView = (index) => {
       setChahe(index);
       storyRef.current.showModal();
-
    }
 
 
    return (
       <div className='flex flex-nowrap gap-4 pb-2 w-full'>
-
          {
             story.preview ?
                <div className='flex flex-col gap-1'>
@@ -102,26 +101,22 @@ const Story = () => {
                </label>
          }
 
-
          <div className='grid gap-4 pb-2 w-full overflow-x-auto'>
-            <div class="flex gap-4">
+            <div className="flex gap-4">
                {
                   stories.map((story, index) => {
                      return (
-                        <div onClick={()=>handleStoryView(index)} key={story._id} className='w-[80px] h-[120px] rounded-sm bg-white flex items-center justify-center  border-2 border-blue-300 cursor-pointer'>
+                        <div key={index} onClick={()=>handleStoryView(index)} className='w-[80px] h-[120px] rounded-sm bg-white flex items-center justify-center  border-2 border-blue-300 cursor-pointer'>
                            <span><img className='rounded-sm' src={story.content} alt="story1" /></span>
                         </div>
                      )
                   })
                }
             </div>
-
             <dialog ref={storyRef} className='outline-none rounded-md '>
-               <StoryModal reference={storyRef} stories={stories} chahe={chahe} />
+               <StoryModal reference={storyRef} stories={stories} chahe={chahe}/>
             </dialog>
-
          </div>
-
       </div>
    )
 }
@@ -133,21 +128,19 @@ export default Story
 
 const StoryModal = ({ reference, stories, chahe }) => {
 
+   console.log("#values",chahe, stories)
    const [page, setPage] = useState(0);
-
    const handleClose = () => {
       reference.current.close();
    }
-
    const nextStory=()=>{
-      if(page==stories.length){
+      if(page==stories.length-1){
          reference.current.close();
          setPage(0);
          return;
       }
       setPage(page=>page+1);
    }
-
    const prevStory=()=>{
       if(page==0){
          reference.current.close();
@@ -157,55 +150,32 @@ const StoryModal = ({ reference, stories, chahe }) => {
       setPage(page=>page-1);
    }
 
-   useEffect(()=>{
-      
-      const timer = setInterval(()=>{
-         setPage(page=>page+1);
-      },15000);
-
-      if(page==stories.length){
-         reference.current.close();
-         setPage(0);
-         return ()=> clearInterval(timer);
-      }
-
-      return ()=>{
-         return clearInterval(timer);
-      }
-   },[page])
-
-
    return (
       <div className='h-[90vh] w-[90vw] overflow-hidden border-none px-4'>
-
- <div className='flex justify-end mt-1'>
-                                 <span onClick={handleClose} className='p-2 bg-gray-400 rounded-full cursor-pointer hover:bg-gray-300 transition-all duration-500'>
-                                    <RxCross2 size={"1.5rem"} />
-                                 </span>
-                              </div>
-
+           
+         <div className='flex justify-end mt-1'>
+           <span onClick={handleClose} className='p-2 bg-gray-400 rounded-full cursor-pointer hover:bg-gray-300 transition-all duration-500'>
+             <RxCross2 size={"1.5rem"} />
+           </span>
+         </div>
 
          <div className=' flex justify-between items-center px-4'>
-
-        
             <span onClick={prevStory} className='bg-gray-400 p-3 rounded-full text-white font-bold cursor-pointer flex items-center justify-center hover:bg-gray-300 transition-all duration-500'>
                <MdArrowBackIos />
             </span>
             {
                stories.map((story, index) => {
+                  console.log(page);
                   return (
-                     <React.Fragment key={story._id}>
+                     <React.Fragment key={index}>
                         {
                            page == index &&
                            <div className='flex flex-col gap-4'>
                               <div className="h-1 w-full bg-gray-200 rounded-full mt-[-30px] overflow-hidden">
                                  <div className="h-full bg-blue-500 w-0 animate-fill"></div>
                               </div>
-
-                            
-
                               <div key={index} className='w-full flex justify-center'>
-                                 <img className='h-[450px] w-[500px] rounded-md' src={story.content} alt="story" />
+                                 <img className='rounded-md' src={story.content} alt="story" />
                               </div>
                            </div>
                         }
@@ -216,7 +186,6 @@ const StoryModal = ({ reference, stories, chahe }) => {
             <span onClick={nextStory} className='bg-gray-400 p-3 rounded-full text-white font-bold cursor-pointer flex items-center justify-center hover:bg-gray-300 transition-all duration-500'>
                <GrNext />
             </span>
-
          </div>
 
       </div>
