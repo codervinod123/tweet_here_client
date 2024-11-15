@@ -17,7 +17,17 @@ export default {
         "quote-2-img": "url('./src/assets/quote2.jpg')",
         "quote-3-img": "url('./src/assets/quote3.jpg')",
       },
+      animation: {
+        "loop-scroll": "loop-scroll 20s linear infinite",
+      },
+      keyframes: {
+        "loop-scroll": {
+          from: { transform: "translateX(0%)" },
+          to: { transform: "translateX(-50%)" },
+        },
+      },
     },
+
     fontFamily: {
       poppins: ["Poppins", "sans-serif"],
       oswald: ["Oswald", "sans-serif"],
