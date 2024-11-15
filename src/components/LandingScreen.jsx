@@ -5,9 +5,14 @@ import { Link } from "react-router-dom";
 import Features from "./Features";
 import Footer from "./Footer";
 
+import React from "react";
+import { BackgroundLines } from "./ui/background-lines";
+
+
+
 const LandingScreen = () => {
   return (
-    <div className=" bg-white w-screen h-screen">
+    <div className="bg-white w-screen h-screen">
       <nav className="flex justify-between py-4 items-center px-20 m-auto max-w-[1200px]">
         <div className="flex gap-x-2">
           <span>
@@ -26,47 +31,42 @@ const LandingScreen = () => {
           </li>
         </ul>
       </nav>
-      <section className="flex flex-col justify-center items-center max-w-[1200px] m-auto">
-        <div className="flex justify-between">
-          <div className="flex flex-col gap-8 lg:gap-24 items-center pt-16">
-            <h1 className="text-center text-[50px] leading-[60px] font-bold max-w-[40rem]">
-              What is the best way to express your thoughts?
-            </h1>
-            <p className="text-center mb-16 max-w-[30rem] text-font-rgb text-[1.1rem]">
-              Allowing users to share posts in a concise and engaging format.
-              This functionality includes user-friendly input, real-time
-              posting, and interactive elements such as likes and comments,
-              creating a dynamic social experience. The feature is built with
-              scalability and smooth performance in mind, ensuring a seamless
-              experience for all users.
-            </p>
-          </div>
-          <div className="hidden lg:flex">
-            <span>
-              <img
-                className=""
-                width={380}
-                src={PhoneImage}
-                alt="phone-image"
-              />
-            </span>
-          </div>
-        </div>
-        <div className="flex justify-center items-center">
-          <Link to="/home">
-            <div className="font-bold text-xl flex items-center bg-yellow-400 w-fit px-8 py-3 rounded-md">
-              <button className="">Start Now</button>
-              <IoMdArrowForward />
-            </div>
-          </Link>
-        </div>
+
+      <section className="flex flex-col justify-center items-center max-w-6xl m-auto">
+        <BackgroundLinesDemo />
+
       </section>
+
       <div>
         <Features />
       </div>
+
       <Footer />
     </div>
   );
 };
 
 export default LandingScreen;
+
+
+
+
+export function BackgroundLinesDemo() {
+  return (
+    (<BackgroundLines className="flex items-center justify-center w-full flex-col px-4">
+      <h2
+        className="bg-clip-text text-center text-2xl font-sans py-2 md:py-10 z-20 font-bold tracking-tight">
+        What is the best way to express your thoughts?
+      </h2>
+      <p
+        className="max-w-xl mx-auto text-sm md:text-lg text-neutral-700 dark:text-neutral-400 text-center tracking-tight">
+          Allowing users to share posts in a concise and engaging format.
+          This functionality includes user-friendly input, real-time
+          posting, and interactive elements such as likes and comments,
+          creating a dynamic social experience. The feature is built with
+          scalability and smooth performance in mind, ensuring a seamless
+          experience for all users.
+      </p>
+    </BackgroundLines>)
+  );
+}
