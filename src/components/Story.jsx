@@ -1,20 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { BsPlus } from "react-icons/bs";
 import "./global.css";
-
-import IMG from "../assets/quote3.jpg"
-
 import axios from 'axios';
 import { Modal, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { toast } from 'react-toastify';
-
 import { GrNext } from "react-icons/gr";
-import { MdArrowBackIos } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
-
-
-
+import { GrPrevious } from "react-icons/gr";
 
 const Story = () => {
 
@@ -63,10 +56,10 @@ const Story = () => {
       setStories(response.data.data);
    }
 
-   const [chahe, setChahe]=useState(null);
    const storyRef = useRef();
+   const [page, setPage] = useState(null);
    const handleStoryView = (index) => {
-      setChahe(index);
+      setPage(index);
       storyRef.current.showModal();
    }
 
@@ -76,7 +69,6 @@ const Story = () => {
          {
             story.preview ?
                <div className='flex flex-col gap-1'>
-
                   <div className='w-[80px] h-[120px] rounded-sm bg-white flex items-center justify-center'>
                      {loading ?
                         <Spin indicator={<LoadingOutlined spin />} size="large" />
@@ -84,7 +76,6 @@ const Story = () => {
                         <span><img className='rounded-sm' src={story.preview} alt="story1" /></span>
                      }
                   </div>
-
                   <button onClick={sendStoryRequest} className='bg-gray-400 px-1 text-gray-800 rounded-md'>Post</button>
                </div>
                :
@@ -113,8 +104,8 @@ const Story = () => {
                   })
                }
             </div>
-            <dialog ref={storyRef} className='outline-none rounded-md '>
-               <StoryModal reference={storyRef} stories={stories} chahe={chahe}/>
+            <dialog ref={storyRef} className='outline-none rounded-md'>
+               <StoryModal reference={storyRef} stories={stories} page={page} setPage={setPage}/>
             </dialog>
          </div>
       </div>
@@ -126,33 +117,54 @@ export default Story
 
 
 
-const StoryModal = ({ reference, stories, chahe }) => {
-
-   console.log("#values",chahe, stories)
-   const [page, setPage] = useState(0);
+const StoryModal = ({ reference, stories, page, setPage }) => {
+    
    const handleClose = () => {
       reference.current.close();
-   }
+   };
+
    const nextStory=()=>{
       if(page==stories.length-1){
          reference.current.close();
-         setPage(0);
+         setPage(null);
          return;
       }
       setPage(page=>page+1);
-   }
+   };
+
    const prevStory=()=>{
       if(page==0){
          reference.current.close();
-         setPage(0);
+         setPage(null);
          return;
       }
       setPage(page=>page-1);
-   }
+   };
+
+   let storyViewTimer;
+   useEffect(()=>{
+      if (reference.current?.open) {
+
+         if(page==stories.length){
+            clearInterval(storyViewTimer);
+            reference.current.close();
+            setPage(null);
+            return;
+         }
+
+         storyViewTimer = setInterval(() => {
+            setPage((page) => page + 1);
+         }, 12000);
+   
+         return () => {
+            clearInterval(storyViewTimer); // Clear interval on cleanup
+         };
+      }
+   },[reference, page]);
 
    return (
-      <div className='h-[90vh] w-[90vw] overflow-hidden border-none px-4'>
-           
+      <div className='h-[90vh] w-[90vw] overflow-hidden px-4 rounded-md border border-black'>
+        
          <div className='flex justify-end mt-1'>
            <span onClick={handleClose} className='p-2 bg-gray-400 rounded-full cursor-pointer hover:bg-gray-300 transition-all duration-500'>
              <RxCross2 size={"1.5rem"} />
@@ -161,21 +173,20 @@ const StoryModal = ({ reference, stories, chahe }) => {
 
          <div className=' flex justify-between items-center px-4'>
             <span onClick={prevStory} className='bg-gray-400 p-3 rounded-full text-white font-bold cursor-pointer flex items-center justify-center hover:bg-gray-300 transition-all duration-500'>
-               <MdArrowBackIos />
+               <GrPrevious />
             </span>
             {
                stories.map((story, index) => {
-                  console.log(page);
                   return (
                      <React.Fragment key={index}>
                         {
                            page == index &&
-                           <div className='flex flex-col gap-4'>
+                           <div className='flex justify-center flex-col gap-4 rounded-md'>
                               <div className="h-1 w-full bg-gray-200 rounded-full mt-[-30px] overflow-hidden">
                                  <div className="h-full bg-blue-500 w-0 animate-fill"></div>
                               </div>
-                              <div key={index} className='w-full flex justify-center'>
-                                 <img className='rounded-md' src={story.content} alt="story" />
+                              <div key={index} className='w-full flex justify-center rounded-md'>
+                                 <img className='rounded-md w-[70%]' src={story.content} alt="story" />
                               </div>
                            </div>
                         }

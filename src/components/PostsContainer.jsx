@@ -7,7 +7,7 @@ import { newPost } from "./Posts";
 import { useRecoilValue } from "recoil";
 
 const PostsContainer = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(100);
   const recoilPost = useRecoilValue(newPost);
 
   const { data, loading } = useAPI(`/api/v1/tweet?page=${page}`);
