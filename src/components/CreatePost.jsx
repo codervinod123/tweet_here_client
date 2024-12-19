@@ -54,9 +54,6 @@ const CreatePost = () => {
           }
         }
       );
-
-      setRecoilPost((prev) => [...prev, res.data.data]);
-
       toast.success("Post has been created successfully");
       setImage({ preview: "", data: "" });
       setContent("");

@@ -57,7 +57,7 @@ const PostCard = ({ tweet }) => {
                   /> 
                   :
                   <div className={`flex justify-center items-center h-11 w-11 text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
-                     {tweet?.author?.name ? tweet?.author?.name[0] : "X"}
+                     { tweet?.author?.name[0] }
                   </div>
                 }
               </span>
@@ -66,7 +66,7 @@ const PostCard = ({ tweet }) => {
               <div className="flex items-center gap-x-2">
                 {tweet?.author ? (
                   <h4 className="font-semibold text-gray-700">
-                    {tweet?.author?.name ? tweet?.author?.name : "Vikku"}
+                    { tweet?.author?.name }
                   </h4>
                 ) : (
                   <h4 className="font-semibold text-gray-700">Lori Forguson</h4>
