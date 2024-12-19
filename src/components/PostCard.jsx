@@ -46,23 +46,30 @@ const PostCard = ({ tweet }) => {
           <div className="flex gap-x-4 items-center">
             <div>
               <span>
-                <img
-                  height={45}
-                  width={45}
-                  className="rounded-full"
-                  src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg"
-                  alt="post-owner"
-                />
+                {
+                  tweet?.author?.profilePic ?
+                  <img
+                    height={45}
+                    width={45}
+                    className="rounded-full"
+                    src={tweet?.author?.profilePic}
+                    alt="post-owner"
+                  /> 
+                  :
+                  <div className={`flex justify-center items-center h-11 w-11 text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
+                     {tweet?.author?.name ? tweet?.author?.name[0] : "X"}
+                  </div>
+                }
               </span>
             </div>
             <div className="flex flex-col leading-2">
               <div className="flex items-center gap-x-2">
                 {tweet?.author ? (
-                  <h4 className="font-bold text-gray-700">
-                    ={tweet?.author?.name}
+                  <h4 className="font-semibold text-gray-700">
+                    {tweet?.author?.name ? tweet?.author?.name : "Vikku"}
                   </h4>
                 ) : (
-                  <h4 className="font-bold text-gray-700">Lori Forguson</h4>
+                  <h4 className="font-semibold text-gray-700">Lori Forguson</h4>
                 )}
                 <span className="text-sm text-gray-500 md:hidden">
                   {timeAgo(tweet?.createdAt).slice(0, 6)}{" "}

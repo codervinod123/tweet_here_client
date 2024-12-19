@@ -48,6 +48,11 @@ const CreatePost = () => {
       const res = await axios.post(
         `${databaseURL}/api/v1/tweet/tweet`,
         formData,
+        {
+          headers:{
+            token: localStorage.getItem("token")
+          }
+        }
       );
 
       setRecoilPost((prev) => [...prev, res.data.data]);
@@ -100,6 +105,7 @@ const CreatePost = () => {
         )}
       </div>
       <div className="flex justify-between py-2 px-8 md:py-4">
+       
         <ul className="flex gap-x-2">
           <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
             <input
@@ -138,6 +144,7 @@ const CreatePost = () => {
             </span>
           </li>
         </ul>
+
         <button
           onClick={handleSubmitForm}
           className="bg-blue-600 text-white rounded-sm px-[6px] cursor-pointer hover:bg-blue-500 transition-all duration-500"

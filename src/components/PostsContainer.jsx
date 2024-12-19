@@ -9,7 +9,6 @@ import { useRecoilValue } from "recoil";
 const PostsContainer = () => {
   const [page, setPage] = useState(100);
   const recoilPost = useRecoilValue(newPost);
-
   const { data, loading } = useAPI(`/api/v1/tweet?page=${page}`);
 
   const handleScroll = () => {
@@ -22,12 +21,12 @@ const PostsContainer = () => {
     }
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [page]);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, [page]);
 
   return loading ? (
     <div className="flex justify-center pt-6">
