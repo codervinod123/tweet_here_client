@@ -18,9 +18,9 @@ const Trending = () => {
     <div className="rounded-md bg-white py-4 px-4">
       <div className="leading-2 flex flex-col gap-2">
         {data &&
-          data?.map((trend) => {
+          data?.map((trend, index) => {
             return (
-              <Link key={trend._id} to={"trending"} state={trend.tweets}>
+              <Link key={index} to={"trending"} state={trend.tweetDetails}>
                 <div className="flex flex-col px-2 py-2 rounded-lg leading-4 cursor-pointer bg-gray-100 hover:bg-gray-200">
                   <span className="text-gray-500 text-[12px] flex flex-col gap-y-1">
                     Trending in INDIA

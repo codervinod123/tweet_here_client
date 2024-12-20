@@ -57,7 +57,7 @@ const PostCard = ({ tweet }) => {
                   /> 
                   :
                   <div className={`flex justify-center items-center h-11 w-11 text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
-                     { tweet?.author?.name[0] }
+                     {tweet?.author?.name ? tweet?.author?.name[0] : "Z" }
                   </div>
                 }
               </span>
