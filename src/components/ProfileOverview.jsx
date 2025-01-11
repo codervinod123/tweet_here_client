@@ -197,6 +197,7 @@ const EditProfileDialog = ({ reference }) => {
 
   const [formData, setFormdata] = useState({
     name: "",
+    email:"",
     bio: "",
     location: "",
   });
@@ -215,6 +216,7 @@ const EditProfileDialog = ({ reference }) => {
 
   // const [user, setUser] = useRecoilState(LoginUser);
   const [user, setUser] = useRecoilState(LoginUser);
+  
   const saveUpdate = async () => {
     setLoader(true);
     const formdata = new FormData();
@@ -253,60 +255,96 @@ const EditProfileDialog = ({ reference }) => {
 
     <div className="fixed inset-0 flex justify-center items-center transition-colors bg-gray-400/20 ">
       <div className="w-[30vw] h-[75vh] rounded bg-white">
-        <div className="p-6 bg-gray-200 rounded-t"></div>
+        <div className="p-4 bg-gray-200 rounded-t"></div>
         <div className="px-6">
-          <div className="fixed -mt-8">
-            <img className="h-[64px] w-[64px] rounded-full" src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg" alt="" />
+          <div className="fixed -mt-6">
+            <img className="h-[52px] w-[52px] rounded-full" src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg" alt="" />
           </div>
         </div>
-        <div className="mt-10 px-6">
+        <div className="mt-8 px-6">
           <div className="">
             <h1 className="text-lg text-gray-700 font-semibold leading-4">Vinod Prajapti</h1>
             <span className="text-xs text-gray-600">vinodpr737947@gmail.com</span>
           </div>
-
-        <div className="pt-4">
+        {
+          loader ? <div className="flex justify-center items-center mt-24"><Spin /></div>:
+        <div className="pt-2">
           
           <div className="grid grid-flow-col grid-5  border-y py-3">
             <label className="col-span-3 text-sm text-gray-600 " htmlFor="name ">Name</label>
-            <input className="col-span-2 border border-gray-300 px-2 py-1 rounded text-sm text-gray-500" type="text" value="Vinod Prajapati"/>
+            <input onChange={(e) => {
+                   setFormdata({
+                     ...formData,
+                     name: e.target.value,
+                   });
+                }} 
+                className="col-span-2 border outline-none border-gray-300 px-2 py-1 rounded text-sm text-gray-500" type="text" />
           </div>
           <div className="grid grid-flow-col grid-5  border-b py-3">
             <label className="col-span-3 text-sm text-gray-600 " htmlFor="name ">Email</label>
-            <input className="col-span-2 border border-gray-300 px-2 py-1 rounded text-sm text-gray-500" type="text" value="vinodpr737947@gmail.com"/>
+            <input  onChange={(e) => {
+                   setFormdata({
+                     ...formData,
+                     email: e.target.value,
+                   });
+                }} 
+                className="col-span-2 border outline-none border-gray-300 px-2 py-1 rounded text-sm text-gray-500" type="text" />
           </div>
           <div className="grid grid-flow-col grid-5  border-b py-3">
             <label className="col-span-3 text-sm text-gray-600 " htmlFor="name ">Bio</label>
-            <input className="col-span-2 border border-gray-300 px-2 py-1 rounded text-sm text-gray-500" type="text" value="Engineer are great"/>
+            <input onChange={(e) => {
+                   setFormdata({
+                     ...formData,
+                     bio: e.target.value,
+                   });
+                }} 
+                className="col-span-2 border outline-none border-gray-300 px-2 py-1 rounded text-sm text-gray-500" type="text" />
+          </div><div className="grid grid-flow-col grid-5  border-b py-3">
+            <label className="col-span-3 text-sm text-gray-600 " htmlFor="name ">Location</label>
+            <input onChange={(e) => {
+                   setFormdata({
+                     ...formData,
+                     location: e.target.value,
+                   });
+                }} 
+                className="col-span-2 border outline-none border-gray-300 px-2 py-1 rounded text-sm text-gray-500" type="text" />
           </div>
 
           <div className="grid grid-cols-6 grid-flow-col border-b py-3">
             <span className="col-span-2 text-sm text-gray-600" htmlFor="name ">Profile photo</span>
-            <label htmlFor="profilePic" className="col-span-4">
-               <input className="border hidden" type="file" id="profilePic" />
+            <label htmlFor="image" className="col-span-4 cursor-pointer">
+              <input onChange={handleDataChange} className="hidden" type="file" id="image" />
               <div className="flex">
-                <img className="h-[40px] w-[40px] rounded-full" src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg" alt="" />
-               <div>
-                 <button className="border border-gray-300 ml-4 text-sm py-[2px] px-2 rounded text-gray-500">Click to replace</button>
-               </div>
+                
+                { 
+                 !previewProfile ? 
+                   <img className="h-[40px] w-[40px] rounded-full" src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg" alt="" />
+                    :
+                  <img className="h-[40px] w-[40px] rounded-full" src={previewProfile} alt="" /> 
+                }
+
+                <div>
+                  <span className="border border-gray-300 ml-4 text-sm py-[2px] px-2 rounded text-gray-500">Click to replace</span>
+                </div>
               </div>
             </label>
           </div>
 
           <div className="py-3 flex justify-between">
-             <div>
+             {/* <div>
                 <button className="flex gap-1 justify-center text-sm items-center px-2 py-[2px] rounded text-red-500 bg-red-100">
                    <MdDelete size={"1.2rem"}/>
                    Delete User
                 </button>
-             </div>
-             <div className="flex gap-4">
-              <button className="border border-gray-500 px-2 rounded py-[2px] text-sm text-gray-500">Cancel</button>
-              <button className="border border-gray-500 bg-black text-gray-300 px-2 rounded py-[2px] text-sm">Save changes</button>
-             </div>
+             </div> */}
+             {/* <div className="flex gap-4"> */}
+              <button onClick={handleCLose} className="border border-gray-500 px-2 rounded py-[2px] text-sm text-gray-500">Cancel</button>
+              <button onClick={saveUpdate} className="border border-gray-500 bg-black text-gray-300 px-2 rounded py-[2px] text-sm">Save changes</button>
+             {/* </div> */}
           </div>
 
         </div>
+       }
 
         </div>
       </div>
@@ -314,7 +352,8 @@ const EditProfileDialog = ({ reference }) => {
 
     // <div className="p-1 bg-gray-700">
     //   <div className="bg-gray-900 text-white flex flex-col gap-4 p-4 w-[300px] shadow-lg rounded-md">
-    //     <span onClick={handleCLose} className="cursor-pointer">
+    //    
+    //      <span onClick={handleCLose} className="cursor-pointer">
     //       <IoIosClose size={"2rem"} />
     //     </span>
 
