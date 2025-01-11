@@ -55,9 +55,9 @@ const StoryModal = ({ reference, stories, page, setPage }) => {
                 <RxCross2 size={"1.5rem"} color='red' />
              </button>
           </div>
-          <div onClick={(e) => e.stopPropagation()} className='mx-8 my-8 border'>
+          <div onClick={(e) => e.stopPropagation()} className='mx-8 my-8'>
              <div className='flex gap-4 justify-between items-center'>
-                <button onClick={prevStory} className='bg-gray-400 p-2 rounded-full text-white font-bold cursor-pointer flex items-center justify-center hover:bg-gray-300 transition-all duration-500'>
+                <button onClick={prevStory} className='bg-gray-400 p-2 rounded-full text-white font-bold cursor-pointer flex items-center justify-center hover:bg-gray-400/70 transition-all duration-500'>
                    <GrPrevious />
                 </button>
                 <div>
@@ -68,7 +68,7 @@ const StoryModal = ({ reference, stories, page, setPage }) => {
                                {
                                   page == index &&
                                   <div className='flex justify-center flex-col gap-4 rounded-md'>
-                                     <div className="h-1 w-full bg-gray-200 rounded-full mt-[-30px] overflow-hidden">
+                                     <div className="h-1 w-full bg-gray-300 rounded-full mt-[-30px] overflow-hidden">
                                         <div className="h-full bg-blue-500 w-0 animate-fill"></div>
                                      </div>
                                      <div>
@@ -81,7 +81,7 @@ const StoryModal = ({ reference, stories, page, setPage }) => {
                       })
                    }
                 </div>
-                <button onClick={nextStory} className='bg-gray-400 p-2 rounded-full text-white font-bold cursor-pointer flex items-center justify-center hover:bg-gray-300 transition-all duration-500'>
+                <button onClick={nextStory} className='bg-gray-400 p-2 rounded-full text-white font-bold cursor-pointer flex items-center justify-center hover:bg-gray-400/70 transition-all duration-500'>
                    <GrNext />
                 </button>
              </div>

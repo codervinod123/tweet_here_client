@@ -7,6 +7,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { toast } from 'react-toastify';
 import StoryModal from './StoryModal';
 
+
 const Story = () => {
 
    const [loading, setLoading] = useState(false);
@@ -68,7 +69,7 @@ const Story = () => {
                <div className='flex flex-col gap-1'>
                   <div className='w-[80px] h-[120px] rounded-sm bg-white flex items-center justify-center'>
                      {loading ?
-                        <Spin indicator={<LoadingOutlined spin />} size="large" />
+                        <Spin indicator={<Spin />} size="small" />
                         :
                         <span><img className='rounded-sm' src={story.preview} alt="story1" /></span>
                      }
@@ -94,8 +95,8 @@ const Story = () => {
                {
                   stories.map((story, index) => {
                      return (
-                        <div key={index} onClick={() => handleStoryView(index)} className='w-[80px] h-[120px] rounded-sm bg-white flex items-center justify-center  border-2 border-blue-300 cursor-pointer'>
-                           <span><img className='rounded-sm' src={story.content} alt="story1" /></span>
+                        <div key={index} onClick={() => handleStoryView(index)} className='w-[80px] h-[120px] rounded-sm bg-white flex items-center justify-center border-2 border-blue-300 cursor-pointer'>
+                           <span><img className='cover' src={story.content} alt="story1" /></span>
                         </div>
                      )
                   })
