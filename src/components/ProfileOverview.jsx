@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { IoIosClose } from "react-icons/io";
 import { BsUpload } from "react-icons/bs";
 import axios from "axios";
+import { MdDelete } from "react-icons/md";
 
 //recoil
 import { LoginUser } from "../store/userprofile";
@@ -179,8 +180,8 @@ const ProfileOverview = () => {
         </p>
       </div>
 
-      <dialog ref={dialogRef} className="h-100 w-100 rounded-md">
-        <DialogBox reference={dialogRef} />
+      <dialog ref={dialogRef} className='outline-none rounded'>
+        <EditProfileDialog reference={dialogRef} />
       </dialog>
     </nav>
   );
@@ -188,7 +189,8 @@ const ProfileOverview = () => {
 
 export default ProfileOverview;
 
-const DialogBox = ({ reference }) => {
+
+const EditProfileDialog = ({ reference }) => {
   const [previewProfile, setPreviewProfile] = useState(null);
   const [profilePic, setProfilePic] = useState(null);
   const [loader, setLoader] = useState(false);
@@ -248,93 +250,155 @@ const DialogBox = ({ reference }) => {
   };
 
   return (
-    <div className="p-1 bg-gray-700">
-      <div className="bg-gray-900 text-white flex flex-col gap-4 p-4 w-[300px] shadow-lg rounded-md">
-        <span onClick={handleCLose} className="cursor-pointer">
-          <IoIosClose size={"2rem"} />
-        </span>
 
-        {!previewProfile ? (
-          <div className="flex justify-center ">
-            <label className="cursor-pointer" htmlFor="image">
-              <BsUpload size={"3rem"} />
+    <div className="fixed inset-0 flex justify-center items-center transition-colors bg-gray-400/20 ">
+      <div className="w-[30vw] h-[75vh] rounded bg-white">
+        <div className="p-6 bg-gray-200 rounded-t"></div>
+        <div className="px-6">
+          <div className="fixed -mt-8">
+            <img className="h-[64px] w-[64px] rounded-full" src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg" alt="" />
+          </div>
+        </div>
+        <div className="mt-10 px-6">
+          <div className="">
+            <h1 className="text-lg text-gray-700 font-semibold leading-4">Vinod Prajapti</h1>
+            <span className="text-xs text-gray-600">vinodpr737947@gmail.com</span>
+          </div>
+
+        <div className="pt-4">
+          
+          <div className="grid grid-flow-col grid-5  border-y py-3">
+            <label className="col-span-3 text-sm text-gray-600 " htmlFor="name ">Name</label>
+            <input className="col-span-2 border border-gray-300 px-2 py-1 rounded text-sm text-gray-500" type="text" value="Vinod Prajapati"/>
+          </div>
+          <div className="grid grid-flow-col grid-5  border-b py-3">
+            <label className="col-span-3 text-sm text-gray-600 " htmlFor="name ">Email</label>
+            <input className="col-span-2 border border-gray-300 px-2 py-1 rounded text-sm text-gray-500" type="text" value="vinodpr737947@gmail.com"/>
+          </div>
+          <div className="grid grid-flow-col grid-5  border-b py-3">
+            <label className="col-span-3 text-sm text-gray-600 " htmlFor="name ">Bio</label>
+            <input className="col-span-2 border border-gray-300 px-2 py-1 rounded text-sm text-gray-500" type="text" value="Engineer are great"/>
+          </div>
+
+          <div className="grid grid-cols-6 grid-flow-col border-b py-3">
+            <span className="col-span-2 text-sm text-gray-600" htmlFor="name ">Profile photo</span>
+            <label htmlFor="profilePic" className="col-span-4">
+               <input className="border hidden" type="file" id="profilePic" />
+              <div className="flex">
+                <img className="h-[40px] w-[40px] rounded-full" src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg" alt="" />
+               <div>
+                 <button className="border border-gray-300 ml-4 text-sm py-[2px] px-2 rounded text-gray-500">Click to replace</button>
+               </div>
+              </div>
             </label>
-            <input
-              onChange={handleDataChange}
-              className="hidden"
-              id="image"
-              type="file"
-            />
           </div>
-        ) : (
-          <div className="flex justify-center">
-            <div className="h-[5rem] w-[5rem] rounded-full">
-              <img
-                className="h-full w-full rounded-full"
-                src={previewProfile}
-                alt="img"
-              />
-            </div>
-          </div>
-        )}
 
-        {loader ? (
-          <Spin />
-        ) : (
-          <div>
-            <div className="flex w-full justify-between">
-              <LabelledInput
-                placeholder={"Name"}
-                label={"Name"}
-                value={formData.name}
-                handleChange={(e) => {
-                  setFormdata({
-                    ...formData,
-                    name: e.target.value,
-                  });
-                }}
-                type={"text"}
-                name={"name"}
-              />
-            </div>
-            <div className="flex w-full justify-between ">
-              <LabelledInput
-                placeholder={"Bio"}
-                label={"Bio"}
-                value={formData.bio}
-                handleChange={(e) => {
-                  setFormdata({
-                    ...formData,
-                    bio: e.target.value,
-                  });
-                }}
-                type={"text"}
-                name={"bio"}
-              />
-            </div>
-            <div className="flex w-full justify-between ">
-              <LabelledInput
-                placeholder={"Location"}
-                label={"Location"}
-                value={formData.location}
-                handleChange={(e) => {
-                  setFormdata({
-                    ...formData,
-                    location: e.target.value,
-                  });
-                }}
-                type={"text"}
-                name={"location"}
-              />
-            </div>
+          <div className="py-3 flex justify-between">
+             <div>
+                <button className="flex gap-1 justify-center text-sm items-center px-2 py-[2px] rounded text-red-500 bg-red-100">
+                   <MdDelete size={"1.2rem"}/>
+                   Delete User
+                </button>
+             </div>
+             <div className="flex gap-4">
+              <button className="border border-gray-500 px-2 rounded py-[2px] text-sm text-gray-500">Cancel</button>
+              <button className="border border-gray-500 bg-black text-gray-300 px-2 rounded py-[2px] text-sm">Save changes</button>
+             </div>
           </div>
-        )}
 
-        <div className="w-full text-gray-900 bg-gradient-to-r from-teal-400 to-lime-400 hover:bg-gradient-to-l hover:from-teal-400 hover:to-lime-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-          <button onClick={saveUpdate}>Save</button>
+        </div>
+
         </div>
       </div>
     </div>
+
+    // <div className="p-1 bg-gray-700">
+    //   <div className="bg-gray-900 text-white flex flex-col gap-4 p-4 w-[300px] shadow-lg rounded-md">
+    //     <span onClick={handleCLose} className="cursor-pointer">
+    //       <IoIosClose size={"2rem"} />
+    //     </span>
+
+    //     {!previewProfile ? (
+    //       <div className="flex justify-center ">
+    //         <label className="cursor-pointer" htmlFor="image">
+    //           <BsUpload size={"3rem"} />
+    //         </label>
+    //         <input
+    //           onChange={handleDataChange}
+    //           className="hidden"
+    //           id="image"
+    //           type="file"
+    //         />
+    //       </div>
+    //     ) : (
+    //       <div className="flex justify-center">
+    //         <div className="h-[5rem] w-[5rem] rounded-full">
+    //           <img
+    //             className="h-full w-full rounded-full"
+    //             src={previewProfile}
+    //             alt="img"
+    //           />
+    //         </div>
+    //       </div>
+    //     )}
+
+    //     {loader ? (
+    //       <Spin />
+    //     ) : (
+    //       <div>
+    //         <div className="flex w-full justify-between">
+    //           <LabelledInput
+    //             placeholder={"Name"}
+    //             label={"Name"}
+    //             value={formData.name}
+    //             handleChange={(e) => {
+    //               setFormdata({
+    //                 ...formData,
+    //                 name: e.target.value,
+    //               });
+    //             }}
+    //             type={"text"}
+    //             name={"name"}
+    //           />
+    //         </div>
+    //         <div className="flex w-full justify-between ">
+    //           <LabelledInput
+    //             placeholder={"Bio"}
+    //             label={"Bio"}
+    //             value={formData.bio}
+    //             handleChange={(e) => {
+    //               setFormdata({
+    //                 ...formData,
+    //                 bio: e.target.value,
+    //               });
+    //             }}
+    //             type={"text"}
+    //             name={"bio"}
+    //           />
+    //         </div>
+    //         <div className="flex w-full justify-between ">
+    //           <LabelledInput
+    //             placeholder={"Location"}
+    //             label={"Location"}
+    //             value={formData.location}
+    //             handleChange={(e) => {
+    //               setFormdata({
+    //                 ...formData,
+    //                 location: e.target.value,
+    //               });
+    //             }}
+    //             type={"text"}
+    //             name={"location"}
+    //           />
+    //         </div>
+    //       </div>
+    //     )}
+
+    //     <div className="w-full text-gray-900 bg-gradient-to-r from-teal-400 to-lime-400 hover:bg-gradient-to-l hover:from-teal-400 hover:to-lime-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+    //       <button onClick={saveUpdate}>Save</button>
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 

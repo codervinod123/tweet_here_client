@@ -102,7 +102,7 @@ const Story = () => {
                   })
                }
             </div>
-            <dialog ref={storyRef} className='outline-none rounded border-2 border-pink-700'>
+            <dialog ref={storyRef} className='outline-none rounded'>
                <StoryModal reference={storyRef} stories={stories} page={page} setPage={setPage} />
             </dialog>
          </div>
