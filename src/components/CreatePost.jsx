@@ -9,11 +9,11 @@ import { toast } from "react-toastify";
 import { useSetRecoilState } from "recoil";
 
 // recoil atom import
-import { newPost } from "./Posts";
+// import { newPost } from "./Posts";
 
 const CreatePost = () => {
   //recoil setup
-  const setRecoilPost = useSetRecoilState(newPost);
+  // const setRecoilPost = useSetRecoilState(newPost);
 
   const [image, setImage] = useState({
     preview: null,
@@ -32,6 +32,7 @@ const CreatePost = () => {
     setImage(img);
   };
 
+  const user = JSON.parse(localStorage.getItem("user"));
   // add custom hooks to create post
   // take care , method, body , data type, url
 
@@ -76,7 +77,7 @@ const CreatePost = () => {
               className="rounded-full"
               height={45}
               width={45}
-              src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg"
+              src={user.profilePic}
               alt=""
             />
           </span>
