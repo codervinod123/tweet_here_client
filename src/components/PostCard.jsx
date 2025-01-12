@@ -71,10 +71,6 @@ const PostCard = ({ tweet }) => {
                 ) : (
                   <h4 className="font-semibold text-gray-700">Lori Forguson</h4>
                 )}
-                <span className="text-sm text-gray-500 md:hidden">
-                  {timeAgo(tweet?.createdAt).slice(0, 6)}{" "}
-                  {timeAgo(tweet?.createdAt).length > 6 ? "..." : ""}
-                </span>
               </div>
 
               {tweet.author ? (
@@ -87,8 +83,10 @@ const PostCard = ({ tweet }) => {
             </div>
           </div>
           <div>
-            <div className="flex bg-gray-200 px-2 py-2 rounded-md cursor-pointer">
-              <BiDotsHorizontalRounded />
+            <div className="">
+                <span className="text-sm text-gray-500">
+                  {timeAgo(tweet?.createdAt)}
+                </span>
             </div>
           </div>
         </div>

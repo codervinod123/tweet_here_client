@@ -35,6 +35,7 @@ const Comments = ({ tweet }) => {
   };
 
   const loadMoreComments = () => {
+    setNewComment([]);
     setPage((prevPage) => prevPage + 1);
   };
 
@@ -61,6 +62,8 @@ const Comments = ({ tweet }) => {
     }
   };
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <div>
       <div className="flex gap-2">
@@ -70,7 +73,7 @@ const Comments = ({ tweet }) => {
               height={45}
               width={45}
               className="rounded-full"
-              src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg"
+              src={user.profilePic}
               alt="post-owner"
             />
           </span>
@@ -89,9 +92,9 @@ const Comments = ({ tweet }) => {
           <button
             onClick={(e) => sendCommentRequest(e, tweet._id)}
             type="submit"
-            className=""
+            className="text-blue-500"
           >
-            <IoIosSend color="#3C3D37" size={"1.4rem"} />
+            <IoIosSend size={"1.4rem"} />
           </button>
         </form>
       </div>
@@ -109,7 +112,7 @@ const Comments = ({ tweet }) => {
                           height={45}
                           width={45}
                           className="rounded-full flex-shrink-0"
-                          src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg"
+                          src={user.profilePic}
                           alt="post-owner"
                         />
                       </span>
@@ -118,7 +121,7 @@ const Comments = ({ tweet }) => {
                       <div className="flex flex-col w-full">
                         <div className="flex justify-between">
                           <h4 className="text-base font-semibold">
-                            Carlsen Mangus
+                            {user.name}
                           </h4>
                           <span className="pl-2">2 Hours ago</span>
                         </div>
@@ -127,19 +130,6 @@ const Comments = ({ tweet }) => {
                       </div>
                     </div>
                   </div>
-                  <ul className="flex gap-3 items-center px-[47px] ">
-                    <div className="cursor-pointer">
-                      <span className="hidden md:block">Like (3)</span>
-                    </div>
-                    <div className="h-[5px] w-[5px] bg-gray-700 rounded-full hidden md:block"></div>
-                    <div className="cursor-pointer">
-                      <span className="hidden md:block">Reply</span>
-                    </div>
-                    <div className="h-[5px] w-[5px] bg-gray-700 rounded-full hidden md:block"></div>
-                    <div className="cursor-pointer">
-                      <span className="hidden md:block">View 2 Replies</span>
-                    </div>
-                  </ul>
                 </div>
               </li>
             );
@@ -158,7 +148,7 @@ const Comments = ({ tweet }) => {
                         height={45}
                         width={45}
                         className="rounded-full flex-shrink-0"
-                        src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg"
+                        src={comment.user.profilePic}
                         alt="post-owner"
                       />
                     </span>
@@ -167,7 +157,7 @@ const Comments = ({ tweet }) => {
                     <div className="flex flex-col w-full">
                       <div className="flex justify-between">
                         <h4 className="text-base font-semibold">
-                          Carlsen Mangus
+                          {comment.user.name}
                         </h4>
                         <span className="pl-2">2 Hours ago</span>
                       </div>
@@ -176,65 +166,7 @@ const Comments = ({ tweet }) => {
                     </div>
                   </div>
                 </div>
-                <ul className="flex gap-3 items-center px-[47px] ">
-                  <div className="cursor-pointer">
-                    <span className="hidden md:block">Like (3)</span>
-                  </div>
-                  <div className="h-[5px] w-[5px] bg-gray-700 rounded-full hidden md:block"></div>
-                  <div className="cursor-pointer">
-                    <span className="hidden md:block">Reply</span>
-                  </div>
-                  <div className="h-[5px] w-[5px] bg-gray-700 rounded-full hidden md:block"></div>
-                  <div className="cursor-pointer">
-                    <span className="hidden md:block">View 2 Replies</span>
-                  </div>
-                </ul>
               </div>
-
-              {/* <ul className="pl-[47px] py-4">
-            <li>
-              <div>
-                <div className="flex gap-2">
-                  <div>
-                    <span>
-                      <img
-                        height={45}
-                        width={45}
-                        className="rounded-full flex-shrink-0"
-                        src="https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg"
-                        alt="post-owner"
-                      />
-                    </span>
-                  </div>
-                  <div className="flex bg-[#ECFFE6] rounded-md w-full p-2">
-                    <div className="flex flex-col">
-                      <div className="flex justify-between">
-                        <h4 className="text-base font-semibold">
-                          Carlsen Mangus
-                        </h4>
-                        <span>2 Hours ago...</span>
-                      </div>
-                      <p>
-                        Lorem ipsum dolor sit amet consectet sed in ab
-                        illum minima
-                      </p>
-                      <ul></ul>
-                    </div>
-                  </div>
-                </div>
-                <ul className="flex gap-3 items-center px-[47px] ">
-                  <div className="cursor-pointer">
-                    <span>Like (3)</span>
-                  </div>
-                  <div className="h-[5px] w-[5px] bg-gray-700 rounded-full"></div>
-                  <div className="cursor-pointer">
-                    <span>Reply</span>
-                  </div>
-                  <div className="h-[5px] w-[5px] bg-gray-700 rounded-full"></div>
-                </ul>
-              </div>
-            </li>
-          </ul> */}
             </li>
           );
         })}

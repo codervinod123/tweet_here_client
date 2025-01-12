@@ -1,4 +1,7 @@
 const timeAgo = (createdAt) => {
+
+  console.log("Age of the post of the viewer", createdAt);
+  
   const postedTime = new Date(createdAt);
   const currentTime = new Date();
   const timeDifference = currentTime - postedTime;
