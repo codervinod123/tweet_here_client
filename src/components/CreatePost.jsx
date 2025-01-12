@@ -107,12 +107,12 @@ const CreatePost = () => {
           <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
             <input
               onChange={(e) => handleImageChange(e)}
-              id="pc"
+              id="image"
               type="file"
               className="hidden"
             />
             <label
-              htmlFor="pc"
+              htmlFor="image"
               className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500"
             >
               <FaImage color="#15B392" />
@@ -127,19 +127,6 @@ const CreatePost = () => {
             </span>
           </li>
 
-          <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
-            <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500">
-              <BsFillCalendarDateFill color="#D91656" />
-              <span className="hidden md:block">Event</span>
-            </span>
-          </li>
-
-          <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
-            <span className="flex gap-x-2 text-sm items-center justify-center cursor-pointer hover:text-blue-500 transition-all duration-500">
-              <MdEmojiEmotions color="#FF7F3E" />
-              <span className="hidden md:block">Feeling</span>
-            </span>
-          </li>
         </ul>
 
         <button

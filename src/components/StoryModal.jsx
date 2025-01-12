@@ -5,6 +5,7 @@ import { RxCross2 } from "react-icons/rx";
 import { GrPrevious } from "react-icons/gr";
 
 const StoryModal = ({ reference, stories, page, setPage }) => {
+     console.log("Stories", stories);
     const handleClose = () => {
        reference.current.close();
     };
@@ -68,7 +69,10 @@ const StoryModal = ({ reference, stories, page, setPage }) => {
                                {
                                   page == index &&
                                   <div className='flex justify-center flex-col gap-4 rounded-md'>
-                                     <div className="h-1 w-full bg-gray-300 rounded-full mt-[-30px] overflow-hidden">
+                                      <div className=''>
+                                        <span className='text-blue-500 font-medium'>{story.author.name}</span>
+                                      </div>
+                                     <div className="h-1 w-full bg-gray-300 rounded-full overflow-hidden">
                                         <div className="h-full bg-blue-500 w-0 animate-fill"></div>
                                      </div>
                                      <div>
