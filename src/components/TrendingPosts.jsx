@@ -20,8 +20,18 @@ const TrendingPosts = () => {
     <>
       {tweet &&
         tweet.map((tweet, index) => {
+          const [author, setAuthor] = useState(null);
+          useEffect(()=>{
+             getAuthor();
+          },[])
+
+          const getAuthor=async()=>{
+            const data=await axios.get(`http://localhost:3000/api/v1/user?userId=${tweet.author}`);
+            setAuthor(data.data.data);
+          }
+
           return (
-            <PostCard key={tweet._id} tweet={tweet} />
+            <PostCard key={tweet._id} tweet={tweet} author={author}/>
           );
         })}
     </>

@@ -11,7 +11,7 @@ import { useRecoilState } from "recoil";
 import { likeCountStore } from "../store/like-store";
 import { commentCountStore } from "../store/comment-store";
 
-const PostCard = ({ tweet }) => {
+const PostCard = ({ tweet , author}) => {
   const [commentCount, setCommentCount] = useRecoilState(commentCountStore);
   const [likeCount, setLikeCount] = useRecoilState(likeCountStore);
 
