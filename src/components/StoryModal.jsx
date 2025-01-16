@@ -5,7 +5,6 @@ import { RxCross2 } from "react-icons/rx";
 import { GrPrevious } from "react-icons/gr";
 
 const StoryModal = ({ reference, stories, page, setPage }) => {
-   console.log("Stories", stories);
    const handleClose = () => {
       reference.current.close();
    };

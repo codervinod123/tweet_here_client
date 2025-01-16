@@ -1,39 +1,25 @@
 import { useEffect, useState } from "react";
-import { BiDotsHorizontalRounded } from "react-icons/bi";
-import timeAgo from "../helper/duration-calculator";
-import { SlLike } from "react-icons/sl";
-import { FaComment } from "react-icons/fa6";
-import { IoMdShareAlt } from "react-icons/io";
-import { IoIosSend } from "react-icons/io";
 import { useLocation } from "react-router-dom";
 import PostCard from "./PostCard";
+import { Spin } from "antd";
 import axios from "axios";
+import useAPI from "../hooks/useApiCall";
 
 const TrendingPosts = () => {
   const location = useLocation();
-  const [tweet, setTweet] = useState(location.state);
-  useEffect(() => {
-    setTweet(location.state);
-  }, [location.state]);
 
-  return (
+  const ids = location.state.join(",");
+  const { data, loading } = useAPI(`/api/v1/tweet/trendintweet?ids=${ids}`);
+
+  return loading ? (
+    <div className="flex justify-center pt-6">
+      <Spin />
+    </div>
+  ) : (
     <>
-      {tweet &&
-        tweet.map((tweet, index) => {
-          const [author, setAuthor] = useState(null);
-          useEffect(()=>{
-             getAuthor();
-          },[])
-
-          const getAuthor=async()=>{
-            const data=await axios.get(`http://localhost:3000/api/v1/user?userId=${tweet.author}`);
-            setAuthor(data.data.data);
-          }
-
-          return (
-            <PostCard key={tweet._id} tweet={tweet} author={author}/>
-          );
-        })}
+      {data.map((tweet) => {
+        return <PostCard key={tweet._id} tweet={tweet} />;
+      })}
     </>
   );
 };

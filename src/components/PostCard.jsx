@@ -11,7 +11,7 @@ import { useRecoilState } from "recoil";
 import { likeCountStore } from "../store/like-store";
 import { commentCountStore } from "../store/comment-store";
 
-const PostCard = ({ tweet , author}) => {
+const PostCard = ({ tweet }) => {
   const [commentCount, setCommentCount] = useRecoilState(commentCountStore);
   const [likeCount, setLikeCount] = useRecoilState(likeCountStore);
 
@@ -39,7 +39,7 @@ const PostCard = ({ tweet , author}) => {
     }
   };
 
-  console.log("tweets and author", author)
+  console.log("ALl maaal",  tweet);
 
   return (
     <div key={tweet?._id} className="bg-white rounded-md px-8 py-4">
@@ -58,14 +58,6 @@ const PostCard = ({ tweet , author}) => {
                     alt="post-owner"
                   /> 
                   :
-                  author?.profilePic ?
-                  <img
-                    height={45}
-                    width={45}
-                    className="rounded-full"
-                    src={author?.profilePic}
-                    alt="post-owner"
-                  /> :
                   <div className={`flex justify-center items-center h-11 w-11 text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
                      {tweet?.author?.name ? tweet?.author?.name[0] : "Z" }
                   </div>
