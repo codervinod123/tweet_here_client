@@ -39,6 +39,8 @@ const PostCard = ({ tweet , author}) => {
     }
   };
 
+  console.log("tweets and author", author)
+
   return (
     <div key={tweet?._id} className="bg-white rounded-md px-8 py-4">
       <div className=" ">
@@ -56,6 +58,14 @@ const PostCard = ({ tweet , author}) => {
                     alt="post-owner"
                   /> 
                   :
+                  author?.profilePic ?
+                  <img
+                    height={45}
+                    width={45}
+                    className="rounded-full"
+                    src={author?.profilePic}
+                    alt="post-owner"
+                  /> :
                   <div className={`flex justify-center items-center h-11 w-11 text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
                      {tweet?.author?.name ? tweet?.author?.name[0] : "Z" }
                   </div>
