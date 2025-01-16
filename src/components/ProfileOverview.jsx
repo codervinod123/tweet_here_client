@@ -10,6 +10,7 @@ import "./global.css";
 import { LoginUser } from "../store/userprofile";
 import { useRecoilState } from "recoil";
 import EditProfileDialog from "./EditProfileDialog";
+import useAPI from "../hooks/useApiCall";
 
 
 const ProfileOverview = () => {
@@ -97,7 +98,7 @@ const ProfileOverview = () => {
               <small className="font-semibold text-gray-700">Follower</small>
             </div>
             <div className="h-12 border-l-[2px] border-gray-500"></div>
-            <div onClick={handleFriendList} className="flex flex-col items-center">
+            <div onClick={handleFriendList} className="flex flex-col items-center cursor-pointer">
               <h6 className="font-bold text-gray-900">
                 {user?.followingList?.length}
               </h6>
@@ -195,7 +196,7 @@ const ProfileOverview = () => {
       </dialog>
 
       <dialog ref={friendListRef} className='outline-none rounded'>
-        <FriendList />
+        <FriendList reference={friendListRef}/>
       </dialog>
 
     </nav>
@@ -205,27 +206,41 @@ const ProfileOverview = () => {
 export default ProfileOverview;
 
 
-const FriendList = () => {
+const FriendList = ({reference}) => {
+    
+  const ids = JSON.parse(localStorage.getItem("user")).followingList.join(",");
+  const { data, loading } = useAPI(`/api/v1/user/friends?ids=${ids}`);
+  console.log("All the friends", data)
+
   return (
     <div className="fixed inset-0 flex justify-center items-center transition-colors bg-gray-400/20 ">
       <div className="w-[30vw] h-[75vh] rounded bg-white border p-2">
         <div className="flex justify-between pb-4">
           <div></div>
           <h1 className="text-center text-md font-semibold">Followers</h1>
-          <button className='p-1 rounded-full outline-none bg-gray-400/50 hover:bg-gray-300 transition-all duration-500'>
+          <button onClick={()=>reference.current.close()} className='p-1 rounded-full outline-none bg-gray-400/50 hover:bg-gray-300 transition-all duration-500'>
              <RxCross2 size={"1.2rem"} color='red' />
           </button>
         </div>
         <div className="pt-4 flex flex-col gap-4 overflow-y-auto h-[calc(75vh-4rem)] custom-scrollbar">
           {
-            Array.from({ length: 12 }).map((_, index) => {
+            data.map((user, index) => {
               return (
                 <React.Fragment key={index}>
 
                   <div className="px-6 flex items-center justify-between">
                     <div className="flex items-center gap-6">
-                      <div className="h-10 w-10 bg-gray-500 rounded-full"></div>
-                      <h1 className="text-gray-700 font-semibold">Vinod Kumar</h1>
+                      <div className="bg-gray-500 rounded-full">
+                        { 
+                          user.profilePic?
+                          <img className="h-10 w-10" src={user.profilePic} alt="user" />
+                          :
+                          <div className={`flex justify-center items-center h-10 w-10 text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
+                            {user.name ? user?.name[0] : "Z" }
+                          </div>
+                        }
+                      </div>
+                      <h1 className="text-gray-700 font-semibold">{user.name}</h1>
                     </div>
                     <button className="bg-blue-500 px-2 py-[2px] rounded text-white">Follow</button>
                   </div>
