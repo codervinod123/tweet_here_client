@@ -73,13 +73,19 @@ const CreatePost = () => {
       <div className="flex px-8 gap-x-4">
         <div className="rounded-full">
           <span className="rounded-full">
+            {
+            user.profilePic?
             <img
-              className="rounded-full"
+              className="rounded-full border-red-500"
               height={45}
               width={45}
               src={user.profilePic}
-              alt=""
-            />
+              alt="user"
+            />:
+            <div className={`flex justify-center items-center h-11 w-11 text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
+               {user?.name ? user?.name[0] : "Z" }
+            </div>
+           }
           </span>
         </div>
         <form className="w-full rounded">
