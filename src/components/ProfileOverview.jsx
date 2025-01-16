@@ -10,7 +10,9 @@ import { useRecoilState } from "recoil";
 import EditProfileDialog from "./EditProfileDialog";
 
 const ProfileOverview = () => {
+  
   const [user, setUser] = useRecoilState(LoginUser);
+ 
   useEffect(() => {
     const data = localStorage.getItem("user");
     setUser(JSON.parse(data));
@@ -33,17 +35,20 @@ const ProfileOverview = () => {
       <div className="h-full flex flex-col">
         <div className="bg-white rounded-md bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsIz4qZKTOplGKCIt860B8HP3mTBMZGACNFg&s')] bg-no-repeat lg:bg-[length:100%_10%] bg-[length:100%_15%] bg-top">
           <div className="flex justify-center pt-[18%]">
-            <img
-              className="border-2 border-white rounded"
-              height={65}
-              width={65}
-              src={
-                user?.profilePic
-                  ? user?.profilePic
-                  : "https://social-react-sb.vercel.app/assets/07-DLMl_mTI.jpg"
-              }
-              alt="profile-pic"
-            />
+            {
+              user?.profilePic?
+              <img
+                 className="border-2 border-white rounded"
+                 height={65}
+                 width={65}
+                 src={user?.profilePic}
+                 alt="profile-pic"
+              />
+              :
+              <div className={`flex justify-center items-center h-[65px] w-[65px] border-2 border-white rounded text-gray-200 font-semibold text-xl bg-gray-700 `}>
+               {user?.name && user?.name[0]}
+              </div>
+            }
           </div>
           <div className="flex flex-col items-center w-full">
             <div className="flex items-center justify-center w-full">

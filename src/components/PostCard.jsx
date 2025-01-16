@@ -39,7 +39,7 @@ const PostCard = ({ tweet }) => {
     }
   };
 
-  console.log("ALl maaal",  tweet);
+
 
   return (
     <div key={tweet?._id} className="bg-white rounded-md px-8 py-4">
