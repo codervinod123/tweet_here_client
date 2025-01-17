@@ -54,7 +54,6 @@ const EditProfileDialog = ({ reference }) => {
       );
   
       setLoader(false);
-      localStorage.setItem("user", JSON.stringify(response.data.data));
       setUser(response.data.data);
       setPreviewProfile(null);
       setProfilePic(null);

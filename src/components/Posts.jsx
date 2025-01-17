@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import CreatePost from "./CreatePost";
-import { RecoilRoot, atom } from "recoil";
+import { atom } from "recoil";
 import Story from "./Story";
 
 export const newPost = atom({
@@ -10,7 +10,6 @@ export const newPost = atom({
 
 const Posts = () => {
   return (
-    <RecoilRoot>
       <div className="flex flex-col gap-4">
         <div className="">
           <Story />
@@ -18,7 +17,6 @@ const Posts = () => {
         <CreatePost />
         <Outlet />
       </div>
-    </RecoilRoot>
   );
 };
 

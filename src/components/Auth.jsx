@@ -33,7 +33,6 @@ const Auth = ({ comp }) => {
       }
       console.log(response.data.data.user);
       localStorage.setItem("token", response.data.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.data.user));
       navigate("/home");
       setFormdata({
         email: "",

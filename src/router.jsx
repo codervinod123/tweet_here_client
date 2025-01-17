@@ -10,6 +10,9 @@ import PostsContainer from "./components/PostsContainer";
 import ProfileOverview from "./components/ProfileOverview";
 
 import { createBrowserRouter } from "react-router-dom";
+import MyPosts from "./components/MyPosts";
+
+
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +50,11 @@ export const router = createBrowserRouter([
               {
                 path: "trending",
                 element: <TrendingPosts />,
+                children: [],
+              },
+              {
+                path: "posts/me",
+                element: <MyPosts />,
                 children: [],
               },
               {

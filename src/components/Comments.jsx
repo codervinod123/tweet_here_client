@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 
 import { useRecoilState } from "recoil";
 import { commentCountStore } from "../store/comment-store";
+import { useRecoilValue } from "recoil";
+import { LoginUser } from "../store/userprofile";
 
 const Comments = ({ tweet }) => {
   const [commentCount, setCommentCount] = useRecoilState(commentCountStore);
@@ -62,7 +64,7 @@ const Comments = ({ tweet }) => {
     }
   };
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = useRecoilValue(LoginUser);
 
   return (
     <div>

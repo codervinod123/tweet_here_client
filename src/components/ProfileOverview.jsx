@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { CiLogout } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
 import { CiEdit } from "react-icons/ci";
@@ -7,20 +7,18 @@ import { RxCross2 } from "react-icons/rx";
 import "./global.css";
 
 //recoil
-import { LoginUser } from "../store/userprofile";
-import { useRecoilState } from "recoil";
+
 import EditProfileDialog from "./EditProfileDialog";
 import useAPI from "../hooks/useApiCall";
+import { useRecoilValue } from "recoil";
+import { LoginUser } from "../store/userprofile";
 
 
 const ProfileOverview = () => {
 
-  const [user, setUser] = useRecoilState(LoginUser);
+  const user = useRecoilValue(LoginUser);
 
-  useEffect(() => {
-    const data = localStorage.getItem("user");
-    setUser(JSON.parse(data));
-  }, []);
+  const [list, setList] = useState(false);
 
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -35,7 +33,13 @@ const ProfileOverview = () => {
   };
 
   const friendListRef = useRef();
-  const handleFriendList = () => {
+  const handleFriendList = (listname) => {
+    if (listname == "following") {
+      setList(true);
+    } else {
+      setList(false);
+    }
+
     friendListRef.current.showModal();
   }
 
@@ -82,23 +86,24 @@ const ProfileOverview = () => {
           </p>
 
           <div className="flex justify-center gap-x-4">
-            <div className="flex flex-col items-center">
-              <h6 className="font-bold text-gray-900">8</h6>
-              <small className="font-semibold text-gray-700">Posts</small>
-            </div>
+
+            <Link to={"posts/me"} state={user?.tweets}>
+              <div className="flex flex-col items-center cursor-pointer">
+                <h6 className="font-bold text-gray-900">
+                  {user?.tweets?.length}
+                </h6>
+                <small className="font-semibold text-gray-700">Posts</small>
+              </div>
+            </Link>
             <div className="h-12 border-l-[2px] border-gray-500"></div>
-            {/* <div className="flex flex-col items-center">
-              <h6 className="font-bold text-gray-900">{userProfile?.followersList?.length}</h6>
-              <small className="font-semibold text-gray-700">Follower</small>
-            </div> */}
-            <div className="flex flex-col items-center">
+            <div onClick={() => handleFriendList("follower")} className="flex flex-col items-center cursor-pointer">
               <h6 className="font-bold text-gray-900">
                 {user?.followersList?.length}
               </h6>
               <small className="font-semibold text-gray-700">Follower</small>
             </div>
             <div className="h-12 border-l-[2px] border-gray-500"></div>
-            <div onClick={handleFriendList} className="flex flex-col items-center cursor-pointer">
+            <div onClick={() => handleFriendList("following")} className="flex flex-col items-center cursor-pointer">
               <h6 className="font-bold text-gray-900">
                 {user?.followingList?.length}
               </h6>
@@ -196,7 +201,7 @@ const ProfileOverview = () => {
       </dialog>
 
       <dialog ref={friendListRef} className='outline-none rounded'>
-        <FriendList reference={friendListRef}/>
+        {user._id && <FriendList reference={friendListRef} user={user._id} list={list} />}
       </dialog>
 
     </nav>
@@ -206,49 +211,79 @@ const ProfileOverview = () => {
 export default ProfileOverview;
 
 
-const FriendList = ({reference}) => {
-    
-  const ids = JSON.parse(localStorage.getItem("user")).followingList.join(",");
-  const { data, loading } = useAPI(`/api/v1/user/friends?ids=${ids}`);
+const FriendList = ({ reference, user, list }) => {
+
+  const { data, loading } = useAPI(`/api/v1/user/friends?user=${user}`);
   console.log("All the friends", data)
+
 
   return (
     <div className="fixed inset-0 flex justify-center items-center transition-colors bg-gray-400/20 ">
       <div className="w-[30vw] h-[75vh] rounded bg-white border p-2">
         <div className="flex justify-between pb-4">
           <div></div>
-          <h1 className="text-center text-md font-semibold">Followers</h1>
-          <button onClick={()=>reference.current.close()} className='p-1 rounded-full outline-none bg-gray-400/50 hover:bg-gray-300 transition-all duration-500'>
-             <RxCross2 size={"1.2rem"} color='red' />
+          <h1 className="text-center text-md font-semibold">{list ? "Following" : "Followers"}</h1>
+          <button onClick={() => reference.current.close()} className='p-1 rounded-full outline-none bg-gray-400/50 hover:bg-gray-300 transition-all duration-500'>
+            <RxCross2 size={"1.2rem"} color='red' />
           </button>
         </div>
-        <div className="pt-4 flex flex-col gap-4 overflow-y-auto h-[calc(75vh-4rem)] custom-scrollbar">
-          {
-            data.map((user, index) => {
-              return (
-                <React.Fragment key={index}>
+        {
+          data.followingList &&
+          <div className="pt-4 flex flex-col gap-4 overflow-y-auto h-[calc(75vh-4rem)] custom-scrollbar">
 
-                  <div className="px-6 flex items-center justify-between">
-                    <div className="flex items-center gap-6">
-                      <div className="bg-gray-500 rounded-full">
-                        { 
-                          user.profilePic?
-                          <img className="h-10 w-10" src={user.profilePic} alt="user" />
-                          :
-                          <div className={`flex justify-center items-center h-10 w-10 text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
-                            {user.name ? user?.name[0] : "Z" }
+            {
+
+              list ?
+                data.followingList.map((user, index) => {
+                  return (
+                    <React.Fragment key={index}>
+                      <div className="px-6 flex items-center justify-between">
+                        <div className="flex items-center gap-6">
+                          <div className="bg-gray-500 rounded-full">
+                            {
+                              user.profilePic ?
+                                <img className="h-10 w-10" src={user.profilePic} alt="user" />
+                                :
+                                <div className={`flex justify-center items-center h-10 w-10 text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
+                                  {user.name ? user?.name[0] : "Z"}
+                                </div>
+                            }
                           </div>
-                        }
+                          <h1 className="text-gray-700 font-semibold">{user.name}</h1>
+                        </div>
+                        <button className="bg-blue-500 px-2 py-[2px] rounded text-white">Unfollow</button>
                       </div>
-                      <h1 className="text-gray-700 font-semibold">{user.name}</h1>
-                    </div>
-                    <button className="bg-blue-500 px-2 py-[2px] rounded text-white">Follow</button>
-                  </div>
-                </React.Fragment>
-              )
-            })
-          }
-        </div>
+                    </React.Fragment>
+                  )
+                })
+
+                :
+
+                data.followersList.map((user, index) => {
+                  return (
+                    <React.Fragment key={index}>
+                      <div className="px-6 flex items-center justify-between">
+                        <div className="flex items-center gap-6">
+                          <div className="bg-gray-500 rounded-full">
+                            {
+                              user.profilePic ?
+                                <img className="h-10 w-10" src={user.profilePic} alt="user" />
+                                :
+                                <div className={`flex justify-center items-center h-10 w-10 text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
+                                  {user.name ? user?.name[0] : "Z"}
+                                </div>
+                            }
+                          </div>
+                          <h1 className="text-gray-700 font-semibold">{user.name}</h1>
+                        </div>
+                        <button className="bg-blue-500 px-2 py-[2px] rounded text-white">Follow</button>
+                      </div>
+                    </React.Fragment>
+                  )
+                })
+            }
+          </div>
+        }
       </div>
     </div>
   )

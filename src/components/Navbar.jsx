@@ -6,10 +6,13 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { PiUserCircleThin } from "react-icons/pi";
+import { useEffect } from "react";
+import axios from "axios";
 
 // recoil ?
 import { userSearch } from "../store/userSearch";
 import { useRecoilState } from "recoil";
+
 
 const Navbar = () => {
   const [searchText, setSearchText] = useRecoilState(userSearch);

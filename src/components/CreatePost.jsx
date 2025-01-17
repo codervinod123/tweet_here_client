@@ -1,24 +1,23 @@
 import { useState } from "react";
 import { FaImage } from "react-icons/fa6";
 import { FaVideo } from "react-icons/fa6";
-import { BsFillCalendarDateFill } from "react-icons/bs";
-import { MdEmojiEmotions } from "react-icons/md";
 import { Spin } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useSetRecoilState } from "recoil";
 
 // recoil atom import
-// import { newPost } from "./Posts";
+import { LoginUser } from "../store/userprofile";
+import { useRecoilValue } from "recoil";
 
 const CreatePost = () => {
-  //recoil setup
-  // const setRecoilPost = useSetRecoilState(newPost);
+  
+  const user = useRecoilValue(LoginUser);
 
   const [image, setImage] = useState({
     preview: null,
     dbImage: null,
   });
+
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
   const handleInputChange = (e) => {
@@ -32,7 +31,6 @@ const CreatePost = () => {
     setImage(img);
   };
 
-  const user = JSON.parse(localStorage.getItem("user"));
   // add custom hooks to create post
   // take care , method, body , data type, url
 
@@ -63,6 +61,7 @@ const CreatePost = () => {
       console.log("Error occured", error);
     }
   };
+
 
   return loading ? (
     <div className="bg-white flex justify-center items-center rounded-md py-8">
