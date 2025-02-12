@@ -9,7 +9,6 @@ const MyPosts = () => {
 
     const ids = location.state.join(",");
     const { data, loading } = useAPI(`/api/v1/tweet/trendintweet?ids=${ids}`);
-    console.log("Posts", data);
 
     return loading ? (
         <div className="flex justify-center pt-6">

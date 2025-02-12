@@ -81,7 +81,7 @@ const CreatePost = () => {
               src={user.profilePic}
               alt="user"
             />:
-            <div className={`flex justify-center items-center h-11 w-11 text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
+            <div className={`flex justify-center items-center h-[40px] w-[40px] text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
                {user?.name ? user?.name[0] : "Z" }
             </div>
            }

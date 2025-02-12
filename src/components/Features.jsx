@@ -62,30 +62,31 @@ const features = [
     description:
       "Implements robust security measures to protect user data and ensure privacy, including encryption and secure data storage",
   },
+  {
+    id: 9,
+    icon: <BsCalendarDate size={"1.2rem"} />,
+    title: "Security and Privacy",
+    description:
+      "Implements robust security measures to protect user data and ensure privacy, including encryption and secure data storage",
+  },
 ];
+
 
 const Features = () => {
   return (
-    <div className="max-w-[1200px] flex flex-col m-auto justify-center items-center py-12">
-      <h1 className="text-[2.5rem] font-bold">Tweet Here Features</h1>
-      <p className="text-center mb-16 max-w-[50rem] text-[#5b4e4ec7] text-[1.1rem]">
-        Tweet Here offers a range of powerful features designed to help you
-        manage social interaction effortlessly and stay in sync across all your
-        devices.
-      </p>
-
-      <div className="flex flex-wrap gap-[2rem] justify-center mb-[5rem]">
+    <div className="max-w-[1200px] flex flex-col m-auto justify-center items-center py-4">
+      <div className="flex flex-wrap gap-[2rem] justify-center mb-4">
         {features.map((feature) => {
           return (
             <div
               key={feature.id}
-              className="bg-[#fff] p-[1rem] border rounded-md w-[320px] transition-all duration-700 hover:translate-y-2"
+              className="bg-gradient-to-r from-blue-400 to-purple-500 p-[1rem] border rounded-md w-[320px] transition-all duration-700 hover:translate-y-2"
             >
               <div className="gap-2 flex items-center mb-[.5rem]">
-                <i className="text-[1.2rem] text-[#ff6f61]">{feature.icon}</i>
-                <h3 className="text-[1.2rem] text-[#333]">{feature.title}</h3>
+                <i className="text-[1.2rem] text-white">{feature.icon}</i>
+                <h3 className="text-[1.2rem] text-white font-semibold">{feature.title}</h3>
               </div>
-              <p className="text-[.9rem] text-[#666]">{feature.description}</p>
+              <p className="text-[.9rem] text-white">{feature.description}</p>
             </div>
           );
         })}

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import { toast } from "react-toastify";
 import { Spin } from "antd";
+import { MdContentCopy } from "react-icons/md";
 
 const Auth = ({ comp }) => {
   const navigate = useNavigate();
@@ -47,6 +48,9 @@ const Auth = ({ comp }) => {
     }
   };
 
+  const [selectedE, setSelectedE] = useState(false);
+  const [selectedP, setSelectedP] = useState(false);
+
   return (
     <div className="h-screen flex justify-center flex-col ">
       <div className="flex flex-col gap-2 justify-center w-full px-16">
@@ -64,6 +68,10 @@ const Auth = ({ comp }) => {
             {comp == "signup" ? "Signin" : "Signup"}
           </Link>
         </span>
+        <div className="flex flex-col text-gray-600 text-sm justify-center">
+         <span className="flex gap-4 items-center justify-center">Email: test@gmail.com <MdContentCopy onClick={()=>{navigator.clipboard.writeText("test@gmail.com"); setSelectedE(true)}} className={`cursor-pointer ${selectedE?"text-green-600":""}`}/></span>
+         <span className="flex gap-4 items-center justify-center">Password test@123 <MdContentCopy onClick={()=>{navigator.clipboard.writeText("test@123"); setSelectedP(true)}} className={`cursor-pointer ${selectedP?"text-green-600":""}`}/></span>
+        </div>
       </div>
       <div className="px-4 flex flex-col gap-4 pt-6">
         {comp == "signup" ? (
