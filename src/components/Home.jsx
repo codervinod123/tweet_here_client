@@ -19,29 +19,31 @@ const Home = () => {
     // eslint-disable-next-line
     loginuser();
   }, []);
-  
-   const [loginUser, setLoginUser] = useRecoilState(LoginUser);
-  
-  
-    const loginuser = async() =>{
-      const user  = await axios.get("https://tweet-here.onrender.com/api/v1/user/currentloginuser", {headers:{ token: localStorage.getItem("token") }});
-      setLoginUser(user.data.data);
-    }
+
+  const [loginUser, setLoginUser] = useRecoilState(LoginUser);
+
+  const loginuser = async () => {
+    const user = await axios.get(
+      "https://tweet-here.onrender.com/api/v1/user/currentloginuser",
+      { headers: { token: localStorage.getItem("token") } },
+    );
+    setLoginUser(user.data.data);
+  };
 
   return (
-      <div className="w-screen flex justify-center px-4 lg:px-20">
-        <div className="flex flex-col lg:grid lg:grid-cols-8 max-w-[1200px] lg:gap-8 lg:my-6 w-full">
-          <div className="col-span-2 hidden lg:grid">
-            <ProfileOverview />
-          </div>
-          <div className="py-4 col-span-4 lg:px-0 lg:py-0">
-            <Outlet />
-          </div>
-          <div className="col-span-2 hidden lg:grid">
-            <Suggestions />
-          </div>
+    <div className="w-screen flex justify-center px-4 lg:px-20">
+      <div className="flex flex-col lg:grid lg:grid-cols-8 max-w-[1200px] lg:gap-8 lg:my-6 w-full">
+        <div className="col-span-2 hidden lg:grid">
+          <ProfileOverview />
+        </div>
+        <div className="py-4 col-span-4 lg:px-0 lg:py-0">
+          <Outlet />
+        </div>
+        <div className="col-span-2 hidden lg:grid">
+          <Suggestions />
         </div>
       </div>
+    </div>
   );
 };
 

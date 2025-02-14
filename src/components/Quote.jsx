@@ -1,5 +1,5 @@
 const Quote = () => {
-  return (                                                                                                         
+  return (
     <div className="flex flex-col gap-4 px-8 h-screen w-full bg-slate-300 justify-center items-center bg-cover bg-center">
       <div className="flex flex-col gap-2">
         <p className="text-3xl font-semibold max-w-lg">

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import useAPI from "../hooks/useApiCall";
 import { Spin } from "antd";
 
-
 const Trending = () => {
   const [page, setPage] = useState(1);
 

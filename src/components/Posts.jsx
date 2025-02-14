@@ -10,13 +10,13 @@ export const newPost = atom({
 
 const Posts = () => {
   return (
-      <div className="flex flex-col gap-4">
-        <div className="">
-          <Story />
-        </div>
-        <CreatePost />
-        <Outlet />
+    <div className="flex flex-col gap-4">
+      <div className="">
+        <Story />
       </div>
+      <CreatePost />
+      <Outlet />
+    </div>
   );
 };
 

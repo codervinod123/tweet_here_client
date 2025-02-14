@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import PostCard from "./PostCard";
 import { Spin } from "antd";
-import axios from "axios";
 import useAPI from "../hooks/useApiCall";
 
 const TrendingPosts = () => {

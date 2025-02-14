@@ -69,8 +69,26 @@ const Auth = ({ comp }) => {
           </Link>
         </span>
         <div className="flex flex-col text-gray-600 text-sm justify-center">
-         <span className="flex gap-4 items-center justify-center">Email: test@gmail.com <MdContentCopy onClick={()=>{navigator.clipboard.writeText("test@gmail.com"); setSelectedE(true)}} className={`cursor-pointer ${selectedE?"text-green-600":""}`}/></span>
-         <span className="flex gap-4 items-center justify-center">Password test@123 <MdContentCopy onClick={()=>{navigator.clipboard.writeText("test@123"); setSelectedP(true)}} className={`cursor-pointer ${selectedP?"text-green-600":""}`}/></span>
+          <span className="flex gap-4 items-center justify-center">
+            Email: test@gmail.com{" "}
+            <MdContentCopy
+              onClick={() => {
+                navigator.clipboard.writeText("test@gmail.com");
+                setSelectedE(true);
+              }}
+              className={`cursor-pointer ${selectedE ? "text-green-600" : ""}`}
+            />
+          </span>
+          <span className="flex gap-4 items-center justify-center">
+            Password test@123{" "}
+            <MdContentCopy
+              onClick={() => {
+                navigator.clipboard.writeText("test@123");
+                setSelectedP(true);
+              }}
+              className={`cursor-pointer ${selectedP ? "text-green-600" : ""}`}
+            />
+          </span>
         </div>
       </div>
       <div className="px-4 flex flex-col gap-4 pt-6">
@@ -119,7 +137,10 @@ const Auth = ({ comp }) => {
           />
         </div>
 
-        <div onClick={sendRequest} className="w-full text-gray-900 cursor-pointer bg-gradient-to-r from-teal-400 to-lime-400 hover:bg-gradient-to-l hover:from-teal-400 hover:to-lime-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+        <div
+          onClick={sendRequest}
+          className="w-full text-gray-900 cursor-pointer bg-gradient-to-r from-teal-400 to-lime-400 hover:bg-gradient-to-l hover:from-teal-400 hover:to-lime-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+        >
           {loader ? (
             <Spin indicator={<LoadingOutlined spin />} size="small" />
           ) : (

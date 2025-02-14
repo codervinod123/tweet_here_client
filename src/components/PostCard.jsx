@@ -1,4 +1,3 @@
-import { BiDotsHorizontalRounded } from "react-icons/bi";
 import timeAgo from "../helper/duration-calculator";
 import { SlLike } from "react-icons/sl";
 import { FaComment } from "react-icons/fa";
@@ -39,8 +38,6 @@ const PostCard = ({ tweet }) => {
     }
   };
 
-
-
   return (
     <div key={tweet?._id} className="bg-white rounded-md px-8 py-4">
       <div className=" ">
@@ -48,27 +45,28 @@ const PostCard = ({ tweet }) => {
           <div className="flex gap-x-4 items-center">
             <div>
               <span>
-                {
-                  tweet?.author?.profilePic ?
+                {tweet?.author?.profilePic ? (
                   <img
                     height={45}
                     width={45}
                     className="rounded-full"
                     src={tweet?.author?.profilePic}
                     alt="post-owner"
-                  /> 
-                  :
-                  <div className={`flex justify-center items-center h-[40px] w-[40px] text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
-                     {tweet?.author?.name ? tweet?.author?.name[0] : "Z" }
+                  />
+                ) : (
+                  <div
+                    className={`flex justify-center items-center h-[40px] w-[40px] text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}
+                  >
+                    {tweet?.author?.name ? tweet?.author?.name[0] : "Z"}
                   </div>
-                }
+                )}
               </span>
             </div>
             <div className="flex flex-col leading-2">
               <div className="flex items-center gap-x-2">
                 {tweet?.author ? (
                   <h4 className="font-semibold text-gray-700">
-                    { tweet?.author?.name }
+                    {tweet?.author?.name}
                   </h4>
                 ) : (
                   <h4 className="font-semibold text-gray-700">Lori Forguson</h4>
@@ -86,9 +84,9 @@ const PostCard = ({ tweet }) => {
           </div>
           <div>
             <div className="">
-                <span className="text-sm text-gray-500">
-                  {timeAgo(tweet?.createdAt)}
-                </span>
+              <span className="text-sm text-gray-500">
+                {timeAgo(tweet?.createdAt)}
+              </span>
             </div>
           </div>
         </div>

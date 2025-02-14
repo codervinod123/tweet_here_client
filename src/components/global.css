@@ -20,25 +20,21 @@
   background-color: #aaadb0; /* Darker color on hover */
 }
 
-
-
 /* ///////////////.           animation of the flying images======================= */
 
-.custom-scrollbar::-webkit-scrollbar{
+.custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb{
-    background-color: rgb(119, 120, 123);
-    border-radius: 5px;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(119, 120, 123);
+  border-radius: 5px;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover{
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: rgb(161, 156, 156);
 }
 
-.custom-scrollbar::-webkit-scrollbar-track{
-   background-color: rgb(199, 201, 198);   
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: rgb(199, 201, 198);
 }
-
-

@@ -1,5 +1,4 @@
 const timeAgo = (createdAt) => {
-
   const postedTime = new Date(createdAt);
   const currentTime = new Date();
   const timeDifference = currentTime - postedTime;

@@ -10,7 +10,6 @@ import { LoginUser } from "../store/userprofile";
 import { useRecoilValue } from "recoil";
 
 const CreatePost = () => {
-  
   const user = useRecoilValue(LoginUser);
 
   const [image, setImage] = useState({
@@ -44,15 +43,11 @@ const CreatePost = () => {
       formData.append("content", content);
       formData.append("file", image.dbImage);
       const databaseURL = import.meta.env.VITE_BACKEND_URL;
-      const res = await axios.post(
-        `${databaseURL}/api/v1/tweet/tweet`,
-        formData,
-        {
-          headers:{
-            token: localStorage.getItem("token")
-          }
-        }
-      );
+      await axios.post(`${databaseURL}/api/v1/tweet/tweet`, formData, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      });
       toast.success("Post has been created successfully");
       setImage({ preview: "", data: "" });
       setContent("");
@@ -61,7 +56,6 @@ const CreatePost = () => {
       console.log("Error occured", error);
     }
   };
-
 
   return loading ? (
     <div className="bg-white flex justify-center items-center rounded-md py-8">
@@ -72,19 +66,21 @@ const CreatePost = () => {
       <div className="flex px-8 gap-x-4">
         <div className="rounded-full">
           <span className="rounded-full">
-            {
-            user.profilePic?
-            <img
-              className="rounded-full border-red-500"
-              height={45}
-              width={45}
-              src={user.profilePic}
-              alt="user"
-            />:
-            <div className={`flex justify-center items-center h-[40px] w-[40px] text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
-               {user?.name ? user?.name[0] : "Z" }
-            </div>
-           }
+            {user.profilePic ? (
+              <img
+                className="rounded-full border-red-500"
+                height={45}
+                width={45}
+                src={user.profilePic}
+                alt="user"
+              />
+            ) : (
+              <div
+                className={`flex justify-center items-center h-[40px] w-[40px] text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}
+              >
+                {user?.name ? user?.name[0] : "Z"}
+              </div>
+            )}
           </span>
         </div>
         <form className="w-full rounded">
@@ -108,7 +104,6 @@ const CreatePost = () => {
         )}
       </div>
       <div className="flex justify-between py-2 px-8 md:py-4">
-       
         <ul className="flex gap-x-2">
           <li className="bg-gray-200 rounded-sm flex justify-start items-center px-1">
             <input
@@ -132,7 +127,6 @@ const CreatePost = () => {
               <span className="hidden md:block">Vedio</span>
             </span>
           </li>
-
         </ul>
 
         <button

@@ -71,7 +71,6 @@ const features = [
   },
 ];
 
-
 const Features = () => {
   return (
     <div className="max-w-[1200px] flex flex-col m-auto justify-center items-center py-4">
@@ -84,7 +83,9 @@ const Features = () => {
             >
               <div className="gap-2 flex items-center mb-[.5rem]">
                 <i className="text-[1.2rem] text-white">{feature.icon}</i>
-                <h3 className="text-[1.2rem] text-white font-semibold">{feature.title}</h3>
+                <h3 className="text-[1.2rem] text-white font-semibold">
+                  {feature.title}
+                </h3>
               </div>
               <p className="text-[.9rem] text-white">{feature.description}</p>
             </div>

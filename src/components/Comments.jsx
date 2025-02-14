@@ -71,20 +71,21 @@ const Comments = ({ tweet }) => {
       <div className="flex gap-2">
         <div>
           <span>
-            {
-              user.profilePic ?
-                <img
-                  height={45}
-                  width={45}
-                  className="rounded-full"
-                  src={user.profilePic}
-                  alt="user"
-                />
-                :
-                <div className={`flex justify-center items-center h-[40px] w-[40px] text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
-                  {user?.name ? user?.name[0] : "Z"}
-                </div>
-            }
+            {user.profilePic ? (
+              <img
+                height={45}
+                width={45}
+                className="rounded-full"
+                src={user.profilePic}
+                alt="user"
+              />
+            ) : (
+              <div
+                className={`flex justify-center items-center h-[40px] w-[40px] text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}
+              >
+                {user?.name ? user?.name[0] : "Z"}
+              </div>
+            )}
           </span>
         </div>
         <form className="w-full rounded flex px-4 bg-gray-200">
@@ -117,20 +118,21 @@ const Comments = ({ tweet }) => {
                   <div className="flex gap-2">
                     <div>
                       <span>
-                        {
-                          user.profilePic ?
-                            <img
-                              height={45}
-                              width={45}
-                              className="rounded-full"
-                              src={user.profilePic}
-                              alt="user"
-                            />
-                            :
-                            <div className={`flex justify-center items-center h-[40px] w-[40px] text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
-                              {user?.name ? user?.name[0] : "Z"}
-                            </div>
-                        }
+                        {user.profilePic ? (
+                          <img
+                            height={45}
+                            width={45}
+                            className="rounded-full"
+                            src={user.profilePic}
+                            alt="user"
+                          />
+                        ) : (
+                          <div
+                            className={`flex justify-center items-center h-[40px] w-[40px] text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}
+                          >
+                            {user?.name ? user?.name[0] : "Z"}
+                          </div>
+                        )}
                       </span>
                     </div>
                     <div className="flex bg-gray-200 rounded-md w-full p-2">
@@ -160,19 +162,21 @@ const Comments = ({ tweet }) => {
                 <div className="flex gap-2">
                   <div>
                     <span>
-                      {comment.user.profilePic?
-                      <img
-                        height={45}
-                        width={45}
-                        className="rounded-full flex-shrink-0"
-                        src={comment.user.profilePic}
-                        alt="post-owner"
-                      />
-                      :
-                      <div className={`flex justify-center items-center h-[40px] w-[40px] text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}>
-                        { comment.user ? comment.user.name[0] : "Z"}
-                      </div>
-                    }
+                      {comment.user.profilePic ? (
+                        <img
+                          height={45}
+                          width={45}
+                          className="rounded-full flex-shrink-0"
+                          src={comment.user.profilePic}
+                          alt="post-owner"
+                        />
+                      ) : (
+                        <div
+                          className={`flex justify-center items-center h-[40px] w-[40px] text-gray-700 font-semibold text-xl bg-[#BFECFF] rounded-full`}
+                        >
+                          {comment.user ? comment.user.name[0] : "Z"}
+                        </div>
+                      )}
                     </span>
                   </div>
                   <div className="flex bg-gray-200 rounded-md w-full p-2">
@@ -198,7 +202,6 @@ const Comments = ({ tweet }) => {
           </button>
         </div>
       </ul>
-
     </div>
   );
 };

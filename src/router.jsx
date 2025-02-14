@@ -12,8 +12,6 @@ import ProfileOverview from "./components/ProfileOverview";
 import { createBrowserRouter } from "react-router-dom";
 import MyPosts from "./components/MyPosts";
 
-
-
 export const router = createBrowserRouter([
   {
     path: "",

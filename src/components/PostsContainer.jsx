@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useAPI from "../hooks/useApiCall";
 import { Spin } from "antd";
 import PostCard from "./PostCard";
@@ -11,15 +11,15 @@ const PostsContainer = () => {
   const recoilPost = useRecoilValue(newPost);
   const { data, loading } = useAPI(`/api/v1/tweet?page=${page}`);
 
-  const handleScroll = () => {
-    const total = document?.documentElement?.scrollHeight;
-    const innerHeight = window?.innerHeight;
-    const scrolled = document?.documentElement?.scrollTop;
+  // const handleScroll = () => {
+  //   const total = document?.documentElement?.scrollHeight;
+  //   const innerHeight = window?.innerHeight;
+  //   const scrolled = document?.documentElement?.scrollTop;
 
-    if (innerHeight + scrolled + 1 > total) {
-      setPage((page) => page + 100);
-    }
-  };
+  //   if (innerHeight + scrolled + 1 > total) {
+  //     setPage((page) => page + 100);
+  //   }
+  // };
 
   // useEffect(() => {
   //   window.addEventListener("scroll", handleScroll);

@@ -12,7 +12,9 @@ const useAPI = (endPoint) => {
   const getData = async () => {
     setLoading(true);
     const databaseURL = import.meta.env.VITE_BACKEND_URL;
-    const response = await axios.get(`${databaseURL}${endPoint}`,{headers:{ token: localStorage.getItem("token") }});
+    const response = await axios.get(`${databaseURL}${endPoint}`, {
+      headers: { token: localStorage.getItem("token") },
+    });
     setData(response.data.data);
     setLoading(false);
     return response.data.data;
