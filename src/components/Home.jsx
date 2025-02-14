@@ -24,7 +24,7 @@ const Home = () => {
   
   
     const loginuser = async() =>{
-      const user  = await axios.get("http://localhost:3000/api/v1/user/currentloginuser", {headers:{ token: localStorage.getItem("token") }});
+      const user  = await axios.get("https://tweet-here.onrender.com/api/v1/user/currentloginuser", {headers:{ token: localStorage.getItem("token") }});
       setLoginUser(user.data.data);
     }
 
