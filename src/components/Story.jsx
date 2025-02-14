@@ -3,7 +3,6 @@ import { BsPlus } from "react-icons/bs";
 import "./global.css";
 import axios from 'axios';
 import { Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
 import { toast } from 'react-toastify';
 import StoryModal from './StoryModal';
 
